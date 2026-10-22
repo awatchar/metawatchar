@@ -2,6 +2,8 @@
 
 Research repository for a PhD project on **electromagnetic metamaterials at RF frequencies**.
 
+**Author:** Watchara Amasiri, Department of Electrical and Computer Engineering, Thammasat University
+
 > Status: early stage, work in progress. Content will be added as the research progresses.
 
 ## Approach
@@ -24,3 +26,10 @@ Large raw outputs, such as 3-D field dumps, are not stored in this repository.
 ## Reproducibility
 
 Each case folder will describe the solver and version, the input parameters, and how to regenerate its results.
+
+## License
+
+- **Code** (scripts, simulation models, job files) is licensed under the [MIT License](LICENSE).
+- **Data and results** (measured and simulated data, figures, and documentation) are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-CC-BY-4.0).
+
+If you use this work, please cite the related publications (to be listed here) and credit Watchara Amasiri.
