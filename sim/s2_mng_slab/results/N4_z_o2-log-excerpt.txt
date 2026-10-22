@@ -1,0 +1,2 @@
+Completed 0 iterations of adaptive mesh refinement (AMR):
+Elapsed Time Report (s)           Min.        Max.        Avg.

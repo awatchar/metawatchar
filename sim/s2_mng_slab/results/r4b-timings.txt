@@ -1,0 +1,2 @@
+ntasks=128 palace=0.18.1 list=lists/r4b.txt
+N4_z_o3 rc=0 ntasks=128 wall_s=6270.7

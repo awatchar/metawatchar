@@ -1,0 +1,9 @@
+{
+  "run": "eig_z_s0620_pmc_o3",
+  "mesh": "eig_z_s0620_v2",
+  "type": "eigen",
+  "order": 3,
+  "xwall": "pmc",
+  "offset_mm": null,
+  "both_ports": false
+}

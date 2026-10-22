@@ -1,0 +1,56 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 3): 2117895, ND (p = 3): 8081118, RT (p = 3): 9905106
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 574568 unknowns
+ Level 1 (p = 2): 2874086 unknowns
+ Level 2 (p = 3): 8081118 unknowns
+ Level 0 (auxiliary) (p = 1): 106284 unknowns
+ Level 1 (auxiliary) (p = 2): 680852 unknowns
+ Level 2 (auxiliary) (p = 3): 2117895 unknowns
+
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 1.470099e+03
+--
+Greedy iteration 1 (n = 4): ω* = 1.617e-01 GHz (1.423e+00), error = 2.709e-01, memory = 0/2
+ Field energy E (3.339e-09 J) + H (3.103e-09 J) = 6.442e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 2 (n = 6): ω* = 1.489e-01 GHz (1.311e+00), error = 2.419e-01, memory = 0/2
+ Field energy E (8.292e-08 J) + H (8.237e-08 J) = 1.653e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 3 (n = 8): ω* = 1.496e-01 GHz (1.317e+00), error = 1.835e-04, memory = 0/2
+ Field energy E (2.121e-07 J) + H (2.117e-07 J) = 4.238e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 4 (n = 10): ω* = 1.842e-01 GHz (1.621e+00), error = 1.762e-06, memory = 1/2
+ Field energy E (1.074e-09 J) + H (1.125e-09 J) = 2.199e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 5 (n = 12): ω* = 1.394e-01 GHz (1.227e+00), error = 8.016e-07, memory = 2/2
+ Field energy E (3.877e-09 J) + H (3.857e-09 J) = 7.734e-09 J
+
+Adaptive sampling converged with 7 frequency samples:
+ n = 14, error = 8.016e-07, tol = 1.000e-04, memory = 2/2
+ Sampled frequencies (GHz): 1.300e-01, 2.000e-01, 1.617e-01, 1.489e-01,
+                            1.496e-01, 1.842e-01, 1.394e-01
+ Sample errors: inf, inf, 2.709e-01, 2.419e-01, 1.835e-04,
+                1.762e-06, 8.016e-07
+ Total offline phase elapsed time: 4.38e+02 s
+
+--
+ Indicator norm = 6.260e-03, global unknowns = 8081118
+ Max. iterations = 0, tol. = 1.000e-02
+
+Estimated peak per-rank memory usage is: Min. 903.4M, Max. 1.2G, Avg. 1.0G, Total 64.9G
+--
+Elapsed Time Report (s)           Min.        Max.        Avg.
+==============================================================
+Initialization                   1.158       3.646       3.606
+  Mesh Preprocessing             2.592       5.079       2.632

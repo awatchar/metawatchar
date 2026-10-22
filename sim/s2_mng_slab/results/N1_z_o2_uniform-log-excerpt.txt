@@ -1,0 +1,16 @@
+GMRES solver converged in 17 iterations (avg. reduction factor: 3.342e-01)
+ Updating solution error estimates
+GMRES solver converged in 14 iterations (avg. reduction factor: 2.611e-01)
+ Updating solution error estimates
+GMRES solver converged in 14 iterations (avg. reduction factor: 2.571e-01)
+ Updating solution error estimates
+GMRES solver converged in 12 iterations (avg. reduction factor: 2.136e-01)
+ Updating solution error estimates
+GMRES solver converged in 10 iterations (avg. reduction factor: 1.506e-01)
+ Updating solution error estimates
+GMRES solver converged in 13 iterations (avg. reduction factor: 2.354e-01)
+ Updating solution error estimates
+GMRES solver converged in 13 iterations (avg. reduction factor: 2.404e-01)
+ Updating solution error estimates
+Completed 0 iterations of adaptive mesh refinement (AMR):
+Elapsed Time Report (s)           Min.        Max.        Avg.

@@ -1,0 +1,67 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 3): 4171934, ND (p = 3): 15912729, RT (p = 3): 19499280
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 1132027 unknowns
+ Level 1 (p = 2): 5660422 unknowns
+ Level 2 (p = 3): 15912729 unknowns
+ Level 0 (auxiliary) (p = 1): 209696 unknowns
+ Level 1 (auxiliary) (p = 2): 1341723 unknowns
+ Level 2 (auxiliary) (p = 3): 4171934 unknowns
+
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 2.452032e+02
+--
+Greedy iteration 1 (n = 4): ω* = 1.554e-01 GHz (1.824e+00), error = 6.186e-01, memory = 0/2
+ Field energy E (9.522e-09 J) + H (8.806e-09 J) = 1.833e-08 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 2 (n = 6): ω* = 1.448e-01 GHz (1.699e+00), error = 1.645e-01, memory = 0/2
+ Field energy E (1.947e-08 J) + H (1.934e-08 J) = 3.881e-08 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 3 (n = 8): ω* = 1.485e-01 GHz (1.743e+00), error = 9.426e-02, memory = 0/2
+ Field energy E (7.156e-08 J) + H (7.088e-08 J) = 1.424e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 4 (n = 10): ω* = 1.494e-01 GHz (1.753e+00), error = 1.750e-01, memory = 0/2
+ Field energy E (3.838e-07 J) + H (3.836e-07 J) = 7.673e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 5 (n = 12): ω* = 1.501e-01 GHz (1.762e+00), error = 2.518e-03, memory = 0/2
+ Field energy E (6.131e-08 J) + H (6.032e-08 J) = 1.216e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 6 (n = 14): ω* = 1.827e-01 GHz (2.144e+00), error = 4.209e-06, memory = 1/2
+ Field energy E (1.577e-09 J) + H (1.870e-09 J) = 3.447e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 7 (n = 16): ω* = 1.498e-01 GHz (1.758e+00), error = 1.100e-05, memory = 2/2
+ Field energy E (1.375e-06 J) + H (1.374e-06 J) = 2.749e-06 J
+
+Adaptive sampling converged with 9 frequency samples:
+ n = 18, error = 1.100e-05, tol = 1.000e-04, memory = 2/2
+ Sampled frequencies (GHz): 1.300e-01, 2.000e-01, 1.554e-01, 1.448e-01,
+                            1.485e-01, 1.494e-01, 1.501e-01, 1.827e-01,
+                            1.498e-01
+ Sample errors: inf, inf, 6.186e-01, 1.645e-01, 9.426e-02,
+                1.750e-01, 2.518e-03, 4.209e-06, 1.100e-05
+ Total offline phase elapsed time: 5.89e+02 s
+
+--
+ Indicator norm = 6.465e-03, global unknowns = 15912729
+ Max. iterations = 0, tol. = 1.000e-02
+
+Estimated peak per-rank memory usage is: Min. 1.1G, Max. 1.4G, Avg. 1.3G, Total 160.9G
+--
+Elapsed Time Report (s)           Min.        Max.        Avg.
+==============================================================
+Initialization                   2.169       7.431       7.388
+  Mesh Preprocessing             5.114      10.374       5.157

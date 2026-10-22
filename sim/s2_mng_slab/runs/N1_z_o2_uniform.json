@@ -1,0 +1,9 @@
+{
+  "run": "N1_z_o2_uniform",
+  "mesh": "N1_z_s0620_v2",
+  "type": "driven",
+  "order": 2,
+  "xwall": null,
+  "offset_mm": 140.0,
+  "both_ports": false
+}

@@ -1,0 +1,53 @@
+{
+  "name": "empty",
+  "geometry": {
+    "kind": "empty",
+    "N": 0,
+    "orient": "z",
+    "a_x": 70.0,
+    "a_y": 70.0,
+    "a_z": 70.0,
+    "r": 21.5,
+    "t": 3.0,
+    "t_lip": 3.0,
+    "d": 1.0,
+    "ell": 45.0,
+    "s": 0.0,
+    "L": 0.0,
+    "l_empty": 140.0,
+    "x_min": -140.0,
+    "x_max": 140.0,
+    "slab_faces": [
+      0.0,
+      0.0
+    ],
+    "s_max": 7.5,
+    "clearance": 10.5,
+    "cell_centres": []
+  },
+  "mesh": {
+    "recipe": "v2",
+    "sizes_mm": {
+      "gap": 0.565,
+      "gap_edge": 0.25,
+      "loop": 2.0,
+      "medge": 0.2,
+      "bulk": 8.0
+    },
+    "n_tet": 11905,
+    "n_surf": {
+      "pec_top": 1,
+      "pec_bottom": 1,
+      "pmc_sides": 2,
+      "xmin": 1,
+      "xmax": 1,
+      "copper": 0
+    }
+  },
+  "Rs": 0.003195298982463741,
+  "Ls": 3.390317518104052e-12,
+  "f_Rs": 150000000.0,
+  "sigma_cu": 58000000.0,
+  "eps_alumina": 9.8,
+  "tand_alumina": 4e-05
+}

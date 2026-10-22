@@ -1,0 +1,55 @@
+{
+  "name": "eig_z_s0400_v2",
+  "geometry": {
+    "kind": "eigen",
+    "N": 1,
+    "orient": "z",
+    "a_x": 70.0,
+    "a_y": 70.0,
+    "a_z": 70.0,
+    "r": 21.5,
+    "t": 3.0,
+    "t_lip": 3.0,
+    "d": 1.0,
+    "ell": 45.0,
+    "s": 4.0,
+    "L": 70.0,
+    "l_empty": 0.0,
+    "x_min": 0.0,
+    "x_max": 70.0,
+    "slab_faces": [
+      0.0,
+      70.0
+    ],
+    "s_max": 7.5,
+    "clearance": 6.5,
+    "cell_centres": [
+      35.0
+    ]
+  },
+  "mesh": {
+    "recipe": "v2",
+    "sizes_mm": {
+      "gap": 0.565,
+      "gap_edge": 0.25,
+      "loop": 2.0,
+      "medge": 0.2,
+      "bulk": 8.0
+    },
+    "n_tet": 185419,
+    "n_surf": {
+      "pec_top": 1,
+      "pec_bottom": 1,
+      "pmc_sides": 2,
+      "xmin": 1,
+      "xmax": 1,
+      "copper": 10
+    }
+  },
+  "Rs": 0.003195298982463741,
+  "Ls": 3.390317518104052e-12,
+  "f_Rs": 150000000.0,
+  "sigma_cu": 58000000.0,
+  "eps_alumina": 9.8,
+  "tand_alumina": 4e-05
+}

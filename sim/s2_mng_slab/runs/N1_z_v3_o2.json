@@ -1,0 +1,9 @@
+{
+  "run": "N1_z_v3_o2",
+  "mesh": "N1_z_s0620_v3",
+  "type": "driven",
+  "order": 2,
+  "xwall": null,
+  "offset_mm": 140.0,
+  "both_ports": false
+}

@@ -1,0 +1,2 @@
+run,mesh,order,N,orient,s_mm,n_tet,dofs,n_freq,f_lo_Hz,f_hi_Hz,f_S21min_Hz,S21min_dB,S11_at_S21min_dB,f_absmax_Hz,absorption_max,absorption_min,S21_lo_dB,S21_hi_dB,argS21_lo_deg,offset_mm
+N1_z_v3_o2,N1_z_s0620_v3,2,1,z,6.2,757480,5242594,7001,130000000,200000000,150490000,-43.9098304,-0.0529975074,150060000,0.0124921,5.69839683e-05,-0.0137750935,-0.395070545,-22.5579636,140

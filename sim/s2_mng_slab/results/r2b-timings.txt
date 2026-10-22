@@ -1,0 +1,5 @@
+ntasks=64 palace=0.18.1 list=lists/r2b.txt
+N1_z_o3 rc=0 ntasks=64 wall_s=3619.4
+N1_z_v3_o2 rc=0 ntasks=64 wall_s=3765.2
+eig_z_s0620_pmc_o3 rc=0 ntasks=64 wall_s=929.1
+eig_z_s0620_pec_o3 rc=0 ntasks=64 wall_s=1234.6

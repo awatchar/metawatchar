@@ -1,0 +1,3 @@
+ntasks=32 palace=0.18.1 list=lists/r1b.txt
+eig_z_s0400_pmc_o2b rc=0 ntasks=32 wall_s=587.2
+eig_z_s0400_pec_o2b rc=0 ntasks=32 wall_s=723.3

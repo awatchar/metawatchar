@@ -1,0 +1,272 @@
+{
+  "description": "S2: slab of N unshielded loop-gap (MNG) cells in a TEM unit-cell waveguide (PEC z = +-a_z/2, PMC y = +-a_y/2 = infinite 2D array in y-z), propagation +x",
+  "units": "lengths in mm, frequency in Hz",
+  "time_convention": "exp(+j omega t): an empty line of length l has S21 = exp(-j k0 l) (checked with the empty-line run)",
+  "lattice_mm": {
+    "a_x": 70.0,
+    "a_y": 70.0,
+    "a_z": 70.0
+  },
+  "cell_mm": {
+    "loop_inner_radius_r": 21.5,
+    "loop_wall_t": 3.0,
+    "loop_length_along_y": 45.0,
+    "lip_thickness": 3.0,
+    "lip_height_s": 6.2,
+    "gap_d_alumina": 1.0,
+    "lip_tip_clearance_to_plate": 4.300000000000001,
+    "loop_axis": "y (parallel to the TEM H-field)",
+    "orientation_production": "slit and lips towards +z: lip plates parallel to E (z), gap field along x (perpendicular to E)",
+    "cell_centre": "x = (i + 1/2) a_x, y = 0, z = 0, i = 0..N-1"
+  },
+  "materials": {
+    "alumina": {
+      "eps_r": 9.8,
+      "tan_delta": 4e-05
+    },
+    "copper": {
+      "sigma_S_per_m": 58000000.0,
+      "Rs_ohm_sq": 0.003195298982463741,
+      "Ls_H_sq": 3.390317518104052e-12,
+      "Rs_evaluated_at_Hz": 150000000.0,
+      "model": "surface impedance (frequency-independent Rs, Ls)"
+    },
+    "plates_and_walls": "ideal PEC (z) and PMC (y), lossless"
+  },
+  "ports": "numeric wave ports (TEM mode, unit incident power), reference impedance = TEM line impedance eta0 a_z / a_y; de-embedded by Palace (port Offset) to the slab faces",
+  "slabs": {
+    "N1": {
+      "file": "S_N1.csv",
+      "run": "N1_z_o3",
+      "N": 1,
+      "slab_length_L_mm": 70.0,
+      "slab_faces_x_mm": [
+        0.0,
+        70.0
+      ],
+      "reference_planes_x_mm": [
+        0.0,
+        70.0
+      ],
+      "port_planes_x_mm": [
+        -140.0,
+        210.0
+      ],
+      "empty_line_each_side_mm": 140.0,
+      "deembedding_offset_mm": 140.0,
+      "fe_order": 3,
+      "mesh_recipe": "v2",
+      "n_tet": 202597,
+      "dofs": "4151559"
+    },
+    "N2": {
+      "file": "S_N2.csv",
+      "run": "N2_z_o3",
+      "N": 2,
+      "slab_length_L_mm": 140.0,
+      "slab_faces_x_mm": [
+        0.0,
+        140.0
+      ],
+      "reference_planes_x_mm": [
+        0.0,
+        140.0
+      ],
+      "port_planes_x_mm": [
+        -140.0,
+        280.0
+      ],
+      "empty_line_each_side_mm": 140.0,
+      "deembedding_offset_mm": 140.0,
+      "fe_order": 3,
+      "mesh_recipe": "v2",
+      "n_tet": 394188,
+      "dofs": "8081118"
+    },
+    "N4": {
+      "file": "S_N4.csv",
+      "run": "N4_z_o3",
+      "N": 4,
+      "slab_length_L_mm": 280.0,
+      "slab_faces_x_mm": [
+        0.0,
+        280.0
+      ],
+      "reference_planes_x_mm": [
+        0.0,
+        280.0
+      ],
+      "port_planes_x_mm": [
+        -140.0,
+        420.0
+      ],
+      "empty_line_each_side_mm": 140.0,
+      "deembedding_offset_mm": 140.0,
+      "fe_order": 3,
+      "mesh_recipe": "v2",
+      "n_tet": 775848,
+      "dofs": "15912729"
+    }
+  },
+  "eigenmodes_single_cell": [
+    {
+      "run": "eig_z_s0620_pec_o2",
+      "x_walls": "pec",
+      "fe_order": 2,
+      "f_Hz": 179516394.0,
+      "Q": 4904.85134,
+      "Q_c": 6026.60881,
+      "Q_d": 26351.1688,
+      "p_d": 0.948724522
+    },
+    {
+      "run": "eig_z_s0620_pec_o3",
+      "x_walls": "pec",
+      "fe_order": 3,
+      "f_Hz": 179503464.0,
+      "Q": 4982.46484,
+      "Q_c": 6144.64882,
+      "Q_d": 26343.0724,
+      "p_d": 0.949016106
+    },
+    {
+      "run": "eig_z_s0620_pmc_o2",
+      "x_walls": "pmc",
+      "fe_order": 2,
+      "f_Hz": 149933751.0,
+      "Q": 5016.20718,
+      "Q_c": 6198.41275,
+      "Q_d": 26300.4365,
+      "p_d": 0.950554564
+    },
+    {
+      "run": "eig_z_s0620_pmc_o3",
+      "x_walls": "pmc",
+      "fe_order": 3,
+      "f_Hz": 149930419.0,
+      "Q": 5082.76088,
+      "Q_c": 6300.81449,
+      "Q_d": 26292.3843,
+      "p_d": 0.95084568
+    }
+  ],
+  "eigenmode_note": "single cell in the same PEC/PMC box closed at x = 0, a_x: PMC x-walls = alternating images (k = pi/a_x), just below the mu_eff pole f_m; PEC x-walls = in-phase images (k = 0, zero macroscopic E), the mu_eff = 0 frequency f_mp. Q includes copper + alumina loss",
+  "orientation_x_comparison": {
+    "file": "S_N1_orient_x.csv",
+    "run": "N1_x_o2",
+    "description": "N = 1, slit and lips towards +x (gap field parallel to E); both ports excited (S11, S21, S12, S22); bianisotropic"
+  },
+  "frequency_grid": "130-200 MHz, 10 kHz steps (7001 points), Palace adaptive fast sweep (AdaptiveTol 1e-4)",
+  "runs": {
+    "empty_off0_o2": {
+      "N": "0",
+      "orient": "z",
+      "order": "2",
+      "dofs": "83522",
+      "f_S21min_Hz": "200000000",
+      "S21min_dB": "-3.44625179e-08",
+      "absorption_max": "7.93528798e-09",
+      "f_absmax_Hz": "200000000"
+    },
+    "empty_off140_o2": {
+      "N": "0",
+      "orient": "z",
+      "order": "2",
+      "dofs": "83522",
+      "f_S21min_Hz": "200000000",
+      "S21min_dB": "-3.44625179e-08",
+      "absorption_max": "7.93528798e-09",
+      "f_absmax_Hz": "200000000"
+    },
+    "N1_x_o2": {
+      "N": "1",
+      "orient": "x",
+      "order": "2",
+      "dofs": "1484958",
+      "f_S21min_Hz": "150790000",
+      "S21min_dB": "-44.5032591",
+      "absorption_max": "0.011286643",
+      "f_absmax_Hz": "150450000"
+    },
+    "N1_z_o2": {
+      "N": "1",
+      "orient": "z",
+      "order": "2",
+      "dofs": "1476282",
+      "f_S21min_Hz": "150500000",
+      "S21min_dB": "-44.1107604",
+      "absorption_max": "0.0126369899",
+      "f_absmax_Hz": "150060000"
+    },
+    "N1_z_o2_uniform": {
+      "N": "1",
+      "orient": "z",
+      "order": "2",
+      "dofs": "1476282",
+      "f_S21min_Hz": "150500000",
+      "S21min_dB": "-44.1081003",
+      "absorption_max": "0.012628356",
+      "f_absmax_Hz": "150000000"
+    },
+    "N1_z_o3": {
+      "N": "1",
+      "orient": "z",
+      "order": "3",
+      "dofs": "4151559",
+      "f_S21min_Hz": "150490000",
+      "S21min_dB": "-44.0682965",
+      "absorption_max": "0.0124798537",
+      "f_absmax_Hz": "150060000"
+    },
+    "N1_z_v3_o2": {
+      "N": "1",
+      "orient": "z",
+      "order": "2",
+      "dofs": "5242594",
+      "f_S21min_Hz": "150490000",
+      "S21min_dB": "-43.9098304",
+      "absorption_max": "0.0124921",
+      "f_absmax_Hz": "150060000"
+    },
+    "N2_z_o2": {
+      "N": "2",
+      "orient": "z",
+      "order": "2",
+      "dofs": "2874086",
+      "f_S21min_Hz": "150520000",
+      "S21min_dB": "-32.3883695",
+      "absorption_max": "0.10772786",
+      "f_absmax_Hz": "149420000"
+    },
+    "N2_z_o3": {
+      "N": "2",
+      "orient": "z",
+      "order": "3",
+      "dofs": "8081118",
+      "f_S21min_Hz": "150520000",
+      "S21min_dB": "-32.4331902",
+      "absorption_max": "0.10671813",
+      "f_absmax_Hz": "149420000"
+    },
+    "N4_z_o2": {
+      "N": "4",
+      "orient": "z",
+      "order": "2",
+      "dofs": "5660422",
+      "f_S21min_Hz": "150420000",
+      "S21min_dB": "-62.9324581",
+      "absorption_max": "0.509666569",
+      "f_absmax_Hz": "149820000"
+    },
+    "N4_z_o3": {
+      "N": "4",
+      "orient": "z",
+      "order": "3",
+      "dofs": "15912729",
+      "f_S21min_Hz": "150410000",
+      "S21min_dB": "-63.015236",
+      "absorption_max": "0.505708605",
+      "f_absmax_Hz": "149810000"
+    }
+  }
+}

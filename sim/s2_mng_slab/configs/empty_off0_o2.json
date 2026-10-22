@@ -1,0 +1,90 @@
+{
+  "Problem": {
+    "Type": "Driven",
+    "Verbose": 2,
+    "Output": "postpro/empty_off0_o2",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/empty.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      }
+    ]
+  },
+  "Boundaries": {
+    "PEC": {
+      "Attributes": [
+        1,
+        2
+      ]
+    },
+    "PMC": {
+      "Attributes": [
+        3
+      ]
+    },
+    "WavePort": [
+      {
+        "Index": 1,
+        "Attributes": [
+          4
+        ],
+        "Mode": 1,
+        "Offset": 0.0,
+        "Excitation": 1,
+        "PolarityAttributes": [
+          1,
+          2
+        ]
+      },
+      {
+        "Index": 2,
+        "Attributes": [
+          5
+        ],
+        "Mode": 1,
+        "Offset": 0.0,
+        "Excitation": 0,
+        "PolarityAttributes": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 400
+    },
+    "Driven": {
+      "Samples": [
+        {
+          "Type": "Linear",
+          "MinFreq": 0.13,
+          "MaxFreq": 0.2,
+          "FreqStep": 0.01
+        }
+      ],
+      "Save": [],
+      "AdaptiveTol": 0.0
+    }
+  }
+}

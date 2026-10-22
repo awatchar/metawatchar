@@ -1,0 +1,91 @@
+{
+  "Problem": {
+    "Type": "Eigenmode",
+    "Verbose": 2,
+    "Output": "postpro/eig_z_s0620_pmc_o2",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/eig_z_s0620_v2.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.8,
+        "LossTan": 4e-05
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            2
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "PEC": {
+      "Attributes": [
+        1,
+        2
+      ]
+    },
+    "PMC": {
+      "Attributes": [
+        3,
+        4,
+        5
+      ]
+    },
+    "Impedance": [
+      {
+        "Attributes": [
+          6
+        ],
+        "Rs": 0.003195298982463741,
+        "Ls": 3.390317518104052e-12
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 400
+    },
+    "Eigenmode": {
+      "N": 2,
+      "Tol": 1e-08,
+      "Target": 0.13,
+      "Save": 0
+    }
+  }
+}

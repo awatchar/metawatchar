@@ -1,0 +1,2 @@
+ntasks=32 palace=0.18.1 list=lists/r3u.txt
+N1_z_o2_uniform rc=0 ntasks=32 wall_s=130.2

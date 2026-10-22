@@ -1,0 +1,9 @@
+{
+  "run": "eig_z_s0620_pec_o3",
+  "mesh": "eig_z_s0620_v2",
+  "type": "eigen",
+  "order": 3,
+  "xwall": "pec",
+  "offset_mm": null,
+  "both_ports": false
+}

@@ -1,0 +1,9 @@
+{
+  "run": "eig_z_s0400_pec_o2b",
+  "mesh": "eig_z_s0400_v2",
+  "type": "eigen",
+  "order": 2,
+  "xwall": "pec",
+  "offset_mm": null,
+  "both_ports": false
+}

@@ -1,0 +1,9 @@
+{
+  "run": "empty_off0_o2",
+  "mesh": "empty",
+  "type": "driven",
+  "order": 2,
+  "xwall": null,
+  "offset_mm": 0.0,
+  "both_ports": false
+}
