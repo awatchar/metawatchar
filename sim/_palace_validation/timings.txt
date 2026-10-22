@@ -1,0 +1,3 @@
+ntasks=16 palace=0.18.1
+cavity_pec wall_s=10.2
+cavity_impedance wall_s=9.4
