@@ -1,0 +1,161 @@
+{
+  "Problem": {
+    "Type": "Eigenmode",
+    "Verbose": 2,
+    "Output": "postpro/v015_a06_d0635_s0386",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/v015_a06_d0635_s0386.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.8,
+        "LossTan": 4e-05
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            2
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            1
+          ]
+        }
+      ],
+      "Probe": [
+        {
+          "Index": 1,
+          "Center": [
+            18.77647146890917,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "Index": 2,
+          "Center": [
+            22.206471468909168,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "Index": 3,
+          "Center": [
+            24.23647146890917,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "Index": 4,
+          "Center": [
+            24.23647146890917,
+            0.4175,
+            0.0
+          ]
+        },
+        {
+          "Index": 5,
+          "Center": [
+            24.23647146890917,
+            3.4175,
+            0.0
+          ]
+        },
+        {
+          "Index": 6,
+          "Center": [
+            24.036471468909166,
+            0.2675,
+            0.0
+          ]
+        },
+        {
+          "Index": 7,
+          "Center": [
+            17.176471468909167,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "Index": 8,
+          "Center": [
+            17.171426118477665,
+            0.4175,
+            0.0
+          ]
+        },
+        {
+          "Index": 9,
+          "Center": [
+            22.206471468909168,
+            0.0,
+            21.695589336136464
+          ]
+        },
+        {
+          "Index": 10,
+          "Center": [
+            24.23647146890917,
+            0.4175,
+            21.695589336136464
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "Impedance": [
+      {
+        "Attributes": [
+          1,
+          2
+        ],
+        "Rs": 0.0031470045312509166,
+        "Ls": 3.4423458905922776e-12
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Eigenmode": {
+      "N": 2,
+      "Tol": 1e-08,
+      "Target": 0.05,
+      "Save": 0
+    },
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 200
+    }
+  }
+}

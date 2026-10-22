@@ -1,0 +1,5 @@
+ntasks=32 palace=0.18.1 list=lists/f2_2.txt
+v050_a06_d0635_s0406_o3 rc=0 wall_s=622.2
+v050_a06_d1000_s0815_o3 rc=0 wall_s=737.9
+v025_a06_d0635_s0871_o3 rc=0 wall_s=612.5
+v025_a05_d1000_s1106 rc=0 wall_s=208.9

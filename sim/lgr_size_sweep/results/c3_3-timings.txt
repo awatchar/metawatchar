@@ -1,0 +1,1 @@
+ntasks=64 palace=0.18.1 list=lists/c3_3.txt

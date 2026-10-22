@@ -1,0 +1,2 @@
+ntasks=64 palace=0.18.1 list=lists/c5_2.txt
+v025_a05_d0635_s1092_mN4_o4 rc=0 wall_s=3528.5

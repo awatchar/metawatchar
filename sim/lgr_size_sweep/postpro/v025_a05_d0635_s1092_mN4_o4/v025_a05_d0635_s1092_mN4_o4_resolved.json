@@ -1,0 +1,242 @@
+{
+  "Boundaries": {
+    "Impedance": [
+      {
+        "Attributes": [
+          1,
+          2
+        ],
+        "Cs": 0.0,
+        "Ls": 3.4423458905922776e-12,
+        "Rs": 0.0031470045312509166
+      }
+    ]
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Conductivity": 0.0,
+        "LondonDepth": 0.0,
+        "LossTan": 0.0,
+        "Permeability": 1.0,
+        "Permittivity": 1.0
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Conductivity": 0.0,
+        "LondonDepth": 0.0,
+        "LossTan": 4e-05,
+        "Permeability": 1.0,
+        "Permittivity": 9.8
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Attributes": [
+            2
+          ],
+          "Index": 1
+        },
+        {
+          "Attributes": [
+            1
+          ],
+          "Index": 2
+        }
+      ],
+      "Probe": [
+        {
+          "Center": [
+            18.569601581382397,
+            0.0,
+            0.0
+          ],
+          "Index": 1
+        },
+        {
+          "Center": [
+            25.529601581382398,
+            0.0,
+            0.0
+          ],
+          "Index": 2
+        },
+        {
+          "Center": [
+            31.089601581382396,
+            0.0,
+            0.0
+          ],
+          "Index": 3
+        },
+        {
+          "Center": [
+            31.089601581382396,
+            0.4175,
+            0.0
+          ],
+          "Index": 4
+        },
+        {
+          "Center": [
+            31.089601581382396,
+            3.4175,
+            0.0
+          ],
+          "Index": 5
+        },
+        {
+          "Center": [
+            30.889601581382394,
+            0.2675,
+            0.0
+          ],
+          "Index": 6
+        },
+        {
+          "Center": [
+            16.969601581382395,
+            0.0,
+            0.0
+          ],
+          "Index": 7
+        },
+        {
+          "Center": [
+            16.96449506716013,
+            0.4175,
+            0.0
+          ],
+          "Index": 8
+        },
+        {
+          "Center": [
+            25.529601581382398,
+            0.0,
+            25.704402372073595
+          ],
+          "Index": 9
+        },
+        {
+          "Center": [
+            31.089601581382396,
+            0.4175,
+            25.704402372073595
+          ],
+          "Index": 10
+        }
+      ]
+    }
+  },
+  "Model": {
+    "AddInterfaceBoundaryElements": true,
+    "CleanUnusedElements": true,
+    "CrackDisplacementFactor": 1e-12,
+    "CrackInternalBoundaryElements": true,
+    "ExportPrerefinedMesh": false,
+    "L0": 0.001,
+    "MakeHexahedral": false,
+    "MakeSimplex": false,
+    "Mesh": "mesh/v025_a05_d0635_s1092_mN4_o3.msh",
+    "RefineCrackElements": true,
+    "Refinement": {
+      "MaxIts": 0,
+      "MaxNCLevels": 1,
+      "MaxSize": 0,
+      "MaximumImbalance": 1.1,
+      "Nonconformal": true,
+      "SaveAdaptIterations": true,
+      "SaveAdaptMesh": false,
+      "SerialUniformLevels": 0,
+      "Tol": 0.01,
+      "UniformLevels": 0,
+      "UpdateFraction": 0.7
+    },
+    "RemoveCurvature": false,
+    "ReorderElements": false,
+    "ReorientTetMesh": false
+  },
+  "Problem": {
+    "Output": "postpro/v025_a05_d0635_s1092_mN4_o4",
+    "OutputFormats": {
+      "GridFunction": false,
+      "Paraview": false
+    },
+    "Type": "Eigenmode",
+    "Verbose": 2
+  },
+  "Solver": {
+    "Device": "CPU",
+    "Eigenmode": {
+      "LinearTol": 0.001,
+      "MassOrthogonal": false,
+      "MaxIts": 1000000,
+      "MaxRestart": 2,
+      "MaxSize": 17,
+      "N": 2,
+      "NonlinearType": "Hybrid",
+      "PEPLinear": true,
+      "PreconditionerLag": 10,
+      "PreconditionerLagTol": 0.0001,
+      "RefineNonlinear": true,
+      "Save": 0,
+      "Scaling": true,
+      "StartVector": true,
+      "StartVectorConstant": false,
+      "Target": 0.05,
+      "TargetUpper": 0.15000000000000002,
+      "Tol": 1e-08,
+      "Type": "SLEPc"
+    },
+    "Linear": {
+      "AMGAggressiveCoarsening": false,
+      "AMSMaxIts": 4,
+      "AMSSingularOperator": false,
+      "AMSVectorInterpolation": false,
+      "ColumnOrdering": "Default",
+      "ComplexCoarseSolve": false,
+      "DivFreeMaxIts": 1000,
+      "DivFreeTol": 1e-12,
+      "DropSmallEntries": false,
+      "EstimatorMG": false,
+      "EstimatorMaxIts": 10000,
+      "EstimatorTol": 1e-06,
+      "GSOrthogonalization": "MGS",
+      "InitialGuess": false,
+      "KSPType": "GMRES",
+      "MGAuxiliarySmoother": true,
+      "MGCoarsenType": "Logarithmic",
+      "MGCycleIts": 1,
+      "MGMaxLevels": 100,
+      "MGSmoothChebyshev4th": true,
+      "MGSmoothEigScaleMax": 1.0,
+      "MGSmoothEigScaleMin": 0.0,
+      "MGSmoothIts": 1,
+      "MGSmoothOrder": 8,
+      "MGUseMesh": true,
+      "MaxIts": 200,
+      "MaxSize": 200,
+      "PCMatReal": false,
+      "PCMatShifted": false,
+      "PCSide": "Default",
+      "ReorderingReuse": true,
+      "STRUMPACKButterflyLevels": 1,
+      "STRUMPACKCompressionTol": 0.001,
+      "STRUMPACKCompressionType": "None",
+      "STRUMPACKLossyPrecision": 16,
+      "SuperLU3DCommunicator": false,
+      "Tol": 1e-08,
+      "Type": "SuperLU"
+    },
+    "Order": 4,
+    "PartialAssemblyOrder": 1,
+    "QuadratureOrderExtra": 0,
+    "QuadratureOrderJacobian": false
+  }
+}
