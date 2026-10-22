@@ -1,0 +1,435 @@
+<meta charset="utf-8">
+<title>LGR-A Prototype Assembly</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: workbench — 3D stage on the left, spec rail on the right; stacks on phones. */
+  :root {
+    --bg: #eef0f1;
+    --panel: #f8f9f9;
+    --stage: #e3e6e8;
+    --ink: #17191b;
+    --ink-2: #4d5459;
+    --rule: #cfd4d7;
+    --copper: #b8642d;
+    --copper-ink: #8f4a1f;
+    --focus: #2f6fd6;
+    --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141618; --panel: #1b1e21; --stage: #0f1113; --ink: #eceeef; --ink-2: #a7afb5;
+      --rule: #2d3236; --copper: #d9874f; --copper-ink: #e9a173; --focus: #79a6ef; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141618; --panel: #1b1e21; --stage: #0f1113; --ink: #eceeef; --ink-2: #a7afb5;
+    --rule: #2d3236; --copper: #d9874f; --copper-ink: #e9a173; --focus: #79a6ef; color-scheme: dark;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 16px;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; display: grid; gap: 16px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+  h1 {
+    font-family: var(--font-display); font-stretch: 80%; font-weight: 800; font-size: clamp(24px, 3.2vw, 34px);
+    letter-spacing: 0.01em; margin: 0; text-wrap: balance;
+  }
+  h1 .tag { color: var(--copper-ink); }
+  .sub { color: var(--ink-2); margin: 2px 0 0; max-width: 70ch; }
+  .metrics { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); }
+  .metrics b { color: var(--ink); font-weight: 500; }
+  .main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+  @media (max-width: 900px) { .main { grid-template-columns: minmax(0, 1fr); } }
+  .stage {
+    position: relative; background: var(--stage); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+    height: min(72vh, 680px); min-height: 360px;
+  }
+  @media (max-width: 900px) { .stage { height: 62vh; } }
+  .stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .stage .hint {
+    position: absolute; left: 12px; bottom: 10px; font-size: 12px; color: var(--ink-2); pointer-events: none;
+    background: color-mix(in srgb, var(--stage) 80%, transparent); padding: 2px 6px; border-radius: 4px;
+  }
+  .stage .status { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-2); font-family: var(--font-mono); }
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--panel); color: var(--ink); border: 1px solid var(--rule);
+    padding: 3px 8px; border-radius: 4px; font-size: 12px; white-space: nowrap; transform: translate(12px, 12px);
+  }
+  .lbl {
+    font-family: var(--font-body); font-size: 11.5px; font-weight: 600; color: var(--ink); background: var(--panel);
+    border: 1px solid var(--rule); border-left: 3px solid var(--copper); padding: 1px 6px; border-radius: 3px;
+    white-space: nowrap; pointer-events: none;
+  }
+  .rail { display: grid; gap: 12px; min-width: 0; }
+  .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; min-width: 0; }
+  .card h2 {
+    font-family: var(--font-display); font-stretch: 85%; font-weight: 700; font-size: 13px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-2); margin: 0 0 8px;
+  }
+  .controls { display: grid; gap: 10px; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row label { font-weight: 500; }
+  input[type="range"] { flex: 1; min-width: 120px; accent-color: var(--copper); }
+  .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+  button {
+    font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 4px; border: 1px solid var(--rule);
+    background: var(--bg); color: var(--ink); cursor: pointer;
+  }
+  button[aria-pressed="true"] { border-color: var(--copper); color: var(--copper-ink); background: color-mix(in srgb, var(--copper) 10%, var(--bg)); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .parts { display: grid; gap: 2px; }
+  .group-title { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 8px 0 2px; }
+  .part {
+    display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left;
+    width: 100%; border: 1px solid transparent; background: transparent; padding: 4px 6px;
+  }
+  .part:hover { border-color: var(--rule); }
+  .part[aria-pressed="true"] { border-color: var(--copper); background: color-mix(in srgb, var(--copper) 8%, transparent); }
+  .sw { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--rule); }
+  .detail { font-size: 13px; }
+  .detail dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; margin: 6px 0 0; }
+  .detail dt { color: var(--ink-2); }
+  .detail dd { margin: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  td { padding: 3px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td:last-child { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 10px; }
+  .note { font-size: 12.5px; color: var(--ink-2); margin: 0; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>LGR-A <span class="tag">meta-atom</span> · prototype assembly</h1>
+      <p class="sub">Shielded loop-gap resonator, the MNG unit cell for the narrow-split VHF duplexer. Machined in copper T2, with the gap capacitor formed by a 1.0 mm 99.6% alumina slab between two lips.</p>
+    </div>
+    <div class="metrics" aria-label="Simulated performance">
+      <span>f₀ <b>145.33 MHz</b></span><span>Q <b>≈ 3,930</b></span><span>V <b>0.5 L</b></span><span>Palace FEM</span>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="stage" id="stage">
+      <div class="status" id="status">Loading 3D model…</div>
+      <div class="tooltip" id="tip" hidden></div>
+      <div class="hint">Drag to rotate · scroll or pinch to zoom · right-drag to pan · click a part</div>
+    </div>
+
+    <aside class="rail">
+      <section class="card controls" aria-label="View controls">
+        <h2>View</h2>
+        <div class="row">
+          <label for="explode">Explode</label>
+          <input id="explode" type="range" min="0" max="1" step="0.01" value="0">
+        </div>
+        <div class="seg">
+          <button id="cut" aria-pressed="false">Cutaway</button>
+          <button id="labels" aria-pressed="true">Labels</button>
+          <button id="ghost" aria-pressed="false">X-ray can</button>
+        </div>
+        <div class="seg" role="group" aria-label="Camera presets">
+          <button data-view="iso">Iso</button>
+          <button data-view="front">Front</button>
+          <button data-view="top">Top</button>
+          <button data-view="lips">Gap close-up</button>
+        </div>
+      </section>
+
+      <section class="card detail" aria-live="polite">
+        <h2>Selected part</h2>
+        <div id="detail"><p class="note">Click a part in the model or in the list below.</p></div>
+      </section>
+
+      <section class="card">
+        <h2>Parts</h2>
+        <div class="parts" id="parts"></div>
+      </section>
+
+      <section class="card">
+        <h2>Key dimensions (mm)</h2>
+        <table aria-label="Key dimensions">
+          <tbody>
+            <tr><td>Can, inner Ø × height</td><td>86.0 × 86.0</td></tr>
+            <tr><td>Can wall / base / lid</td><td>4.0 / 4.0 / 4.0</td></tr>
+            <tr><td>Loop, inner Ø × length</td><td>43.0 × 64.5</td></tr>
+            <tr><td>Loop wall</td><td>3.0</td></tr>
+            <tr><td>Lip height s × thickness</td><td>10.42 × 3.0</td></tr>
+            <tr><td>Slit width</td><td>1.02</td></tr>
+            <tr><td>Alumina slab</td><td>1.0 × 13.4 × 64.5</td></tr>
+            <tr><td>Lip tip to can wall</td><td>8.1</td></tr>
+            <tr><td>PTFE spacer height</td><td>10.75</td></tr>
+            <tr><td>Lip tip fillet</td><td>R 0.4</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:8px">Tuning screw at 0° (faces the lips). SMA ports at 120° and 240°, mid-height. Bought parts are simplified look-alikes for orientation, not manufacturing models.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { GLB_B64 } from "./lgr-a-model.js";
+
+const EXPLODE = {
+  "Copper lid (T2)": [0, 0, 70], "M3 bolts x8": [0, 0, 95], "PTFE spacer (top)": [0, 0, 50],
+  "Copper loop with lips (T2)": [0, 0, 25], "Alumina slab 99.6% (1.0 mm)": [40, 0, 25],
+  "Brass M4 tuning screw": [45, 0, 0], "Brass M4 lock nut": [30, 0, 0],
+};
+const ang = { A: 120, B: 240 };
+for (const t of ["A", "B"]) {
+  const ux = Math.cos(ang[t] * Math.PI / 180), uy = Math.sin(ang[t] * Math.PI / 180);
+  for (const [nm, k] of [["SMA bulkhead jack", 40], ["SMA panel nut", 28], ["SMA PTFE insulator", 40], ["SMA centre pin", 40], ["Coupling loop", 40]]) {
+    EXPLODE[`${nm} ${t}` + (nm === "Coupling loop" ? " (Cu wire)" : "")] = [ux * k, uy * k, 0];
+  }
+}
+
+// Part catalogue: what the list and the detail card show. "nodes" are GLB node names.
+const PARTS = [
+  { id: "can", label: "Copper can", group: "Machined (JLCCNC)", sw: "#b8642d", nodes: ["Copper can (T2)"], clip: true,
+    info: { Material: "Copper T2", Process: "CNC turning + milling", Role: "Shield and return path for the loop's flux", Notes: "Inner bore Ra ≤ 0.8 µm, no anodize. Flange: 8 × M3 tapped. M4 tapped hole at 0°, Ø6.5 SMA holes at 120°/240°." } },
+  { id: "lid", label: "Copper lid", group: "Machined (JLCCNC)", sw: "#a85c29", nodes: ["Copper lid (T2)"], clip: true,
+    info: { Material: "Copper T2", Process: "CNC", Role: "Closes the shield", Notes: "Contact face flat to ≤ 0.02 mm. 8 × Ø3.4 clearance holes." } },
+  { id: "loop", label: "Loop with lips", group: "Machined (JLCCNC)", sw: "#c9733a", nodes: ["Copper loop with lips (T2)"],
+    info: { Material: "Copper T2", Process: "CNC; slit by fine slot cutter or wire EDM", Role: "The meta-atom's inductance (loop) and capacitor plates (lips)", Notes: "Slit 1.02 mm for the 1.0 mm slab. Lip tips filleted R0.4. No burrs inside the slit." } },
+  { id: "slab", label: "Alumina slab", group: "Supplied ceramic", sw: "#f1efe4", nodes: ["Alumina slab 99.6% (1.0 mm)"],
+    info: { Material: "99.6% alumina substrate, 1.0 mm", Process: "Bought, laser-cut to 13.4 × 64.5 mm", Role: "Gap dielectric: sets the cell's capacitance, holds ~97% of the electric energy", Notes: "Use ≥ 99.5% purity (lower grades are ~10× lossier at VHF). Swappable later for alumina + TiO₂ (thermal self-compensation)." } },
+  { id: "spacers", label: "PTFE spacers (2)", group: "Machined (JLCCNC)", sw: "#e8e9ee", nodes: ["PTFE spacer (bottom)", "PTFE spacer (top)"], clip: true,
+    info: { Material: "PTFE (or Rexolite)", Process: "CNC turning", Role: "Holds the loop on axis, top and bottom", Notes: "Avoid POM and nylon (lossy). Height 10.75 mm each." } },
+  { id: "smaA", label: "SMA port A (120°)", group: "Bought parts", sw: "#e0b43a", nodes: ["SMA bulkhead jack A", "SMA panel nut A", "SMA PTFE insulator A", "SMA centre pin A", "Coupling loop A (Cu wire)"],
+    info: { Material: "SMA female single-hole bulkhead + Cu wire loop", Process: "Bought; solder the loop to the centre pin and the can wall", Role: "Weak magnetic coupling for S21 / Q measurement", Notes: "Keep |S21| ≤ −30 dB at resonance so Q_L ≈ Qu." } },
+  { id: "smaB", label: "SMA port B (240°)", group: "Bought parts", sw: "#e0b43a", nodes: ["SMA bulkhead jack B", "SMA panel nut B", "SMA PTFE insulator B", "SMA centre pin B", "Coupling loop B (Cu wire)"],
+    info: { Material: "SMA female single-hole bulkhead + Cu wire loop", Process: "Bought", Role: "Second coupling port (transmission measurement)", Notes: "Mirror of port A." } },
+  { id: "tune", label: "Brass tuning screw", group: "Bought parts", sw: "#d4b052", nodes: ["Brass M4 tuning screw", "Brass M4 lock nut"],
+    info: { Material: "Brass M4 screw + lock nut", Process: "Bought", Role: "Fine-tunes f₀ by adding capacitance near the lip tips", Notes: "At 0°, mid-height, facing the lips. Simulation assumed sharp edges, so expect f₀ slightly high; tune in." } },
+  { id: "bolts", label: "M3 bolts (8)", group: "Bought parts", sw: "#9ea3aa", nodes: ["M3 bolts x8"], clip: true,
+    info: { Material: "Stainless or brass M3", Process: "Bought", Role: "Clamp the lid for continuous RF contact", Notes: "Tighten evenly." } },
+];
+// label anchor as a fraction of each part's world bounding box: [x (right), y (up), z (toward viewer)]
+const LABEL_FOR = { can: [0.0, 0.12, 0.5], lid: [0.5, 1.0, 0.5], loop: [0.12, 0.92, 0.5], slab: [1.0, 0.55, 0.5],
+  spacers: [0.15, 0.0, 0.5], smaA: [0.5, 0.5, 0.5], smaB: [0.5, 0.5, 0.5], tune: [1.0, 0.5, 0.5], bolts: [0.95, 1.0, 0.5] };
+
+const stage = document.getElementById("stage");
+const status = document.getElementById("status");
+const tip = document.getElementById("tip");
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.localClippingEnabled = true;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+stage.prepend(renderer.domElement);
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.domElement.style.position = "absolute";
+labelRenderer.domElement.style.inset = "0";
+labelRenderer.domElement.style.pointerEvents = "none";
+stage.appendChild(labelRenderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x445055, 0.6));
+const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(200, 300, 250); scene.add(key);
+
+const camera = new THREE.PerspectiveCamera(35, 1, 1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+const clipPlane = new THREE.Plane(new THREE.Vector3(0, 0, -1), 0); // removes the half facing +Z (front)
+const root = new THREE.Group(); scene.add(root); // the GLB root node already maps CAD Z-up to glTF Y-up
+
+function materialFor(name) {
+  const n = name.toLowerCase();
+  if (n.includes("alumina")) return new THREE.MeshStandardMaterial({ color: 0xf1efe4, roughness: 0.55, metalness: 0 });
+  if (n.includes("ptfe")) return new THREE.MeshStandardMaterial({ color: 0xeceef3, roughness: 0.45, metalness: 0 });
+  if (n.includes("brass")) return new THREE.MeshStandardMaterial({ color: 0xd8b25a, roughness: 0.3, metalness: 0.95 });
+  if (n.includes("sma") || n.includes("pin")) return new THREE.MeshStandardMaterial({ color: 0xe6bc4c, roughness: 0.25, metalness: 0.95 });
+  if (n.includes("bolt")) return new THREE.MeshStandardMaterial({ color: 0xa9adb3, roughness: 0.35, metalness: 0.9 });
+  if (n.includes("lid")) return new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: 0.36, metalness: 0.92 });
+  return new THREE.MeshStandardMaterial({ color: 0xc77a46, roughness: 0.32, metalness: 0.92 }); // copper
+}
+
+const nodes = {};       // name -> Object3D
+const basePos = {};     // name -> Vector3
+const partOfNode = {};  // node name -> part id
+for (const p of PARTS) for (const n of p.nodes) partOfNode[n] = p.id;
+let selected = null, ghost = false, cut = false;
+
+const glbBytes = Uint8Array.from(atob(GLB_B64), (ch) => ch.charCodeAt(0)).buffer;
+new GLTFLoader().parse(glbBytes, "", (gltf) => {
+  const model = gltf.scene;
+  // GLTFLoader sanitizes node names (spaces -> "_", strips . : / [ ]); map them back to ours
+  const bySanitized = {};
+  for (const n of Object.keys(partOfNode)) bySanitized[THREE.PropertyBinding.sanitizeNodeName(n)] = n;
+  model.traverse((o) => {
+    const orig = bySanitized[o.name];
+    if (orig && !nodes[orig]) { nodes[orig] = o; basePos[orig] = o.position.clone(); }
+  });
+  for (const [name, obj] of Object.entries(nodes)) {
+    const part = PARTS.find((p) => p.nodes.includes(name));
+    obj.traverse((m) => {
+      if (m.isMesh) {
+        m.material = materialFor(name);
+        m.material.side = THREE.DoubleSide;
+        m.userData.node = name;
+        if (part.clip) m.userData.clip = true;
+      }
+    });
+  }
+  root.add(model);
+  // center the model
+  const box = new THREE.Box3().setFromObject(root);
+  const c = box.getCenter(new THREE.Vector3());
+  root.position.sub(c);
+  makeLabels();
+  // open in a working state: cutaway on and parts slightly separated, so the inside is visible
+  cut = true; document.getElementById("cut").setAttribute("aria-pressed", "true");
+  explode.value = "0.45"; setExplode(0.45);
+  applyMaterials();
+  setView("iso");
+  status.hidden = true;
+}, (err) => { status.textContent = "Could not load the 3D model."; console.error(err); });
+
+function meshesOf(part) {
+  const out = [];
+  for (const n of part.nodes) nodes[n]?.traverse((m) => m.isMesh && out.push(m));
+  return out;
+}
+
+function applyMaterials() {
+  for (const p of PARTS) for (const m of meshesOf(p)) {
+    const mat = m.material;
+    mat.clippingPlanes = cut && m.userData.clip ? [clipPlane] : [];
+    const isShell = p.id === "can" || p.id === "lid";
+    mat.transparent = ghost && isShell;
+    mat.opacity = ghost && isShell ? 0.18 : 1;
+    mat.depthWrite = !(ghost && isShell);
+    mat.emissive = new THREE.Color(selected === p.id ? 0x3a1e0a : 0x000000);
+    mat.needsUpdate = true;
+  }
+}
+
+const labelObjs = [];
+function makeLabels() {
+  for (const p of PARTS) {
+    const obj = nodes[p.nodes[0]];
+    if (!obj) continue;
+    const box = new THREE.Box3().setFromObject(obj);
+    const div = document.createElement("div");
+    div.className = "lbl"; div.textContent = p.label;
+    const lab = new CSS2DObject(div);
+    const f = LABEL_FOR[p.id] || [0.5, 0.5, 0.5];
+    const local = new THREE.Vector3(
+      THREE.MathUtils.lerp(box.min.x, box.max.x, f[0]),
+      THREE.MathUtils.lerp(box.min.y, box.max.y, f[1]),
+      THREE.MathUtils.lerp(box.min.z, box.max.z, f[2]));
+    obj.worldToLocal(local);
+    lab.position.copy(local);
+    obj.add(lab);
+    labelObjs.push(lab);
+  }
+}
+
+function setExplode(t) {
+  for (const [name, obj] of Object.entries(nodes)) {
+    const v = EXPLODE[name] || [0, 0, 0];
+    obj.position.set(basePos[name].x + v[0] * t, basePos[name].y + v[1] * t, basePos[name].z + v[2] * t);
+  }
+}
+
+function setView(v) {
+  const d = 245;
+  const target = new THREE.Vector3(0, 0, 0);
+  const pos = { iso: [d * 0.75, d * 0.55, d * 0.85], front: [0, 0, d * 1.15], top: [0.01, d * 1.2, 0], lips: [d * 0.62, d * 0.12, d * 0.28] }[v];
+  if (v === "lips") target.set(25, 0, 0);
+  camera.position.set(...pos);
+  controls.target.copy(target);
+  controls.update();
+}
+
+// UI wiring
+const explode = document.getElementById("explode");
+explode.addEventListener("input", () => setExplode(+explode.value));
+const toggle = (id, fn) => { const b = document.getElementById(id); b.addEventListener("click", () => { const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", String(on)); fn(on); }); };
+toggle("cut", (on) => { cut = on; applyMaterials(); });
+toggle("ghost", (on) => { ghost = on; applyMaterials(); });
+toggle("labels", (on) => { labelRenderer.domElement.hidden = !on; });
+document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+
+const partsEl = document.getElementById("parts");
+let lastGroup = null;
+for (const p of PARTS) {
+  if (p.group !== lastGroup) { const g = document.createElement("div"); g.className = "group-title"; g.textContent = p.group; partsEl.appendChild(g); lastGroup = p.group; }
+  const b = document.createElement("button");
+  b.className = "part"; b.id = `part-${p.id}`; b.setAttribute("aria-pressed", "false");
+  b.innerHTML = `<span class="sw" style="background:${p.sw}"></span><span>${p.label}</span>`;
+  b.addEventListener("click", () => select(selected === p.id ? null : p.id));
+  partsEl.appendChild(b);
+}
+const detail = document.getElementById("detail");
+function select(id) {
+  selected = id;
+  document.querySelectorAll(".part").forEach((b) => b.setAttribute("aria-pressed", String(b.id === `part-${id}`)));
+  const p = PARTS.find((x) => x.id === id);
+  detail.innerHTML = p
+    ? `<strong>${p.label}</strong><dl>${Object.entries(p.info).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`
+    : `<p class="note">Click a part in the model or in the list below.</p>`;
+  applyMaterials();
+}
+
+// hover + click picking
+const ray = new THREE.Raycaster(); const mouse = new THREE.Vector2();
+function pick(ev) {
+  const r = renderer.domElement.getBoundingClientRect();
+  mouse.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+  const hits = ray.intersectObjects(root.children, true).filter((h) => {
+    if (!h.object.userData.node) return false;
+    if (ghost && /lid|can/i.test(h.object.userData.node)) return false;
+    if (cut && h.object.userData.clip && clipPlane.distanceToPoint(h.point) < 0) return false;
+    return true;
+  });
+  return hits[0] ? { id: partOfNode[hits[0].object.userData.node], r } : null;
+}
+renderer.domElement.addEventListener("pointermove", (ev) => {
+  const h = pick(ev);
+  if (!h) { tip.hidden = true; return; }
+  const p = PARTS.find((x) => x.id === h.id);
+  tip.textContent = p.label; tip.hidden = false;
+  tip.style.left = `${ev.clientX - h.r.left}px`; tip.style.top = `${ev.clientY - h.r.top}px`;
+});
+renderer.domElement.addEventListener("pointerleave", () => (tip.hidden = true));
+let downAt = null;
+renderer.domElement.addEventListener("pointerdown", (ev) => (downAt = [ev.clientX, ev.clientY]));
+renderer.domElement.addEventListener("pointerup", (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 4) return;
+  const h = pick(ev); select(h ? h.id : null);
+});
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(stage); resize();
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); labelRenderer.render(scene, camera); });
+</script>

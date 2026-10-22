@@ -1,0 +1,124 @@
+{
+ "params": {
+  "volume_l": 0.5,
+  "a": 0.5,
+  "R": 43.01270069140497,
+  "H": 86.02540138280995,
+  "r": 21.506350345702486,
+  "t": 3.0,
+  "c": 10.753175172851243,
+  "z": 64.51905103710746,
+  "s": 10.42,
+  "t_lip": 3.0,
+  "d_slab": 1.0,
+  "slit": 1.025,
+  "wall": 4.0,
+  "base": 4.0,
+  "lid": 4.0,
+  "flange": 7.0,
+  "n_bolts": 8,
+  "bolt_clear": 3.4,
+  "bolt_tap": "M3",
+  "sma_hole": 6.5,
+  "tune_tap": "M4",
+  "tune_drill": 3.3
+ },
+ "explode_mm": {
+  "Copper lid (T2)": [
+   0,
+   0,
+   70
+  ],
+  "M3 bolts x8": [
+   0,
+   0,
+   95
+  ],
+  "PTFE spacer (top)": [
+   0,
+   0,
+   50
+  ],
+  "Copper loop with lips (T2)": [
+   0,
+   0,
+   25
+  ],
+  "Alumina slab 99.6% (1.0 mm)": [
+   40,
+   0,
+   25
+  ],
+  "PTFE spacer (bottom)": [
+   0,
+   0,
+   0
+  ],
+  "Copper can (T2)": [
+   0,
+   0,
+   0
+  ],
+  "Brass M4 tuning screw": [
+   45,
+   0,
+   0
+  ],
+  "Brass M4 lock nut": [
+   30,
+   0,
+   0
+  ],
+  "SMA bulkhead jack A": [
+   -20.0,
+   34.64,
+   0
+  ],
+  "SMA panel nut A": [
+   -14.0,
+   24.25,
+   0
+  ],
+  "SMA PTFE insulator A": [
+   -20.0,
+   34.64,
+   0
+  ],
+  "SMA centre pin A": [
+   -20.0,
+   34.64,
+   0
+  ],
+  "Coupling loop A (Cu wire)": [
+   -20.0,
+   34.64,
+   0
+  ],
+  "SMA bulkhead jack B": [
+   -20.0,
+   -34.64,
+   0
+  ],
+  "SMA panel nut B": [
+   -14.0,
+   -24.25,
+   0
+  ],
+  "SMA PTFE insulator B": [
+   -20.0,
+   -34.64,
+   0
+  ],
+  "SMA centre pin B": [
+   -20.0,
+   -34.64,
+   0
+  ],
+  "Coupling loop B (Cu wire)": [
+   -20.0,
+   -34.64,
+   0
+  ]
+ },
+ "fillet_mm": 0.4
+}
