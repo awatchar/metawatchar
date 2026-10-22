@@ -7,8 +7,10 @@ LGR-A geometry (shared with the Palace size sweep, sim/lgr_size_sweep):
   - Slit: one axial slit through the loop wall, width d (0.635 mm alumina substrate + clearance).
   - Lips: two radial copper lips (thickness t_lip, radial height s) at the slit; the alumina slab
     (thickness d, radial extent t + s, length z) sits between them and forms the gap capacitor.
-  - Two SMA bulkhead ports (weak loop coupling, transmission Q measurement) and one M4 tuning
-    screw facing the lips, all at mid-height through the can wall.
+  - Two SMA bulkhead ports at 120/240 deg, mid-height, each with a 4.1 x 4.1 mm wire coupling loop
+    lying in the MID-HEIGHT PLANE (normal along the can axis, links the axial return flux), ground
+    end soldered at a 1.2 mm hole 5.3 deg towards 180 deg (Palace: |S21(f0)| ~ -30 dB, notes/21).
+  - No tuning screw (Palace: < 5 kHz range). f0 is set by the lip height s; order s variants.
 
 Outputs STEP files per part and an assembly, plus a parameter JSON. Units: mm.
 Run with the project venv:  D:\\PhD\\.venv\\Scripts\\python.exe lgr_a_cad.py [--volume-l 0.25] [--a 0.5] [--s 2.5]
@@ -31,7 +33,7 @@ def params(volume_l=0.25, a=0.5, s=2.5, t=3.0, t_lip=3.0, d_slab=0.635, slit_cle
     p = dict(volume_l=volume_l, a=a, R=R, H=H, r=r, t=t, c=c, z=z, s=s, t_lip=t_lip,
              d_slab=d_slab, slit=d_slab + slit_clear, wall=wall, base=base, lid=lid,
              flange=flange, n_bolts=n_bolts, bolt_clear=3.4, bolt_tap="M3",
-             sma_hole=6.5, tune_tap="M4", tune_drill=3.3)
+             sma_hole=6.5, loop_gnd_deg=5.3, loop_gnd_hole=1.2)
     assert r + t + s <= R - 3, "lips do not fit inside the can (r + t + s > R - 3 mm)"
     return p
 
@@ -50,8 +52,10 @@ def can_body(p):
            for k in range(p["n_bolts"])]
     body = body.faces(">Z").workplane().pushPoints(pts).hole(2.5, 6)
     zc = p["base"] + p["H"] / 2
-    # tuning screw (M4 tap drill) facing the lips at angle 0 deg, SMA ports at 120 and 240 deg
-    for ang, dia in ((0, p["tune_drill"]), (120, p["sma_hole"]), (240, p["sma_hole"])):
+    # SMA ports at 120 and 240 deg; small holes for the coupling-loop ground ends 5.3 deg towards 180 deg
+    # (the M4 tuning screw was dropped: Palace showed < 5 kHz of tuning, notes/21)
+    for ang, dia in ((120, p["sma_hole"]), (240, p["sma_hole"]),
+                     (120 + p["loop_gnd_deg"], p["loop_gnd_hole"]), (240 - p["loop_gnd_deg"], p["loop_gnd_hole"])):
         hole = (cq.Workplane("XY").workplane(offset=zc).transformed(rotate=(0, 90, ang))
                 .circle(dia / 2).extrude(Ro + 5))
         hole = cq.Workplane("XY").add(
@@ -125,7 +129,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--volume-l", type=float, default=0.25)
     ap.add_argument("--a", type=float, default=0.5)
-    ap.add_argument("--s", type=float, default=2.5, help="lip radial height (mm), from the Palace sweep")
+    ap.add_argument("--s", type=float, default=10.55, help="lip radial height (mm); 10.55 restores ~145.2 MHz with R0.4 fillets (notes/21)")
     ap.add_argument("--d", type=float, default=0.635, help="alumina slab thickness (mm): 0.635 or 1.0")
     ap.add_argument("--out", default=str(Path(__file__).parent / "out"))
     args = ap.parse_args()

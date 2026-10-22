@@ -20,8 +20,10 @@ from lgr_a_cad import params, can_body, lid, loop, spacer, alumina, build
 OUT = Path(__file__).parent / "out"
 FILLET = 0.4  # mm, lip tip edges
 
-# Chosen first prototype (note 17): 0.5 L, a = 0.5, 1.0 mm alumina, s = 10.42 mm
-P = params(volume_l=0.5, a=0.5, s=10.42, d_slab=1.0)
+# Chosen first prototype (notes 17, 21): 0.5 L, a = 0.5, 1.0 mm alumina; s = 10.55 mm restores ~145.2 MHz
+# with the R0.4 lip fillets. Loop variants for frequency trim are exported separately (S_VARIANTS).
+P = params(volume_l=0.5, a=0.5, s=10.55, d_slab=1.0)
+S_VARIANTS = (10.42, 10.55, 10.70)
 
 COLORS = {
     "copper": cq.Color(0.78, 0.45, 0.22),
@@ -63,22 +65,25 @@ def sma_jack(p, ang):
     barrel = cq.Solid.makeCylinder(3.15, Ro + 9 - (p["R"] - 1), base + d * (p["R"] - 1), d)
     nut = cq.Workplane().add(cq.Solid.makeCylinder(5.0, 2.5, base + d * (Ro + 0.2), d))
     body = cq.Solid.makeCylinder(4.0, 9.0, base + d * (Ro + 3.0), d)
-    pin = cq.Solid.makeCylinder(0.64, 6.0, base + d * (p["R"] - 6.5), d)
+    pin = cq.Solid.makeCylinder(0.64, 1.5, base + d * (p["R"] - 1.0), d)
     insul = cq.Solid.makeCylinder(2.05, 1.5, base + d * (p["R"] - 1.0), d)
     parts["barrel"] = cq.Workplane().add(barrel).union(cq.Workplane().add(body))
     parts["nut"] = nut
     parts["pin"] = cq.Workplane().add(pin)
     parts["insul"] = cq.Workplane().add(insul)
-    # coupling loop: 1 mm wire, ~8 mm loop in the plane containing the radial and z axes
-    tip = base + d * (p["R"] - 6.5)
-    path = (cq.Workplane("XY").moveTo(0, 0).lineTo(0, 8).lineTo(6.0, 8).lineTo(6.0, 0)).val()
-    # build the loop in a local frame then place it: local x = -radial, local y = +z
-    loop_pts = [tip, tip + cq.Vector(0, 0, 8), tip + cq.Vector(0, 0, 8) + d * 6.0, tip + d * 6.0]
-    wire = cq.Workplane().polyline([(q.x, q.y, q.z) for q in loop_pts])
+    # coupling loop (notes/21): 1 mm Cu wire, 4.1 x 4.1 mm (centreline) in the MID-HEIGHT plane
+    # leg 1 radially inward from the pin, leg 2 tangential towards 180 deg, leg 3 back to the wall
+    sgn = 1 if ang < 180 else -1                      # mirror the two loops about 180 deg
+    t = cq.Vector(-uy, ux, 0) * sgn                    # tangential unit vector towards 180 deg
+    p0 = base + d * (p["R"] - 0.5)
+    p1 = p0 - d * 4.1
+    p2 = p1 + t * 4.1
+    g = math.radians(ang + sgn * p["loop_gnd_deg"])
+    p3 = cq.Vector(p["R"] * math.cos(g), p["R"] * math.sin(g), zc)
+    loop_pts = [p0, p1, p2, p3]
     segs = []
     for a_, b_ in zip(loop_pts[:-1], loop_pts[1:]):
-        L = (b_ - a_).Length
-        segs.append(cq.Solid.makeCylinder(0.5, L, a_, (b_ - a_).normalized()))
+        segs.append(cq.Solid.makeCylinder(0.5, (b_ - a_).Length, a_, (b_ - a_).normalized()))
     lw = cq.Workplane().add(segs[0])
     for s_ in segs[1:]:
         lw = lw.union(cq.Workplane().add(s_))
@@ -134,12 +139,12 @@ def main():
         asm.add(sp["insul"], name=f"SMA PTFE insulator {tag}", color=COLORS["sma_dielectric"])
         asm.add(sp["pin"], name=f"SMA centre pin {tag}", color=COLORS["gold"])
         asm.add(sp["loop_wire"], name=f"Coupling loop {tag} (Cu wire)", color=COLORS["copper"])
-    ts = tuning_screw(P)
-    asm.add(ts["screw"], name="Brass M4 tuning screw", color=COLORS["brass"])
-    asm.add(ts["locknut"], name="Brass M4 lock nut", color=COLORS["brass"])
     asm.add(bolts(P), name="M3 bolts x8", color=COLORS["steel"])
 
     asm.export(str(OUT / "LGR-A_full.glb"))
+    for sv in S_VARIANTS:  # loop variants: each 0.1 mm of lip height ~ 0.5 MHz (notes 17, 21)
+        cq.exporters.export(loop_filleted(params(volume_l=0.5, a=0.5, s=sv, d_slab=1.0)),
+                            str(OUT / f"loop_Cu-T2_s{str(sv).replace('.', 'p')}.step"))
     asm.export(str(OUT / "LGR-A_full.step"))
 
     # explode vectors (mm) for the viewer: lid/top parts up, ports and screw radially out
@@ -148,7 +153,6 @@ def main():
         "Copper lid (T2)": [0, 0, 70], "M3 bolts x8": [0, 0, 95], "PTFE spacer (top)": [0, 0, 50],
         "Copper loop with lips (T2)": [0, 0, 25], "Alumina slab 99.6% (1.0 mm)": [40, 0, 25],
         "PTFE spacer (bottom)": [0, 0, 0], "Copper can (T2)": [0, 0, 0],
-        "Brass M4 tuning screw": [45, 0, 0], "Brass M4 lock nut": [30, 0, 0],
     }
     for ang, tag in ((120, "A"), (240, "B")):
         ux, uy = radial(ang)

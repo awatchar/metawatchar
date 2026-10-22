@@ -1,0 +1,94 @@
+{
+  "Problem": {
+    "Type": "Eigenmode",
+    "Verbose": 2,
+    "Output": "postpro/e_screw4_o3",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/screw4.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.8,
+        "LossTan": 4e-05
+      },
+      {
+        "Attributes": [
+          3
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 2.1,
+        "LossTan": 0.0002
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            2
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            3
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "Impedance": [
+      {
+        "Attributes": [
+          1,
+          2
+        ],
+        "Rs": 0.00314516553767548,
+        "Ls": 3.4443586469643672e-12
+      },
+      {
+        "Attributes": [
+          4
+        ],
+        "Rs": 0.006184603695436632,
+        "Ls": 6.772932286473149e-12
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 3,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 200
+    },
+    "Eigenmode": {
+      "N": 2,
+      "Tol": 1e-08,
+      "Target": 0.12,
+      "Save": 0
+    }
+  }
+}

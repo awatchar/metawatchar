@@ -1,0 +1,5 @@
+ntasks=64 ranks=32 npar=2 palace=0.18.1 list=lists/axial.txt
+e_axial6_30_o2 rc=0 wall_s=522.6
+e_axial6_20_o2 rc=0 wall_s=528.8
+{"case": "e_axial6_20_o2", "f0_Hz": 145328343.1399, "Q": 3827.948967, "mode": 1, "p_alumina": 0.965068, "p_ptfe": 0.002952, "Q_u": 3827.948967, "Q_d": 25514.745226, "Q_c": 4503.622457}
+{"case": "e_axial6_30_o2", "f0_Hz": 145439488.7335, "Q": 3783.16862, "mode": 1, "p_alumina": 0.965054, "p_ptfe": 0.002952, "Q_u": 3783.16862, "Q_d": 25515.096502, "Q_c": 4441.755602}

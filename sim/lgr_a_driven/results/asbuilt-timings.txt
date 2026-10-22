@@ -1,0 +1,5 @@
+ntasks=64 ranks=32 npar=2 palace=0.18.1 list=lists/asbuilt.txt
+d_xy4x4_fil_o2 rc=0 wall_s=598.6
+d_xy4x4_fil_o3 rc=0 wall_s=1447.9
+{"case": "d_xy4x4_fil_o3", "f0_Hz": 145905646.660596, "S21_f0_dB": -30.520151, "Q_L_3dB": 3811.974199, "n_freq": 1200, "f_min_Hz": 145311000.0, "f_max_Hz": 146510000.0, "f_step_Hz": 1000.0, "csv": "sparams_d_xy4x4_fil_o3.csv", "S21_resonant_amp_dB": -30.520274, "S21_background_dB": -92.078335, "d11": 0.029784, "d22": 0.029784, "beta1": 0.015349, "beta2": 0.015349, "Q_u": 3928.996266, "S11_f0_dB": -0.265302, "S22_f0_dB": -0.265307, "S21_f0_dB_from_beta": -30.520277, "palace_total_s": 1446.389208}
+{"case": "d_xy4x4_fil_o2", "f0_Hz": 145913457.188735, "S21_f0_dB": -30.629925, "Q_L_3dB": 3763.884439, "n_freq": 1200, "f_min_Hz": 145311000.0, "f_max_Hz": 146510000.0, "f_step_Hz": 1000.0, "csv": "sparams_d_xy4x4_fil_o2.csv", "S21_resonant_amp_dB": -30.629316, "S21_background_dB": -92.041715, "d11": 0.029412, "d22": 0.029414, "beta1": 0.015152, "beta2": 0.015152, "Q_u": 3877.94505, "S11_f0_dB": -0.261957, "S22_f0_dB": -0.261972, "S21_f0_dB_from_beta": -30.629319, "palace_total_s": 597.365307}

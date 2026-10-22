@@ -8,7 +8,7 @@
   "t": 3.0,
   "c": 10.753175172851243,
   "z": 64.51905103710746,
-  "s": 10.42,
+  "s": 10.55,
   "t_lip": 3.0,
   "d_slab": 1.0,
   "slit": 1.025,
@@ -20,8 +20,8 @@
   "bolt_clear": 3.4,
   "bolt_tap": "M3",
   "sma_hole": 6.5,
-  "tune_tap": "M4",
-  "tune_drill": 3.3
+  "loop_gnd_deg": 5.3,
+  "loop_gnd_hole": 1.2
  },
  "explode_mm": {
   "Copper lid (T2)": [
@@ -56,16 +56,6 @@
   ],
   "Copper can (T2)": [
    0,
-   0,
-   0
-  ],
-  "Brass M4 tuning screw": [
-   45,
-   0,
-   0
-  ],
-  "Brass M4 lock nut": [
-   30,
    0,
    0
   ],
