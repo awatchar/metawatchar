@@ -59,6 +59,16 @@
    0,
    0
   ],
+  "PEEK slab clip (top)": [
+   30,
+   0,
+   45
+  ],
+  "PEEK slab clip (bottom)": [
+   30,
+   0,
+   -5
+  ],
   "SMA bulkhead jack A": [
    -20.0,
    34.64,

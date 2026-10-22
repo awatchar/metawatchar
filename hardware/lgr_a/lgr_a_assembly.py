@@ -105,6 +105,26 @@ def tuning_screw(p, ang=0.0, penetration=4.0):
     return {"screw": screw, "locknut": cq.Workplane().add(nut)}
 
 
+CLIP = dict(wall=2.0, depth=6.0, length=4.0, interference=0.05)  # mm, PEEK
+
+
+def slab_clip(p, at_top):
+    """PEEK U-clip straddling both lips at one axial end of the loop, squeezing the lips onto the
+    alumina slab so no air film forms (notes/21: an air film adds ~0.7 MHz/um and drifts with T).
+    Inner opening = 2*t_lip + d_slab - interference; it covers the outer `depth` mm of the lips."""
+    t_lip, d, s_ = p["t_lip"], p["d_slab"], p["s"]
+    opening = 2 * t_lip + d - CLIP["interference"]
+    outer = opening + 2 * CLIP["wall"]
+    x_tip = p["r"] + p["t"] + s_
+    x0 = x_tip - CLIP["depth"]
+    body = cq.Workplane("XY").box(CLIP["depth"] + CLIP["wall"], outer, CLIP["length"]).translate(
+        (x0 + (CLIP["depth"] + CLIP["wall"]) / 2, 0, 0))
+    slot = cq.Workplane("XY").box(CLIP["depth"] + 0.01, opening, CLIP["length"] + 2).translate(
+        (x0 + CLIP["depth"] / 2 - 0.005, 0, 0))
+    z = p["base"] + p["c"] + (p["z"] - CLIP["length"] / 2 if at_top else CLIP["length"] / 2)
+    return body.cut(slot).translate((0, 0, z))
+
+
 def bolts(p):
     Ro = p["R"] + p["wall"]
     Rf = Ro + p["flange"]
@@ -140,6 +160,9 @@ def main():
         asm.add(sp["pin"], name=f"SMA centre pin {tag}", color=COLORS["gold"])
         asm.add(sp["loop_wire"], name=f"Coupling loop {tag} (Cu wire)", color=COLORS["copper"])
     asm.add(bolts(P), name="M3 bolts x8", color=COLORS["steel"])
+    peek = cq.Color(0.82, 0.70, 0.52)
+    asm.add(slab_clip(P, at_top=False), name="PEEK slab clip (bottom)", color=peek)
+    asm.add(slab_clip(P, at_top=True), name="PEEK slab clip (top)", color=peek)
 
     asm.export(str(OUT / "LGR-A_full.glb"))
     for sv in S_VARIANTS:  # loop variants: each 0.1 mm of lip height ~ 0.5 MHz (notes 17, 21)
@@ -153,6 +176,7 @@ def main():
         "Copper lid (T2)": [0, 0, 70], "M3 bolts x8": [0, 0, 95], "PTFE spacer (top)": [0, 0, 50],
         "Copper loop with lips (T2)": [0, 0, 25], "Alumina slab 99.6% (1.0 mm)": [40, 0, 25],
         "PTFE spacer (bottom)": [0, 0, 0], "Copper can (T2)": [0, 0, 0],
+        "PEEK slab clip (top)": [30, 0, 45], "PEEK slab clip (bottom)": [30, 0, -5],
     }
     for ang, tag in ((120, "A"), (240, "B")):
         ux, uy = radial(ang)

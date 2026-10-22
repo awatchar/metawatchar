@@ -193,6 +193,7 @@ import { GLB_B64 } from "./lgr-a-model.js";
 const EXPLODE = {
   "Copper lid (T2)": [0, 0, 70], "M3 bolts x8": [0, 0, 95], "PTFE spacer (top)": [0, 0, 50],
   "Copper loop with lips (T2)": [0, 0, 25], "Alumina slab 99.6% (1.0 mm)": [40, 0, 25],
+  "PEEK slab clip (top)": [30, 0, 45], "PEEK slab clip (bottom)": [30, 0, -5],
 };
 const ang = { A: 120, B: 240 };
 for (const t of ["A", "B"]) {
@@ -212,6 +213,8 @@ const PARTS = [
     info: { Material: "Copper T2", Process: "CNC; slit by fine slot cutter or wire EDM", Role: "The meta-atom's inductance (loop) and capacitor plates (lips)", Notes: "Lip height s = 10.55 mm (≈145.2 MHz with fillets); also order s = 10.42 and 10.70 variants, since there is no tuner and each 0.1 mm moves f₀ ≈ 0.5 MHz. Slit 1.02 mm for the 1.0 mm slab; lip tips R0.4; no burrs." } },
   { id: "slab", label: "Alumina slab", group: "Supplied ceramic", sw: "#f1efe4", nodes: ["Alumina slab 99.6% (1.0 mm)"],
     info: { Material: "99.6% alumina substrate, 1.0 mm", Process: "Bought, laser-cut to 13.4 × 64.5 mm", Role: "Gap dielectric: sets the cell's capacitance, holds ~97% of the electric energy", Notes: "Use ≥ 99.5% purity. Clamp it firmly against one lip: an air film adds ≈ 0.7 MHz per µm to f₀ and changes with temperature, which would spoil the drift measurement." } },
+  { id: "clips", label: "PEEK slab clips (2)", group: "Machined (JLCCNC)", sw: "#d1b285", nodes: ["PEEK slab clip (bottom)", "PEEK slab clip (top)"],
+    info: { Material: "PEEK", Process: "CNC (small U-clip, 4 mm long)", Role: "Squeezes both lips onto the alumina slab at each end of the loop, so no air film forms", Notes: "Opening = 2 × 3 mm lips + 1.0 mm slab − 0.05 mm interference; covers the outer 6 mm of the lips. An air film adds ≈ 0.7 MHz per µm and drifts with temperature (≈ +50 ppm/K if the slab is loose), which would corrupt the drift data. Measure once clamped and once loose as a control." } },
   { id: "spacers", label: "PTFE spacers (2)", group: "Machined (JLCCNC)", sw: "#e8e9ee", nodes: ["PTFE spacer (bottom)", "PTFE spacer (top)"], clip: true,
     info: { Material: "PTFE (or Rexolite)", Process: "CNC turning", Role: "Holds the loop on axis, top and bottom", Notes: "Avoid POM and nylon (lossy). Height 10.75 mm each." } },
   { id: "smaA", label: "SMA port A (120°)", group: "Bought parts", sw: "#e0b43a", nodes: ["SMA bulkhead jack A", "SMA panel nut A", "SMA PTFE insulator A", "SMA centre pin A", "Coupling loop A (Cu wire)"],
@@ -222,7 +225,7 @@ const PARTS = [
     info: { Material: "Stainless or brass M3", Process: "Bought", Role: "Clamp the lid for continuous RF contact", Notes: "Tighten evenly." } },
 ];
 // label anchor as a fraction of each part's world bounding box: [x (right), y (up), z (toward viewer)]
-const LABEL_FOR = { can: [0.0, 0.12, 0.5], lid: [0.5, 1.0, 0.5], loop: [0.12, 0.92, 0.5], slab: [1.0, 0.55, 0.5],
+const LABEL_FOR = { clips: [1.0, 1.0, 0.5], can: [0.0, 0.12, 0.5], lid: [0.5, 1.0, 0.5], loop: [0.12, 0.92, 0.5], slab: [1.0, 0.55, 0.5],
   spacers: [0.15, 0.0, 0.5], smaA: [0.5, 0.5, 0.5], smaB: [0.5, 0.5, 0.5], tune: [1.0, 0.5, 0.5], bolts: [0.95, 1.0, 0.5] };
 
 const stage = document.getElementById("stage");

@@ -29,6 +29,7 @@ The prototype measures:
 | `can_body` | Copper T2 | CNC turning and milling | Inner bore and inner floor need Ra ≤ 0.8 µm (RF surface). Eight M3 tapped holes in the flange. One M4 tapped hole for the tuning screw (at 0°, facing the lips). Two Ø6.5 mm holes for SMA bulkhead jacks (at 120° and 240°). **No anodizing or coating.** |
 | `lid` | Copper T2 | CNC | Contact face flat to ≤ 0.02 mm so it makes RF contact all round. Eight Ø3.4 mm clearance holes. |
 | `loop` | Copper T2 | CNC; the slit needs a fine slot cutter or **wire EDM** | The slit width must equal the alumina thickness plus 0.02–0.03 mm. Inner and outer surfaces need Ra ≤ 0.8 µm. Deburr the slit edges with no burrs left inside the slit, because burrs concentrate the field and change C. |
+| `clip` ×2 (`out/clip_PEEK.step`) | PEEK | CNC | U-clip at each axial end of the lips; squeezes both lips onto the alumina slab (opening 6.95 mm, i.e. 0.05 mm interference). Prevents the air film that would shift f₀ ≈ 0.7 MHz/µm and add ≈ +50 ppm/K of spurious drift (notes/21). |
 | `spacer` ×2 | PTFE (or Rexolite) | CNC turning | Holds the loop on axis. If PTFE isn't available, use another low-loss plastic. **Avoid POM and nylon**, which are lossy. |
 | `slab` | 99.6% alumina substrate, 0.635 or 1.0 mm | **Bought, laser-cut to size** (not CNC) | Size is (t + s) × z. Use high-purity ≥ 99.5%. Lower grades are about 10× lossier at VHF. |
 
@@ -36,8 +37,7 @@ The prototype measures:
 
 - 2 × SMA female bulkhead jacks (single-hole, 1/4-36 thread). Solder a small wire coupling loop to each. Keep coupling weak (S21 ≤ −30 dB) so the measured Q is close to Qu.
 - 8 × M3 screws, stainless or brass, length to suit the 6 mm flange.
-- 1 × M4 brass or copper tuning screw with lock nut.
-- A PEEK or Kapton clip or tape to hold the alumina slab between the lips. At 2 W a thin air film is acceptable. At high power, a metallized, bonded slab would be required.
+- No tuning screw: simulation showed it tunes less than 5 kHz. Order the loop in three lip heights (`out/loop_Cu-T2_s10p42.step`, `_s10p55`, `_s10p7`) and pick the one closest to 145 MHz.
 
 ## Ordering at JLCCNC
 
