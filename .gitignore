@@ -1,0 +1,23 @@
+# Large raw simulation output (keep summarized results only)
+*.h5
+*.hdf5
+*.vtr
+*.vtu
+*.vtk
+*.vts
+*.pvd
+*.pvtu
+
+# Scheduler logs
+slurm-*.out
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+*.swp
+Thumbs.db
+desktop.ini
