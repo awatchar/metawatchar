@@ -1,0 +1,2 @@
+ntasks=128 palace=0.18.1 list=lists/p6.txt
+openfar_nx2_al_o2 rc=0 ntasks=128 wall_s=1890.0

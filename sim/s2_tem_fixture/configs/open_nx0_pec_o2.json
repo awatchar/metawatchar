@@ -1,0 +1,277 @@
+{
+  "Problem": {
+    "Type": "Driven",
+    "Verbose": 2,
+    "Output": "postpro/open_nx0_pec_o2",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/open_nx0.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          3
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 2.1,
+        "LossTan": 0.0002
+      }
+    ],
+    "Postprocessing": {
+      "Probe": [
+        {
+          "Index": 1,
+          "Center": [
+            0.0,
+            0,
+            35.0
+          ]
+        },
+        {
+          "Index": 2,
+          "Center": [
+            0.0,
+            17.5,
+            35.0
+          ]
+        },
+        {
+          "Index": 3,
+          "Center": [
+            0.0,
+            35,
+            35.0
+          ]
+        },
+        {
+          "Index": 4,
+          "Center": [
+            0.0,
+            52.5,
+            35.0
+          ]
+        },
+        {
+          "Index": 5,
+          "Center": [
+            0.0,
+            70,
+            35.0
+          ]
+        },
+        {
+          "Index": 6,
+          "Center": [
+            0.0,
+            87.5,
+            35.0
+          ]
+        },
+        {
+          "Index": 7,
+          "Center": [
+            0.0,
+            105,
+            35.0
+          ]
+        },
+        {
+          "Index": 8,
+          "Center": [
+            0.0,
+            122.5,
+            35.0
+          ]
+        },
+        {
+          "Index": 9,
+          "Center": [
+            0.0,
+            140,
+            35.0
+          ]
+        },
+        {
+          "Index": 10,
+          "Center": [
+            0.0,
+            157.5,
+            35.0
+          ]
+        },
+        {
+          "Index": 11,
+          "Center": [
+            0.0,
+            172,
+            35.0
+          ]
+        },
+        {
+          "Index": 12,
+          "Center": [
+            0.0,
+            190,
+            35.0
+          ]
+        },
+        {
+          "Index": 13,
+          "Center": [
+            0.0,
+            210,
+            35.0
+          ]
+        },
+        {
+          "Index": 14,
+          "Center": [
+            0.0,
+            250,
+            35.0
+          ]
+        },
+        {
+          "Index": 15,
+          "Center": [
+            0.0,
+            0.0,
+            10.0
+          ]
+        },
+        {
+          "Index": 16,
+          "Center": [
+            0.0,
+            105.0,
+            10.0
+          ]
+        },
+        {
+          "Index": 17,
+          "Center": [
+            0.0,
+            0.0,
+            60.0
+          ]
+        },
+        {
+          "Index": 18,
+          "Center": [
+            0.0,
+            105.0,
+            60.0
+          ]
+        },
+        {
+          "Index": 19,
+          "Center": [
+            -150.0,
+            0.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 20,
+          "Center": [
+            150.0,
+            0.0,
+            35.0
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "PMC": {
+      "Attributes": [
+        3
+      ]
+    },
+    "PEC": {
+      "Attributes": [
+        1,
+        2
+      ]
+    },
+    "Absorbing": {
+      "Attributes": [
+        4
+      ],
+      "Order": 1
+    },
+    "Postprocessing": {
+      "SurfaceFlux": [
+        {
+          "Index": 1,
+          "Attributes": [
+            4
+          ],
+          "Type": "Power",
+          "Center": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "LumpedPort": [
+      {
+        "Index": 1,
+        "R": 100.0,
+        "Excitation": 1,
+        "Attributes": [
+          5
+        ],
+        "Direction": "+Z"
+      },
+      {
+        "Index": 2,
+        "R": 100.0,
+        "Excitation": 2,
+        "Attributes": [
+          6
+        ],
+        "Direction": "+Z"
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 500
+    },
+    "Driven": {
+      "Samples": [
+        {
+          "Type": "Linear",
+          "MinFreq": 0.0005,
+          "MaxFreq": 0.3,
+          "FreqStep": 0.0005
+        }
+      ],
+      "Save": [],
+      "AdaptiveTol": 0.0001,
+      "AdaptiveMaxSamples": 100
+    }
+  }
+}

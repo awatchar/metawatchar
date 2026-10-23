@@ -1,0 +1,2 @@
+ntasks=64 palace=0.18.1 list=lists/p10.txt
+closedline_w344_nx0_al_o2 rc=124 ntasks=64 wall_s=3300.5

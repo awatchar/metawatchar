@@ -1,0 +1,54 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 2): 1054828, ND (p = 2): 4522022, RT (p = 2): 5994093
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 894704 unknowns
+ Level 1 (p = 2): 4522022 unknowns
+ Level 0 (auxiliary) (p = 1): 160124 unknowns
+ Level 1 (auxiliary) (p = 2): 1054828 unknowns
+
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 7.107503e+01
+--
+Greedy iteration 1 (n = 4): ω* = 1.704e-01 GHz (3.715e+00), error = 9.951e-01, memory = 0/2
+ Field energy E (1.298e-07 J) + H (1.299e-07 J) = 2.597e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 2 (n = 6): ω* = 1.706e-01 GHz (3.717e+00), error = 1.084e+00, memory = 0/2
+ Field energy E (5.580e-07 J) + H (5.582e-07 J) = 1.116e-06 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 3 (n = 8): ω* = 1.432e-01 GHz (3.121e+00), error = 1.844e-03, memory = 0/2
+ Field energy E (2.673e-09 J) + H (2.748e-09 J) = 5.421e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 4 (n = 10): ω* = 1.543e-01 GHz (3.362e+00), error = 8.419e-05, memory = 1/2
+ Field energy E (5.977e-08 J) + H (6.027e-08 J) = 1.200e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 5 (n = 12): ω* = 1.894e-01 GHz (4.128e+00), error = 6.008e-06, memory = 2/2
+ Field energy E (1.854e-09 J) + H (1.950e-09 J) = 3.804e-09 J
+
+Adaptive sampling converged with 7 frequency samples:
+ n = 14, error = 6.008e-06, tol = 1.000e-04, memory = 2/2
+ Sampled frequencies (GHz): 1.300e-01, 2.000e-01, 1.704e-01, 1.706e-01,
+                            1.432e-01, 1.543e-01, 1.894e-01
+ Sample errors: inf, inf, 9.951e-01, 1.084e+00, 1.844e-03,
+                8.419e-05, 6.008e-06
+ Total offline phase elapsed time: 1.99e+02 s
+
+--
+ Indicator norm = 2.759e-02, global unknowns = 4522022
+ Max. iterations = 0, tol. = 1.000e-02
+
+Estimated peak per-rank memory usage is: Min. 900.9M, Max. 1.2G, Avg. 1022.9M, Total 63.9G
+--
+Elapsed Time Report (s)           Min.        Max.        Avg.
+==============================================================
+Initialization                   1.729       5.933       5.866
+  Mesh Preprocessing             4.303       8.505       4.369

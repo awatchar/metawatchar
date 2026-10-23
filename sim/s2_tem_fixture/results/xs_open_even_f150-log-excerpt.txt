@@ -1,0 +1,8 @@
+[38;2;255;255;000m--> Warning![0m
+Output folder is not empty; program will overwrite content! (postpro/xs_open_even_f150)
+Git changeset ID: v0.18.1
+Running with 4 MPI processes
+--
+[2026-10-23T11:24:09.198] error: *** STEP <id> ON <node> CANCELLED AT 2026-10-23T11:24:09 DUE to SIGNAL Killed ***
+srun: error: <node>: tasks 0-3: Killed
+srun: Terminating StepId=6465327.2

@@ -1,0 +1,3 @@
+[2026-10-23T15:41:36.642] error: *** STEP <id> ON <node> CANCELLED AT 2026-10-23T15:41:36 DUE to SIGNAL Killed ***
+srun: error: <node>: tasks 0-63: Killed
+srun: Terminating StepId=6465870.0

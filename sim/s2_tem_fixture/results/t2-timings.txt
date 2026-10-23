@@ -1,0 +1,4 @@
+ntasks=32 palace=0.18.1 list=lists/t2.txt
+open_nx0_al_o1_test rc=0 ntasks=32 wall_s=75.1
+xs_open_even_f150_noz rc=124 ntasks=4 wall_s=600.1
+xs_open_even_f150 rc=124 ntasks=4 wall_s=600.1

@@ -1,0 +1,7 @@
+{
+  "run": "xs_open_even_f150_noz",
+  "type": "boundarymode",
+  "variant": "open",
+  "sym": "even",
+  "freq_GHz": 0.15
+}

@@ -1,0 +1,4 @@
+open_nx0_al_o1_test
+xs_open_even_f150_noz 4
+xs_open_even_f150 4
+xs_open_odd_f500_noz 4

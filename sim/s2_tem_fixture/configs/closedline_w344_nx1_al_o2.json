@@ -1,0 +1,199 @@
+{
+  "Problem": {
+    "Type": "Driven",
+    "Verbose": 2,
+    "Output": "postpro/closedline_w344_nx1_al_o2",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/closedline_w344_nx1.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          3
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 2.1,
+        "LossTan": 0.0002
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.8,
+        "LossTan": 4e-05
+      }
+    ],
+    "Postprocessing": {
+      "Probe": [
+        {
+          "Index": 1,
+          "Center": [
+            0.0,
+            35.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 2,
+          "Center": [
+            0.0,
+            105.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 3,
+          "Center": [
+            0.0,
+            0.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 4,
+          "Center": [
+            0.0,
+            70.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 5,
+          "Center": [
+            0.0,
+            140.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 6,
+          "Center": [
+            0.0,
+            172.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 7,
+          "Center": [
+            -150.0,
+            0.0,
+            35.0
+          ]
+        },
+        {
+          "Index": 8,
+          "Center": [
+            150.0,
+            0.0,
+            35.0
+          ]
+        }
+      ],
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            2
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "PMC": {
+      "Attributes": [
+        3
+      ]
+    },
+    "Impedance": [
+      {
+        "Attributes": [
+          1,
+          2,
+          4
+        ],
+        "Rs": 0.009733868822336667,
+        "Ls": 1.0327955589886445e-11
+      },
+      {
+        "Attributes": [
+          7
+        ],
+        "Rs": 0.006390597964927482,
+        "Ls": 6.780635036208104e-12
+      }
+    ],
+    "WavePort": [
+      {
+        "Index": 1,
+        "Attributes": [
+          5
+        ],
+        "Mode": 1,
+        "Offset": 115.0,
+        "Excitation": 1
+      },
+      {
+        "Index": 2,
+        "Attributes": [
+          6
+        ],
+        "Mode": 1,
+        "Offset": 115.0,
+        "Excitation": 0
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 500
+    },
+    "Driven": {
+      "Samples": [
+        {
+          "Type": "Linear",
+          "MinFreq": 0.13,
+          "MaxFreq": 0.2,
+          "FreqStep": 5e-05
+        },
+        {
+          "Type": "Linear",
+          "MinFreq": 0.146,
+          "MaxFreq": 0.168,
+          "FreqStep": 1e-05
+        }
+      ],
+      "Save": [],
+      "AdaptiveTol": 0.0001,
+      "AdaptiveMaxSamples": 100
+    }
+  }
+}

@@ -1,0 +1,1 @@
+ntasks=32 palace=0.18.1 list=lists/t1.txt

@@ -1,0 +1,38 @@
+{
+ "zline_50": {
+  "split50_then_renorm": {
+   "max_abs_S_err": 0.0006083182458526235,
+   "median_mu_err": 0.0020424704148794062,
+   "max_mu_err_absmu_lt30": 0.5751085362212438
+  },
+  "renorm_first": {
+   "max_abs_S_err": 0.0006083182458526235,
+   "median_mu_err": 0.0020424704148794062,
+   "max_mu_err_absmu_lt30": 0.5751085362212438
+  }
+ },
+ "zline_49.5": {
+  "split50_then_renorm": {
+   "max_abs_S_err": 0.0023946977899443997,
+   "median_mu_err": 0.01195469717713744,
+   "max_mu_err_absmu_lt30": 0.5848586754686456
+  },
+  "renorm_first": {
+   "max_abs_S_err": 0.0007186045064023132,
+   "median_mu_err": 0.00351381837604396,
+   "max_mu_err_absmu_lt30": 0.5749549683797436
+  }
+ },
+ "zline_47": {
+  "split50_then_renorm": {
+   "max_abs_S_err": 0.015915814325490493,
+   "median_mu_err": 0.0640498262181749,
+   "max_mu_err_absmu_lt30": 0.6367824905465246
+  },
+  "renorm_first": {
+   "max_abs_S_err": 0.0014269332099555334,
+   "median_mu_err": 0.007661570126655443,
+   "max_mu_err_absmu_lt30": 0.5741933770127441
+  }
+ }
+}

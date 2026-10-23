@@ -1,0 +1,7 @@
+{
+  "run": "xs_closed_even_f500",
+  "type": "boundarymode",
+  "variant": "closed",
+  "sym": "even",
+  "freq_GHz": 0.5
+}

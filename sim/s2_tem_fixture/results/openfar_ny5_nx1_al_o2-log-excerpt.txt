@@ -1,0 +1,80 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 2): 1365280, ND (p = 2): 5835990, RT (p = 2): 7720569
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 1156936 unknowns
+ Level 1 (p = 2): 5835990 unknowns
+ Level 0 (auxiliary) (p = 1): 208344 unknowns
+ Level 1 (auxiliary) (p = 2): 1365280 unknowns
+
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 8.068658e+01
+--
+Greedy iteration 1 (n = 4): ω* = 1.707e-01 GHz (1.795e+01), error = 1.017e+00, memory = 0/2
+ Field energy E (2.924e-09 J) + H (3.093e-09 J) = 6.017e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 2 (n = 6): ω* = 1.553e-01 GHz (1.634e+01), error = 9.681e-01, memory = 0/2
+ Field energy E (1.924e-08 J) + H (1.994e-08 J) = 3.918e-08 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 3 (n = 8): ω* = 1.643e-01 GHz (1.729e+01), error = 7.184e-01, memory = 0/2
+ Field energy E (3.612e-09 J) + H (3.826e-09 J) = 7.439e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 4 (n = 10): ω* = 1.672e-01 GHz (1.759e+01), error = 3.955e-01, memory = 0/2
+ Field energy E (5.373e-07 J) + H (5.374e-07 J) = 1.075e-06 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 5 (n = 12): ω* = 1.840e-01 GHz (1.936e+01), error = 1.838e-01, memory = 0/2
+ Field energy E (2.419e-09 J) + H (2.500e-09 J) = 4.919e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 6 (n = 14): ω* = 1.764e-01 GHz (1.856e+01), error = 5.902e-01, memory = 0/2
+ Field energy E (6.075e-08 J) + H (6.089e-08 J) = 1.216e-07 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 7 (n = 16): ω* = 1.414e-01 GHz (1.488e+01), error = 3.762e-03, memory = 0/2
+ Field energy E (3.152e-09 J) + H (3.142e-09 J) = 6.295e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 8 (n = 18): ω* = 1.517e-01 GHz (1.596e+01), error = 1.002e-04, memory = 0/2
+ Field energy E (2.755e-08 J) + H (2.738e-08 J) = 5.494e-08 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 9 (n = 20): ω* = 1.950e-01 GHz (2.052e+01), error = 2.882e-04, memory = 0/2
+ Field energy E (2.399e-09 J) + H (2.430e-09 J) = 4.828e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 10 (n = 22): ω* = 1.340e-01 GHz (1.410e+01), error = 6.033e-05, memory = 1/2
+ Field energy E (2.531e-09 J) + H (2.575e-09 J) = 5.106e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 11 (n = 24): ω* = 1.901e-01 GHz (2.000e+01), error = 1.063e-05, memory = 2/2
+ Field energy E (2.399e-09 J) + H (2.451e-09 J) = 4.851e-09 J
+
+Adaptive sampling converged with 13 frequency samples:
+ n = 26, error = 1.063e-05, tol = 1.000e-04, memory = 2/2
+ Sampled frequencies (GHz): 1.300e-01, 2.000e-01, 1.707e-01, 1.553e-01,
+                            1.643e-01, 1.672e-01, 1.840e-01, 1.764e-01,
+                            1.414e-01, 1.517e-01, 1.950e-01, 1.340e-01,
+--
+ Sample errors: inf, inf, 1.017e+00, 9.681e-01, 7.184e-01,
+                3.955e-01, 1.838e-01, 5.902e-01, 3.762e-03, 1.002e-04,
+                2.882e-04, 6.033e-05, 1.063e-05
+ Total offline phase elapsed time: 2.07e+03 s
+--
+ Indicator norm = 2.472e-02, global unknowns = 5835990
+ Max. iterations = 0, tol. = 1.000e-02
+

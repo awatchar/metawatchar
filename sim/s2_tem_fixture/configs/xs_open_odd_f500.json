@@ -1,0 +1,95 @@
+{
+  "Problem": {
+    "Type": "BoundaryMode",
+    "Verbose": 2,
+    "Output": "postpro/xs_open_odd_f500",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/xs_open.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      }
+    ]
+  },
+  "Boundaries": {
+    "PEC": {
+      "Attributes": [
+        1,
+        2,
+        3
+      ]
+    },
+    "Absorbing": {
+      "Attributes": [
+        4
+      ],
+      "Order": 1
+    },
+    "Postprocessing": {
+      "Impedance": [
+        {
+          "Index": 1,
+          "VoltagePath": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              70.0
+            ]
+          ],
+          "NSamples": 200,
+          "CurrentPath": [
+            [
+              0.0,
+              60.0
+            ],
+            [
+              187.0,
+              60.0
+            ],
+            [
+              187.0,
+              82.0
+            ],
+            [
+              0.0,
+              82.0
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "BoundaryMode": {
+      "Freq": 0.5,
+      "N": 8,
+      "Save": 0,
+      "Tol": 1e-08,
+      "Target": 0.999
+    },
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-10,
+      "MaxIts": 400
+    }
+  }
+}

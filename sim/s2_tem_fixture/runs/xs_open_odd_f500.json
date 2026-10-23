@@ -1,0 +1,7 @@
+{
+  "run": "xs_open_odd_f500",
+  "type": "boundarymode",
+  "variant": "open",
+  "sym": "odd",
+  "freq_GHz": 0.5
+}
