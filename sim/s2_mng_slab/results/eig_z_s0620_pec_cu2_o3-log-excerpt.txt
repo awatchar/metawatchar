@@ -1,0 +1,71 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 3): 1029277, ND (p = 3): 3922749, RT (p = 3): 4803924
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 279410 unknowns
+ Level 1 (p = 2): 1395948 unknowns
+ Level 2 (p = 3): 3922749 unknowns
+ Level 0 (auxiliary) (p = 1): 51893 unknowns
+ Level 1 (auxiliary) (p = 2): 331303 unknowns
+ Level 2 (auxiliary) (p = 3): 1029277 unknowns
+
+#PETSc Option Table entries:
+-eps_monitor # (source: code)
+--
+  1 EPS nconv=1 first unconverged value (error) 0.000233104+0.00229797i (1.38258303e-02)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 5.377119e+01
+  1 (restart 0) KSP residual norm 5.830604e-01
+--
+  2 EPS nconv=1 first unconverged value (error) 1.87492e-06+0.00228493i (3.00420737e-03)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 3.045464e+03
+  1 (restart 0) KSP residual norm 9.201860e+01
+--
+  3 EPS nconv=1 first unconverged value (error) -0.000225723+0.00244632i (4.02652352e-03)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 1.050078e+02
+  1 (restart 0) KSP residual norm 1.999986e+00
+--
+  4 EPS nconv=1 first unconverged value (error) -3.1029e-05+0.00246407i (1.53933827e-04)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 1.076171e+03
+  1 (restart 0) KSP residual norm 1.318621e+01
+--
+  5 EPS nconv=1 first unconverged value (error) -0.00277296+0.00164043i (3.76056014e-02)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 6.554289e+01
+  1 (restart 0) KSP residual norm 1.439195e+00
+--
+  6 EPS nconv=1 first unconverged value (error) -1.64303e-06+0.00246311i (3.42499318e-07)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 1.662945e+03
+  1 (restart 0) KSP residual norm 1.757367e+01
+--
+  7 EPS nconv=1 first unconverged value (error) -1.61349e-06+0.00246312i (1.07078017e-08)
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 2.058224e+02
+  1 (restart 0) KSP residual norm 4.303747e+00
+--
+  8 EPS nconv=2 first unconverged value (error) -5.32659e-08+0.00267327i (1.53992172e-08)
+
+ Linear eigensolve converged (2 eigenpairs) due to CONVERGED_TOL; iterations 8
+ Total number of linear systems solved: 73
+--
+Computing solution error estimates and performing postprocessing
+
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+     1,      +1.794885e-01,      +3.013693e-05,      +2.977883e+03,      +4.614619e-11,      +3.808692e-06
+     2,      +1.211133e+00,      +7.936480e-04,      +7.630165e+02,      +5.286208e-08,      +1.488499e-02
+
+--
+ Indicator norm = 1.385e-02, global unknowns = 3922749
+ Max. iterations = 0, tol. = 1.000e-02
+
+Estimated peak per-rank memory usage is: Min. 502.1M, Max. 623.1M, Avg. 551.3M, Total 34.5G
+--
+Elapsed Time Report (s)           Min.        Max.        Avg.
+==============================================================
+Initialization                   0.535       1.702       1.682
+  Mesh Preprocessing             1.297       2.462       1.316

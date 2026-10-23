@@ -27,10 +27,23 @@ Additions in this model:
   * Exploratory alternative tuner (`axial`): a brass rod on the can axis through the lid, reaching
     into the loop bore, where the magnetic field is strongest (inductive tuning).
   * Lip-tip fillets: radius `fillet` on the four axial edges at the lip tips (as in the CAD).
+  * PEEK slab clips (optional, `clips=True`; eps_r 3.2, tan_delta 3e-3): the U-clips of
+    hardware/lgr_a/lgr_a_assembly.py `slab_clip`, one at each axial end of the lips. Each covers
+    the outer 6 mm of both lips (2 mm side walls outside the lips, 2 mm back wall beyond the lip
+    tips) over 4 mm along z, flush with the loop end. The 0.05 mm interference is not modelled
+    (the opening equals the lip pack, 2 t_lip + d).
 Conductors are not meshed; they are impedance boundaries (copper sigma 5.8e7, brass 1.5e7 S/m).
 
+Copper surface impedance (corrected 2026-10-23). Palace's "Impedance" boundary combines Rs, Ls
+(and Cs) IN PARALLEL: 1/Z = 1/Rs + 1/(j w Ls). A good conductor has Z = Rs (1 + j), so the
+correct input is Rs_param = 2 Rs, Ls_param = 2 Rs / w, with Rs = sqrt(pi f mu0 / sigma) at the
+operating frequency (zs = "exact", case names ending in "_cu2"). The first runs of this study used
+Rs, Ls = Rs / w (zs = "s2"), which is Z = Rs (1 + j) / 2, i.e. half the copper loss: their Q_c and
+Q values are about 2x too high (frequencies are unaffected). The empty-can case `e_emptycan_cu2_o2`
+checks the input against the analytic TM010 copper Q.
+
 Mesh attributes
-  volumes   1 air, 2 alumina, 3 PTFE
+  volumes   1 air, 2 alumina, 3 PTFE, 4 PEEK clips
   surfaces  1 can (shield) inner walls, 2 LGR loop + lips, 3 coupling wires + coax recess walls,
             4 brass screw, 11 port 1 (120 deg), 12 port 2 (240 deg)
 
@@ -59,6 +72,19 @@ RS_CU, RS_BR = rs(SIGMA_CU), rs(SIGMA_BRASS)
 LS_CU, LS_BR = RS_CU / (2 * math.pi * F0), RS_BR / (2 * math.pi * F0)
 EPS_AL, TAND_AL = 9.8, 4.0e-5
 EPS_PTFE, TAND_PTFE = 2.1, 2.0e-4
+EPS_PEEK, TAND_PEEK = 3.2, 3.0e-3
+CLIP = dict(wall=2.0, depth=6.0, length=4.0)   # mm, as hardware/lgr_a/lgr_a_assembly.py CLIP
+
+
+def zs_entry(attrs, sigma, f, zs="exact"):
+    """Palace "Impedance" entry for a good conductor of conductivity sigma at frequency f.
+    Palace combines Rs and Ls IN PARALLEL (1/Z = 1/Rs + 1/(j w Ls)).
+      zs = "exact": Rs_p = 2 Rs, Ls_p = 2 Rs / w  ->  Z = Rs (1 + j) at f (correct)
+      zs = "s2"   : Rs, Ls = Rs / w (input of the first runs)  ->  Z = Rs (1 + j) / 2 (half the loss)
+    """
+    r, w = rs(sigma, f), 2 * math.pi * f
+    k = 2.0 if zs == "exact" else 1.0
+    return {"Attributes": list(attrs), "Rs": k * r, "Ls": k * r / w}
 
 # ---- ports ----
 PORT_ANG = (120.0, 240.0)
@@ -69,14 +95,14 @@ Z_PORT = 50.0
 SCREW_R = 2.0           # M4
 
 
-def dims():
+def dims(s=S_LIP):
     R = (V_L * 1e-3 / (2 * math.pi)) ** (1 / 3) * 1e3
     H = 2 * R
     r = A_RATIO * R
     c = 0.25 * R
     z = H - 2 * c
-    return dict(V_l=V_L, a=A_RATIO, R=R, H=H, r=r, t=T_WALL, z=z, c=c, s=S_LIP, d=D_GAP,
-                t_lip=T_LIP, clearance=R - (r + T_WALL + S_LIP))
+    return dict(V_l=V_L, a=A_RATIO, R=R, H=H, r=r, t=T_WALL, z=z, c=c, s=s, d=D_GAP,
+                t_lip=T_LIP, clearance=R - (r + T_WALL + s))
 
 
 def port_frame(ang_deg, sign):
@@ -107,10 +133,46 @@ def loop_points(g, ang, sign, w, h, orient):
     return [p0, p1, p2, p3]
 
 
+def build_empty_can(g, path, h=1.0):
+    """Empty copper can (no LGR): check of the impedance input against the analytic TM010 Q."""
+    import gmsh
+    R, H = g["R"], g["H"]
+    gmsh.initialize()
+    gmsh.option.setNumber("General.Terminal", 0)
+    gmsh.model.add("can")
+    occ = gmsh.model.occ
+    v = occ.addCylinder(0, 0, -H / 2, 0, 0, H, R)
+    occ.synchronize()
+    gmsh.model.addPhysicalGroup(3, [v], 1, name="air")
+    gmsh.model.addPhysicalGroup(2, [abs(t) for (_, t) in gmsh.model.getBoundary([(3, v)], oriented=False)],
+                                1, name="can")
+    gmsh.option.setNumber("Mesh.MeshSizeMax", 6.0 * h)
+    gmsh.option.setNumber("Mesh.MeshSizeFromCurvature", 24)
+    gmsh.option.setNumber("Mesh.ElementOrder", 2)
+    gmsh.option.setNumber("Mesh.HighOrderOptimize", 1)
+    gmsh.option.setNumber("Mesh.MshFileVersion", 2.2)
+    gmsh.option.setNumber("Mesh.Binary", 1)
+    gmsh.model.mesh.generate(3)
+    n_tet = sum(len(x) for x in gmsh.model.mesh.getElements(3)[1])
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    gmsh.write(str(path))
+    gmsh.finalize()
+    return dict(n_tet=int(n_tet), h=h), []
+
+
+def empty_can_tm010(g, sigma=SIGMA_CU):
+    """Analytic TM010 of the empty can: f = c p01 / (2 pi R), Q_c = R H / (delta (R + H))."""
+    c0, p01 = 299792458.0, 2.404825557695773
+    R, H = g["R"] * 1e-3, g["H"] * 1e-3
+    f = c0 * p01 / (2 * math.pi * R)
+    delta = 1.0 / math.sqrt(math.pi * f * MU0 * sigma)
+    return dict(f_Hz=f, Q_c=R * H / (delta * (R + H)))
+
+
 def build_mesh(g, path, loops=None, spacers=True, screw=0.0, fillet=0.0, h=1.0, hl=1.0,
-               axial=None, gui=False):
+               axial=None, clips=False, gui=False):
     """loops: None or dict(w=, h=, orient='xy'|'rz'). h = global size scale (as in the sweep),
-    hl = extra scale on the coupling-loop / port region."""
+    hl = extra scale on the coupling-loop / port region. clips: PEEK slab clips (see module doc)."""
     import gmsh
 
     R, H, r, t, z, s, d, tl = g["R"], g["H"], g["r"], g["t"], g["z"], g["s"], g["d"], g["t_lip"]
@@ -193,20 +255,34 @@ def build_mesh(g, path, loops=None, spacers=True, screw=0.0, fillet=0.0, h=1.0, 
             si = occ.addCylinder(0, 0, z0 - 1, 0, 0, g["c"] + 2, r)
             ring, _ = occ.cut([(3, so)], [(3, si)])
             diels += ring
+    if clips:
+        # PEEK U-clips (hardware/lgr_a/lgr_a_assembly.py slab_clip): body = (depth + wall) x
+        # (lip pack + 2 wall) x length, minus the slot that takes the lips and the slab
+        cw, cdp, cln = CLIP["wall"], CLIP["depth"], CLIP["length"]
+        pack = 2 * tl + d
+        for z0 in (z / 2 - cln, -z / 2):
+            body = occ.addBox(x_out - cdp, -pack / 2 - cw, z0, cdp + cw, pack + 2 * cw, cln)
+            slot = occ.addBox(x_out - cdp - 1.0, -pack / 2, z0 - 1.0, cdp + 1.0, pack, cln + 2.0)
+            clip, _ = occ.cut([(3, body)], [(3, slot)])
+            diels += clip
     out, _ = occ.fragment(dom, diels)
     occ.synchronize()
 
     vols = [v for (dim, v) in gmsh.model.getEntities(3)]
-    al, ptfe, air = [], [], []
+    al, ptfe, peek, air = [], [], [], []
     for v in vols:
         xmin, ymin, zmin, xmax, ymax, zmax = gmsh.model.getBoundingBox(3, v)
         if (ymax - ymin) < d * 1.01 and xmin > r - 1.5:
             al.append(v)
+        elif clips and xmin > x_out - CLIP["depth"] - 1e-3 and xmax < x_out + CLIP["wall"] + 1e-3 \
+                and zmax - zmin < CLIP["length"] + 1e-3:
+            peek.append(v)
         elif zmin > z / 2 - 1e-3 or zmax < -z / 2 + 1e-3:
             ptfe.append(v)
         else:
             air.append(v)
     assert len(al) == 1 and len(air) in (1, 2) and len(ptfe) == (2 if spacers else 0), (al, ptfe, air)
+    assert len(peek) == (2 if clips else 0), peek
 
     def bnd(vs):
         return {abs(tg) for (_, tg) in gmsh.model.getBoundary([(3, v) for v in vs], combined=False,
@@ -253,6 +329,8 @@ def build_mesh(g, path, loops=None, spacers=True, screw=0.0, fillet=0.0, h=1.0, 
     gmsh.model.addPhysicalGroup(3, al, 2, name="alumina")
     if ptfe:
         gmsh.model.addPhysicalGroup(3, ptfe, 3, name="ptfe")
+    if peek:
+        gmsh.model.addPhysicalGroup(3, peek, 4, name="peek")
     gmsh.model.addPhysicalGroup(2, shield, 1, name="can")
     gmsh.model.addPhysicalGroup(2, lgr, 2, name="loop_lips")
     if wires:
@@ -330,7 +408,10 @@ def build_mesh(g, path, loops=None, spacers=True, screw=0.0, fillet=0.0, h=1.0, 
 
 def make_config(name, mesh_name, order, problem="Eigenmode", loops=True, spacers=True, screw=False,
                 f_lo=None, f_hi=None, f_step=1e-6, adaptive_tol=1e-4, target=0.12, n_modes=2,
-                linear=None, points=None):
+                linear=None, points=None, zs="exact", f_rs=F0, clips=False, empty=False):
+    """zs: copper impedance input, "exact" (correct, default) or "s2" (the first runs, half the
+    copper loss; see the module docstring). f_rs: frequency (Hz) at which Rs is evaluated, i.e. the
+    expected f0 of the case. clips: PEEK slab clips present (volume attribute 4). empty: empty can."""
     cfg = {
         "Problem": {"Type": problem, "Verbose": 2, "Output": f"postpro/{name}",
                     "OutputFormats": {"Paraview": False, "GridFunction": False}},
@@ -340,7 +421,8 @@ def make_config(name, mesh_name, order, problem="Eigenmode", loops=True, spacers
                 {"Attributes": [1], "Permeability": 1.0, "Permittivity": 1.0, "LossTan": 0.0},
                 {"Attributes": [2], "Permeability": 1.0, "Permittivity": EPS_AL, "LossTan": TAND_AL}],
             "Postprocessing": {"Energy": [{"Index": 1, "Attributes": [2]}]}},
-        "Boundaries": {"Impedance": [{"Attributes": [1, 2] + ([3] if loops else []), "Rs": RS_CU, "Ls": LS_CU}]},
+        "Boundaries": {"Impedance": [zs_entry([1] if empty else [1, 2] + ([3] if loops else []),
+                                              SIGMA_CU, f_rs, zs)]},
         "Solver": {"Order": order, "Device": "CPU",
                    "Linear": {"Type": "Default", "KSPType": "GMRES", "Tol": 1.0e-8, "MaxIts": 400}},
     }
@@ -348,8 +430,15 @@ def make_config(name, mesh_name, order, problem="Eigenmode", loops=True, spacers
         cfg["Domains"]["Materials"].append(
             {"Attributes": [3], "Permeability": 1.0, "Permittivity": EPS_PTFE, "LossTan": TAND_PTFE})
         cfg["Domains"]["Postprocessing"]["Energy"].append({"Index": 2, "Attributes": [3]})
+    if clips:
+        cfg["Domains"]["Materials"].append(
+            {"Attributes": [4], "Permeability": 1.0, "Permittivity": EPS_PEEK, "LossTan": TAND_PEEK})
+        cfg["Domains"]["Postprocessing"]["Energy"].append({"Index": 3, "Attributes": [4]})
+    if empty:
+        del cfg["Domains"]["Materials"][1:]
+        cfg["Domains"]["Postprocessing"]["Energy"] = [{"Index": 1, "Attributes": [1]}]
     if screw:
-        cfg["Boundaries"]["Impedance"].append({"Attributes": [4], "Rs": RS_BR, "Ls": LS_BR})
+        cfg["Boundaries"]["Impedance"].append(zs_entry([4], SIGMA_BRASS, f_rs, zs))
     if loops:
         cfg["Boundaries"]["LumpedPort"] = [
             {"Index": k, "Attributes": [10 + k], "Direction": "+R", "R": Z_PORT} for k in (1, 2)]

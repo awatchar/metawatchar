@@ -1,0 +1,20 @@
+{
+  "run": "eig_z_s0620_pmc_cu2_o3",
+  "mesh": "eig_z_s0620_v2",
+  "type": "eigen",
+  "order": 3,
+  "xwall": "pmc",
+  "offset_mm": null,
+  "both_ports": false,
+  "copper_input": "exact",
+  "f_Rs": 149930000.0,
+  "impedance": [
+    {
+      "Attributes": [
+        6
+      ],
+      "Rs": 0.006389106651395451,
+      "Ls": 6.782217738350517e-12
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "Problem": {
+    "Type": "Driven",
+    "Verbose": 2,
+    "Output": "postpro/N4_z_cu2_o3",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/N4_z_s0620_v2.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          2
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.8,
+        "LossTan": 4e-05
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            2
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "PEC": {
+      "Attributes": [
+        1,
+        2
+      ]
+    },
+    "PMC": {
+      "Attributes": [
+        3
+      ]
+    },
+    "Impedance": [
+      {
+        "Attributes": [
+          6
+        ],
+        "Rs": 0.006390597964927482,
+        "Ls": 6.780635036208104e-12
+      }
+    ],
+    "WavePort": [
+      {
+        "Index": 1,
+        "Attributes": [
+          4
+        ],
+        "Mode": 1,
+        "Offset": 140.0,
+        "Excitation": 1,
+        "PolarityAttributes": [
+          1,
+          2
+        ]
+      },
+      {
+        "Index": 2,
+        "Attributes": [
+          5
+        ],
+        "Mode": 1,
+        "Offset": 140.0,
+        "Excitation": 0,
+        "PolarityAttributes": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 3,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 400
+    },
+    "Driven": {
+      "Samples": [
+        {
+          "Type": "Linear",
+          "MinFreq": 0.13,
+          "MaxFreq": 0.2,
+          "FreqStep": 1e-05
+        }
+      ],
+      "Save": [],
+      "AdaptiveTol": 0.0001,
+      "AdaptiveMaxSamples": 80
+    }
+  }
+}

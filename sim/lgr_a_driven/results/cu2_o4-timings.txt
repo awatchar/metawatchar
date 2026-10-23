@@ -1,0 +1,3 @@
+ntasks=128 ranks=128 npar=1 palace=0.18.1 list=lists/cu2_o4.txt
+e_fil_s1055_cu2_o4 rc=0 wall_s=2299.8
+{"case": "e_fil_s1055_cu2_o4", "f0_Hz": 145204296.5433, "Q": 2164.89073, "mode": 1, "copper_input": "exact", "f_Rs": 145218417.819229, "p_alumina": 0.963298, "p_ptfe": 0.002947, "Q_u": 2164.89073, "Q_d": 25561.497713, "Q_c": 2365.208317}

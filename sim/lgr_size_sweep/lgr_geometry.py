@@ -11,6 +11,12 @@ LGR-A (all lengths in mm in the mesh; Palace L0 = 1e-3):
   * Dielectric: alumina (eps_r 9.8, tan_delta 4e-5) fills the d-wide gap through the wall and
     between the lips (radial extent t + s, length z).
   * Conductors (shield, loop, lips) are not meshed: they are impedance boundaries.
+    Palace combines the Rs, Ls (and Cs) of an "Impedance" boundary IN PARALLEL,
+    1/Z = 1/Rs + 1/(j w Ls), so the good-conductor impedance Z = Rs (1 + j) needs
+    Rs_param = 2 Rs, Ls_param = 2 Rs / w (--zs exact, default since 2026-10-23; case names
+    ending in "_cu2"). The sweep runs before that used Rs, Ls = Rs / w (--zs s2), which is
+    Z = Rs (1 + j) / 2: half the copper loss, so their Q_c and Q are about 2x too high
+    (frequencies and fields are unaffected).
 
 Mesh attributes:
   volumes  1 = air (inside the can, outside the copper), 2 = alumina gap
@@ -212,8 +218,15 @@ def build_mesh(g, h=1.0, path=None, gui=False, mult=(1.0, 1.0, 1.0, 1.0, 1.0)):
     return info
 
 
+def zs_entry_values(f=F0, zs="exact"):
+    """(Rs_param, Ls_param) for copper at f; parallel Rs || Ls model (see the docstring)."""
+    rs = math.sqrt(math.pi * f * MU0 / SIGMA_CU)
+    k = 2.0 if zs == "exact" else 1.0
+    return k * rs, k * rs / (2 * math.pi * f)
+
+
 def make_config(name, g, order, mesh_name=None, template=HERE / "palace_template.json", n_modes=2,
-                shield_pec=False):
+                shield_pec=False, zs="exact", f_rs=F0):
     cfg = json.loads(Path(template).read_text())
     cfg = copy.deepcopy(cfg)
     cfg["Problem"]["Output"] = f"postpro/{name}"
@@ -224,7 +237,7 @@ def make_config(name, g, order, mesh_name=None, template=HERE / "palace_template
         if m["Attributes"] == [2]:
             m["Permittivity"], m["LossTan"] = EPS_AL, TAND_AL
     for b in cfg["Boundaries"]["Impedance"]:
-        b["Rs"], b["Ls"] = RS, LS
+        b["Rs"], b["Ls"] = zs_entry_values(f_rs, zs)
     if shield_pec:   # diagnostic: lossless shield, so Q_c is the loop + lip loss alone
         cfg["Boundaries"]["Impedance"][0]["Attributes"] = [2]
         cfg["Boundaries"]["PEC"] = {"Attributes": [1]}
@@ -248,6 +261,9 @@ def main():
     ap.add_argument("--no-mesh", action="store_true", help="reuse an existing mesh (see --mesh-name)")
     ap.add_argument("--mesh-name", default=None, help="mesh file stem (default: --name)")
     ap.add_argument("--shield-pec", action="store_true", help="diagnostic: PEC shield (loop/lip loss only)")
+    ap.add_argument("--zs", choices=["exact", "s2"], default="exact",
+                    help="copper input: exact = 2Rs || 2Rs/w (correct); s2 = Rs || Rs/w (first runs, half the loss)")
+    ap.add_argument("--f-rs", type=float, default=F0, help="frequency (Hz) at which Rs is evaluated")
     ap.add_argument("--gui", action="store_true")
     args = ap.parse_args()
 
@@ -261,10 +277,13 @@ def main():
         prev = out / "cases" / f"{args.mesh_name}.json"
         if prev.exists():
             info = json.loads(prev.read_text())["mesh"]
-    cfg = make_config(args.name, g, args.order, args.mesh_name, shield_pec=args.shield_pec)
+    cfg = make_config(args.name, g, args.order, args.mesh_name, shield_pec=args.shield_pec, zs=args.zs,
+                      f_rs=args.f_rs)
     (out / "configs").mkdir(parents=True, exist_ok=True)
     (out / "configs" / f"{args.name}.json").write_text(json.dumps(cfg, indent=2) + "\n")
-    meta = dict(name=args.name, geometry=g, mesh=info, order=args.order, shield_pec=args.shield_pec, Rs=RS, Ls=LS, f_design=F0,
+    meta = dict(name=args.name, geometry=g, mesh=info, order=args.order, shield_pec=args.shield_pec,
+                Rs=math.sqrt(math.pi * args.f_rs * MU0 / SIGMA_CU), copper_input=args.zs, f_Rs=args.f_rs,
+                impedance=cfg["Boundaries"]["Impedance"], f_design=F0,
                 eps_alumina=EPS_AL, tand_alumina=TAND_AL,
                 probes=[dict(index=i + 1, label=lab, xyz_mm=xyz) for i, (lab, xyz) in enumerate(probes(g))])
     (out / "cases").mkdir(parents=True, exist_ok=True)

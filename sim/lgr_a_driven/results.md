@@ -6,6 +6,104 @@ Copper σ = 5.8e7 S/m, alumina εr 9.8 / tan δ 4e-5, PTFE spacers included (εr
 brass σ = 1.5e7 S/m (assumed). "Sharp" means the lip edges as in the size sweep; "as built" means
 with the R0.4 mm lip-tip fillets drawn in `hardware/lgr_a`.
 
+> **Correction (copper surface impedance).** Palace's `Impedance` boundary combines Rs and Ls in
+> parallel (1/Z = 1/Rs + 1/(jωLs)). The first runs of this study (sections 1–6 below) entered
+> Rs and Ls = Rs/ω, which is Z = Rs(1 + j)/2: **half the copper loss**, so every Q, Q_u and Q_c
+> in sections 1–6 is too high (Q_c by 2×, Q by about 1.8×) and the loop sizes chosen there give
+> too weak a coupling. Frequencies, Q_ext and field shapes are not affected (f0 moves by
+> −16 kHz). The section **"Corrected copper input"** directly below replaces them; it uses
+> Rs_p = 2 Rs and Ls_p = 2 Rs/ω (Z = Rs(1 + j), Rs at each case's f0), checked against the
+> analytic copper Q of the empty can. Run names end in `_cu2`; numbers are in
+> [`results/summary_cu2.json`](results/summary_cu2.json).
+
+## Corrected copper input (`_cu2` runs)
+
+Geometry of the build ([`../../hardware/lgr_a`](../../hardware/lgr_a)): V = 0.5 L, a = 0.5,
+1.0 mm alumina, R0.4 mm lip-tip fillets, PTFE spacers, lip height s = 10.42 / 10.55 / 10.70 mm
+(the three loop variants; s = 10.55 mm is the default).
+
+### Check of the impedance input: empty copper can
+
+| Mode | f analytic (GHz) | f Palace (GHz) | Q_c analytic, R H/(δ (R + H)) | Q Palace (order 2) | Ratio |
+|---|---|---|---|---|---|
+| TM010 | 2.667643 | 2.667593 | 22,411 | 22,410 | 0.99995 |
+
+(`e_emptycan_cu2_o2`, Rs evaluated at the TM010 frequency.)
+
+### Eigenmodes without coupling loops (order 3 unless noted)
+
+Q_d = 1/(Σ p_i tan δ_i) over alumina, PTFE (and PEEK); Q_c = (1/Q − 1/Q_d)⁻¹ (all copper).
+
+| Case | f0 (MHz) | **Q_u** | Q_c | Q_d | First runs: f0 / Q / Q_c |
+|---|---|---|---|---|---|
+| Sharp lip edges, s = 10.42 mm | 145.1960 | **2,151** | 2,349 | 25,509 | 145.2117 / 3,931 / 4,647 |
+| R0.4 fillets, s = 10.42 mm | 145.8930 | **2,157** | 2,356 | 25,565 | 145.9088 / 3,934 / 4,650 |
+| **R0.4 fillets, s = 10.55 mm (default build)** | **145.2048** | **2,152** | 2,350 | 25,561 | — |
+| R0.4 fillets, s = 10.70 mm | 144.4247 | **2,146** | 2,342 | 25,557 | — |
+| R0.4 fillets, s = 10.55 mm, **order 4** | 145.2043 | **2,165** | 2,365 | 25,561 | — |
+| R0.4 fillets, s = 10.55 mm, **with PEEK slab clips** | 145.0880 | **2,124** | 2,350 | 22,079 | — |
+
+- **Q_u of the build is about 2,150 (order 3), not 3,930.** Q_c is 0.506 of the first runs' value
+  and Q is 0.547–0.548 of it (the alumina and PTFE loss, Q_d ≈ 25,500, is unchanged).
+- Order 3 → 4: Q +0.61 %, Q_c +0.67 %, f0 −0.0003 %. With the size-sweep convergence study
+  (order 3 about 1–2 % low), the best estimate for smooth copper with σ = 5.8e7 S/m is
+  **Q_u ≈ 2,170–2,190**.
+- Lip-height trim with fillets: df0/ds = −5.24 MHz/mm (10.42 → 10.70 mm); 145.200 MHz needs
+  s = 10.551 mm (1/f² linear in s). Q_u changes by < 0.6 % over the three variants.
+- The doubled surface reactance lowers f0 by 16 kHz against the first runs (−0.011 %).
+
+### PEEK slab clips (s = 10.55 mm, R0.4 fillets, order 3)
+
+Two U-clips as in `hardware/lgr_a/lgr_a_assembly.py` (`slab_clip`): they cover the outer 6 mm of
+both lips over 4 mm along z at each loop end, with 2 mm walls; PEEK εr = 3.2, tan δ = 3e-3
+(assumed typical values; to be checked against the supplier's VHF data). The 0.05 mm interference
+is not modelled.
+
+| | f0 (MHz) | Q_u | Q_c | p (PEEK) | Q_d,PEEK = 1/(p tan δ) |
+|---|---|---|---|---|---|
+| Without clips | 145.2048 | 2,152 | 2,350 | — | — |
+| With clips | 145.0880 | 2,124 | 2,350 | 0.208 % | 160,500 |
+| Change | **−117 kHz (−0.080 %)** | **−1.29 %** | +0.02 % | | |
+
+The clips sit in the fringing field at the mouth of the gap; they add capacitance (f0 down by
+about 1.7 linewidths) and a small dielectric loss. Q_u ∝ 1/tan δ_PEEK for this term: at
+tan δ = 5e-3 the Q_u cost would be about 2.1 %.
+
+### Coupling loops for |S21(f0)| ≈ −30 dB (s = 10.55 mm, R0.4 fillets, PTFE spacers)
+
+Q_ext depends only on the loop (it is the same as in the first runs to < 0.1 %), but the lower
+Q_u weakens the coupling β = Q_u/Q_ext. Eigenmode with 50 Ω ports, order 2 (Q_ext), and
+|S21(f0)| = 2β/(1 + 2β) with the order-3 Q_u (2,152):
+
+| Loop, depth × width (mm, wire centreline) | Area (mm²) | Q_ext (each port) | β | \|S21(f0)\| (dB) |
+|---|---|---|---|---|
+| 4.1 × 4.1 | 16.8 | 231,460 | 0.0093 | −34.8 |
+| 4.5 × 4.5 | 20.3 | 156,530 | 0.0137 | −31.5 |
+| **4.7 × 4.7** | **22.1** | **130,560** | **0.0165** | **−29.9** |
+| 4.9 × 4.9 | 24.0 | 109,830 | 0.0196 | −28.5 |
+
+Fit: 1/Q_ext = 1.18e-8 · A^2.09 (A in mm²); −30.0 dB needs A = 22.0 mm² (4.69 × 4.69 mm). One
+side +0.1 mm changes |S21| by about +0.38 dB.
+
+**Recommended loop: 4.7 × 4.7 mm** (1.0 mm Cu wire, mid-height plane, radial leg from the inner
+wall to 4.7 mm inside it, tangential leg 4.7 mm towards 180°, return leg to the wall). The ground
+point on the inner wall is 4.7 mm (tangentially) from the port axis, i.e. asin(4.7/R) = 6.27°
+from the SMA hole (5.3° was for a 4.0 mm loop); the return leg is 4.44 mm long because the wall
+curves towards it (sagitta 0.26 mm), so the centreline inside the can is ≈ 13.8 mm.
+
+**Prediction for the VNA measurement** (4.7 × 4.7 mm loops, s = 10.55 mm, R0.4 fillets, PTFE
+spacers, no clips; driven, order 3, 1 kHz steps over f0 ± 1 MHz;
+[`results/sparams_d_fil_s1055_xy4p7x4p7_cu2_o3.csv`](results/sparams_d_fil_s1055_xy4p7x4p7_cu2_o3.csv)):
+
+| f0 (MHz) | \|S21(f0)\| (dB) | \|S11(f0)\| = \|S22(f0)\| (dB) | Q_L (3 dB) | 3 dB bandwidth (kHz) | β1 = β2 | Q_u (circle fit) | S21 off resonance (dB) |
+|---|---|---|---|---|---|---|---|
+| 145.2043 | −29.93 | −0.288 | 2,081 | 69.8 | 0.01647 | 2,150 | −86 |
+
+The eigenmode solution with resistive ports on the same mesh gives f0 = 145.2042 MHz,
+Q_L = 2,082, β = 0.01647, |S21(f0)| = −29.93 dB and Q_u = 2,150. The loops cost < 0.1 % of
+Q_u. With the PEEK clips fitted, expect f0 ≈ 145.09 MHz and Q_u ≈ 2,124 (and |S21| about
+0.1 dB weaker).
+
 ## Summary
 
 - **Coupling-loop orientation matters by more than 100 dB.** The return flux between the LGR and
@@ -167,3 +265,7 @@ effective lip height: from the size-sweep fit (C ∝ s + s0, s0 ≈ 3.35 mm) a l
 All runs used a free partition: 0.000 SHr. Wall time on 32 cores per run: driven order 2
 4.5–5.5 min, driven order 3 19–24 min, eigenmode order 2 7–11 min (32 min on the 593k-tet mesh), eigenmode
 order 3 36–46 min.
+
+Corrected runs (`_cu2`): also on a free partition, 0.000 SHr. Wall time on 32 cores (shared
+nodes): eigenmode order 3 37–70 min, driven order 3 (2001 points) 29 min, eigenmode order 2 with
+ports 12–15 min; order 4 on 128 cores 38 min.

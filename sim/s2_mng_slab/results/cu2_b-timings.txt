@@ -1,0 +1,2 @@
+ntasks=64 palace=0.18.1 list=lists/cu2_b.txt
+N2_z_cu2_o3 rc=0 ntasks=64 wall_s=5792.7

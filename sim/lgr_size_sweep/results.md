@@ -1,5 +1,29 @@
 # LGR-A size sweep: results
 
+> **Correction (copper surface impedance).** Palace's `Impedance` boundary combines Rs and Ls in
+> parallel (1/Z = 1/Rs + 1/(jωLs)). The sweep entered Rs and Ls = Rs/ω, which is
+> Z = Rs(1 + j)/2: **half the copper loss**. Every Q_c below is about 2× too high and every Q about
+> 1.8× too high; frequencies, tuning, C, fields at a given stored energy and Q_d are unaffected.
+> A subset was re-run with the correct input (Rs_p = 2 Rs, Ls_p = 2 Rs/ω), see the next section.
+> The Palace/analytic Q_c ratio ("REALISM") is about 0.63, not 1.27.
+
+## Corrected copper input (subset, `_cu2` runs, v2 mesh, order 3)
+
+| V | a | d (mm) | s (mm) | f0 (MHz) | Q_c | Q_d | **Q** | First runs: Q_c / Q | Q_c ratio | Palace/analytic Q_c |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 0.25 L | 0.5 | 0.635 | 10.92 | 145.269 | 1,839 | 25,621 | **1,716** | 3,635 / 3,184 | 0.506 | 0.63 (analytic 2,942) |
+| 0.5 L | 0.5 | 0.635 | 5.51 | 145.332 | 2,353 | 25,862 | **2,157** | 4,647 / 3,939 | 0.506 | 0.63 (analytic 3,761) |
+| 0.5 L | 0.5 | 1.0 | 10.42 | 145.311 | 2,344 | 25,858 | **2,149** | 4,630 / 3,927 | 0.506 | — |
+
+- Rs is evaluated at each case's f0 (145.29–145.35 MHz). f0 is 15–21 kHz lower than in the first
+  runs (the surface reactance doubled).
+- The other cases of the sweep were not re-run; their Q_c scale by about 0.506 as well (the same
+  ratio holds for all three re-run cases and for the LGR-A can model with loops and fillets in
+  `../lgr_a_driven`), so Q ≈ (1/(0.506 Q_c,old) + 1/Q_d)⁻¹ is a good estimate for them.
+- Order-3 values are still 1–2 % low (convergence section below; order 3 → 4 gives +0.6–0.8 %).
+- Files: `results/cu2.csv` (same columns as the other round files), configs `configs/*_cu2.json`.
+
+
 ## Summary
 
 - **Reaching 145.5 MHz.** The cell needs C ≈ 65–135 pF across the gap. The d = 0.635 mm alumina

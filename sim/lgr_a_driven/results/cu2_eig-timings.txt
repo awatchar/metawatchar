@@ -1,0 +1,13 @@
+ntasks=64 ranks=32 npar=2 palace=0.18.1 list=lists/cu2_eig.txt
+e_emptycan_cu2_o2 rc=0 wall_s=5.3
+e_fil_s1055_clip_cu2_o3 rc=0 wall_s=2863.1
+e_fil_s1055_cu2_o3 rc=0 wall_s=3163.7
+e_fil_s1042_cu2_o3 rc=0 wall_s=2378.7
+e_fil_s1070_cu2_o3 rc=0 wall_s=3357.7
+e_base_cu2_o3 rc=0 wall_s=2246.9
+{"case": "e_emptycan_cu2_o2", "f0_Hz": 2667592662.853, "Q": 22409.891083, "f_TM010_analytic_Hz": 2667642951.75119, "Q_c_analytic": 22411.099758, "Q_ratio": 0.999946, "copper_input": "exact", "f_Rs": 2667642951.75119}
+{"case": "e_fil_s1055_cu2_o3", "f0_Hz": 145204798.5377, "Q": 2151.763008, "mode": 1, "copper_input": "exact", "f_Rs": 145218417.819229, "p_alumina": 0.963306, "p_ptfe": 0.002948, "Q_u": 2151.763008, "Q_d": 25561.189404, "Q_c": 2349.550172}
+{"case": "e_fil_s1055_clip_cu2_o3", "f0_Hz": 145088016.5459, "Q": 2123.956797, "mode": 1, "copper_input": "exact", "f_Rs": 145218417.819229, "p_alumina": 0.961765, "p_ptfe": 0.002942, "p_peek": 0.002077, "Q_u": 2123.956797, "Q_d": 22079.333631, "Q_c": 2350.020805}
+{"case": "e_fil_s1042_cu2_o3", "f0_Hz": 145893036.4822, "Q": 2157.474982, "mode": 1, "copper_input": "exact", "f_Rs": 145908800.0, "p_alumina": 0.963012, "p_ptfe": 0.002976, "Q_u": 2157.474982, "Q_d": 25565.196874, "Q_c": 2356.328092}
+{"case": "e_fil_s1070_cu2_o3", "f0_Hz": 144424688.9126, "Q": 2145.762788, "mode": 1, "copper_input": "exact", "f_Rs": 144433871.734293, "p_alumina": 0.963613, "p_ptfe": 0.002916, "Q_u": 2145.762788, "Q_d": 25557.308656, "Q_c": 2342.430619}
+{"case": "e_base_cu2_o3", "f0_Hz": 145195992.6275, "Q": 2151.132514, "mode": 1, "copper_input": "exact", "f_Rs": 145211700.0, "p_alumina": 0.965297, "p_ptfe": 0.002947, "Q_u": 2151.132514, "Q_d": 25509.306888, "Q_c": 2349.237512}

@@ -1,0 +1,20 @@
+{
+  "run": "N4_z_cu2_o3",
+  "mesh": "N4_z_s0620_v2",
+  "type": "driven",
+  "order": 3,
+  "xwall": null,
+  "offset_mm": 140.0,
+  "both_ports": false,
+  "copper_input": "exact",
+  "f_Rs": 150000000.0,
+  "impedance": [
+    {
+      "Attributes": [
+        6
+      ],
+      "Rs": 0.006390597964927482,
+      "Ls": 6.780635036208104e-12
+    }
+  ]
+}

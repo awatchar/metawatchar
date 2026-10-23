@@ -24,6 +24,13 @@ Unit cell (LGR-A loop without its can, loop axis along y, parallel to the TEM H-
     The gap field is along z, parallel to the incident E, so E drives the capacitor directly
     (electric coupling, magneto-electric/bianisotropic response; S11 != S22).
   * Conductors are not meshed: their surfaces are impedance boundaries (copper, Rs at F_RS).
+    Palace combines the Rs, Ls (and Cs) of an "Impedance" boundary IN PARALLEL,
+    1/Z = 1/Rs + 1/(j w Ls). The good-conductor impedance Z = Rs (1 + j) therefore needs
+    Rs_param = 2 Rs, Ls_param = 2 Rs / w (config --zs exact, the default since 2026-10-23; run names
+    with "_cu2"). The first S2 runs used Rs, Ls = Rs / w (--zs s2), i.e. Z = Rs (1 + j) / 2: half
+    the copper loss (Q_c about 2x too high, frequencies and Re mu_eff unaffected). With a fixed
+    parallel Rs_p, Ls_p the surface resistance seen at f is Re Z = 2 Rs(f_Rs) x^2 / (1 + x^2),
+    x = f / f_Rs, against the true Rs(f_Rs) sqrt(x): within +-8 % over 130-200 MHz for f_Rs = 150 MHz.
 
 Mesh attributes:
   volumes  1 = air, 2 = alumina
@@ -63,6 +70,13 @@ MU0 = 4e-7 * math.pi
 F_RS = 150e6                     # frequency at which the copper surface resistance is evaluated
 RS = math.sqrt(math.pi * F_RS * MU0 / SIGMA_CU)   # 3.196e-3 ohm/sq
 LS = RS / (2 * math.pi * F_RS)                     # internal (surface) inductance, H/sq
+
+
+def zs_entry(attrs, f=F_RS, zs="exact"):
+    """Palace "Impedance" entry for copper at frequency f (parallel Rs || Ls, see the docstring)."""
+    rs = math.sqrt(math.pi * f * MU0 / SIGMA_CU)
+    k = 2.0 if zs == "exact" else 1.0
+    return {"Attributes": list(attrs), "Rs": k * rs, "Ls": k * rs / (2 * math.pi * f)}
 
 # mesh recipes: sizes in mm. v2 = LGR-A production recipe (note: 0.2 mm on every loop/lip edge).
 RECIPES = {
@@ -240,7 +254,8 @@ def build_mesh(g, recipe="v2", path=None, gui=False):
 
 
 def make_config(run, mesh, case, ptype, order, xwall="pmc", fmin=0.13, fmax=0.20, fstep=1e-5,
-                tol=1e-4, max_samples=80, both_ports=False, offset=None, target=0.12, n_modes=3):
+                tol=1e-4, max_samples=80, both_ports=False, offset=None, target=0.12, n_modes=3,
+                zs="exact", f_rs=F_RS):
     g = case["geometry"]
     has_diel = g["N"] > 0
     mats = [{"Attributes": [1], "Permeability": 1.0, "Permittivity": 1.0, "LossTan": 0.0}]
@@ -259,7 +274,7 @@ def make_config(run, mesh, case, ptype, order, xwall="pmc", fmin=0.13, fmax=0.20
     if has_diel:
         cfg["Domains"]["Postprocessing"] = {"Energy": [{"Index": 1, "Attributes": [2]},
                                                        {"Index": 2, "Attributes": [1]}]}
-        cfg["Boundaries"]["Impedance"] = [{"Attributes": [6], "Rs": RS, "Ls": LS}]
+        cfg["Boundaries"]["Impedance"] = [zs_entry([6], f_rs, zs)]
     if ptype == "eigen":
         wall = "PEC" if xwall == "pec" else "PMC"
         cfg["Boundaries"][wall]["Attributes"] += [4, 5]
@@ -313,6 +328,9 @@ def main():
     c.add_argument("--offset", type=float, default=None, help="de-embedding offset (mm); default l_empty")
     c.add_argument("--target", type=float, default=0.12)
     c.add_argument("--nmodes", type=int, default=3)
+    c.add_argument("--zs", choices=["exact", "s2"], default="exact",
+                   help="copper input: exact = 2Rs || 2Rs/w (correct); s2 = Rs || Rs/w (first runs, half the loss)")
+    c.add_argument("--f-rs", type=float, default=F_RS, help="frequency (Hz) at which Rs is evaluated")
     args = ap.parse_args()
 
     if args.cmd == "mesh":
@@ -328,13 +346,14 @@ def main():
         case = json.loads((HERE / "cases" / f"{args.mesh}.json").read_text())
         cfg = make_config(args.name, args.mesh, case, args.type, args.order, args.xwall, args.fmin,
                           args.fmax, args.fstep, args.tol, args.max_samples, args.both_ports,
-                          args.offset, args.target, args.nmodes)
+                          args.offset, args.target, args.nmodes, args.zs, args.f_rs)
         (HERE / "configs").mkdir(exist_ok=True)
         (HERE / "configs" / f"{args.name}.json").write_bytes((json.dumps(cfg, indent=2) + "\n").encode())
         run_meta = dict(run=args.name, mesh=args.mesh, type=args.type, order=args.order,
                         xwall=args.xwall if args.type == "eigen" else None,
                         offset_mm=cfg["Boundaries"]["WavePort"][0]["Offset"] if args.type == "driven" else None,
-                        both_ports=args.both_ports)
+                        both_ports=args.both_ports, copper_input=args.zs, f_Rs=args.f_rs,
+                        impedance=cfg["Boundaries"].get("Impedance"))
         (HERE / "runs").mkdir(exist_ok=True)
         (HERE / "runs" / f"{args.name}.json").write_bytes((json.dumps(run_meta, indent=2) + "\n").encode())
         print(args.name)

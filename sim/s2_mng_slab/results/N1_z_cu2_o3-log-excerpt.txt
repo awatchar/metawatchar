@@ -1,0 +1,51 @@
+Assembling system matrices, number of global unknowns:
+ H1 (p = 3): 1087677, ND (p = 3): 4151559, RT (p = 3): 5089854
+ Operator assembly level: Partial
+ Mesh geometries:
+--
+ Level 0 (p = 1): 295026 unknowns
+ Level 1 (p = 2): 1476282 unknowns
+ Level 2 (p = 3): 4151559 unknowns
+ Level 0 (auxiliary) (p = 1): 54510 unknowns
+ Level 1 (auxiliary) (p = 2): 349536 unknowns
+ Level 2 (auxiliary) (p = 3): 1087677 unknowns
+
+  Residual norms for GMRES solve
+  0 (restart 0) KSP residual norm 3.275178e+02
+--
+Greedy iteration 1 (n = 4): ω* = 1.647e-01 GHz (1.208e+00), error = 5.426e-03, memory = 0/2
+ Field energy E (1.542e-09 J) + H (1.404e-09 J) = 2.946e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 2 (n = 6): ω* = 1.499e-01 GHz (1.100e+00), error = 1.639e-04, memory = 0/2
+ Field energy E (3.448e-08 J) + H (3.353e-08 J) = 6.802e-08 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 3 (n = 8): ω* = 1.852e-01 GHz (1.358e+00), error = 1.268e-06, memory = 1/2
+ Field energy E (8.072e-10 J) + H (7.684e-10 J) = 1.576e-09 J
+
+  Residual norms for GMRES solve
+--
+Greedy iteration 4 (n = 10): ω* = 1.411e-01 GHz (1.035e+00), error = 5.251e-07, memory = 2/2
+ Field energy E (2.820e-09 J) + H (2.834e-09 J) = 5.654e-09 J
+
+Adaptive sampling converged with 6 frequency samples:
+ n = 12, error = 5.251e-07, tol = 1.000e-04, memory = 2/2
+ Sampled frequencies (GHz): 1.300e-01, 2.000e-01, 1.647e-01, 1.499e-01,
+                            1.852e-01, 1.411e-01
+ Sample errors: inf, inf, 5.426e-03, 1.639e-04, 1.268e-06,
+                5.251e-07
+ Total offline phase elapsed time: 1.58e+02 s
+
+--
+ Indicator norm = 5.665e-03, global unknowns = 4151559
+ Max. iterations = 0, tol. = 1.000e-02
+
+Estimated peak per-rank memory usage is: Min. 505.2M, Max. 656.6M, Avg. 556.8M, Total 34.8G
+--
+Elapsed Time Report (s)           Min.        Max.        Avg.
+==============================================================
+Initialization                   0.563       1.804       1.783
+  Mesh Preprocessing             1.328       2.567       1.349

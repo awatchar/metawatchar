@@ -7,6 +7,53 @@ Palace 0.18.1, frequency-domain (adaptive sweep) and eigenmode solutions. The mo
 - Orientation `z`: lip plates parallel to E.
 - S-parameters are de-embedded to the slab faces x = 0 and x = L = N a_x, with time convention exp(+jωt).
 
+> **Correction (copper surface impedance).** Palace's `Impedance` boundary combines Rs and Ls in
+> parallel (1/Z = 1/Rs + 1/(jωLs)). The runs in the sections below the corrected one entered
+> Rs and Ls = Rs/ω, which is Z = Rs(1 + j)/2: **half the copper loss**. Their Q and Q_c values,
+> the absorption and Im µ_eff are therefore too low in loss (Q_c 2× too high); frequencies, the
+> MNG band and Re µ_eff are unaffected. The corrected runs (`_cu2`, Rs_p = 2 Rs, Ls_p = 2 Rs/ω)
+> are in the next section and supersede the loss-related numbers further down.
+
+## Corrected copper input (`_cu2` runs, order 3, v2 mesh)
+
+Copper: Rs_p = 2 Rs, Ls_p = 2 Rs/ω, which is Z = Rs(1 + j) at f_Rs. Rs is evaluated at the mode
+frequency for the eigenmodes (149.93 MHz for PMC, 179.50 MHz for PEC) and at 150 MHz (the µ pole)
+for the driven slabs. A fixed parallel Rs_p, Ls_p gives a surface resistance 2 Rs(f_Rs) x²/(1 + x²),
+x = f/f_Rs, against the true Rs(f_Rs) √x: within ±8 % over 130–200 MHz and exact at 150 MHz.
+
+### Single cell (eigenmode)
+
+| x-walls | f (MHz) | Q | Q_c | Q_d | First runs: f / Q / Q_c |
+|---|---|---|---|---|---|
+| PMC (≈ µ pole f_m) | **149.918** | **2,843** | 3,187 | 26,292 | 149.930 / 5,083 / 6,301 |
+| PEC (µ_eff = 0, f_mp) | **179.488** | **2,978** | 3,357 | 26,343 | 179.503 / 4,982 / 6,145 |
+
+F = 1 − (f_m/f_mp)² = 0.302 (unchanged). The PEC-wall Q is higher than the PMC-wall Q here because
+Rs is taken at 179.5 MHz (Q_c ∝ √f); with Rs fixed at 150 MHz it would be lower.
+
+### Slab S-parameters (driven, 130–200 MHz, 10 kHz steps)
+
+Files: `results/S_N1_cu2.csv`, `S_N2_cu2.csv`, `S_N4_cu2.csv` (same columns and reference planes as
+`S_N<n>.csv`), and the retrieved `S_N<n>_cu2.mu_eff.csv` (`retrieve_cu2.py`, same retrieval as
+before). Comparison: `results/mu_eff_cu2_compare.json`.
+
+| N | min \|S21\| (dB) at (MHz) | First runs | max absorption | First runs | max µ″ | First runs |
+|---|---|---|---|---|---|---|
+| 1 | −39.32 at 150.48 | −44.07 at 150.49 | 2.21 % | 1.25 % | 211 | 275 |
+| 2 | −32.51 at 150.51 | −32.43 at 150.52 | 17.7 % | 10.7 % | 196 | 263 |
+| 4 | −63.19 at 150.40 | −63.02 at 150.41 | 52.2 % (149.80 MHz) | 50.6 % | 185 | 247 |
+
+- **Re µ_eff is unchanged** to ≤ 0.5 % except within ±0.5 MHz of the pole, and so is the MNG band
+  (N = 1: 149.94–179.56 MHz, against 149.93–179.57 MHz).
+- **Im µ_eff away from the pole is 1.78–1.81 × the first runs' value** for every N (140–170 MHz),
+  i.e. the ratio of the cell loss 5,083/2,843 = 1.79. At the pole the resonance is broader, so the
+  peak µ″ drops by about 25 %.
+- Lorentz fit to the N = 1 retrieval (whole sweep, as `S_N1.lorentz_fit.json`): f0 = 150.087 MHz,
+  F = 0.300, **Q = 2,241** (first runs 3,976), µ∞ = 0.971, f_mp = 180.6 MHz. A single Lorentz term
+  fits N = 2 and 4 poorly (fitted Q 1,412 and 289 for both inputs), so those fits are not used.
+- The |S21| minimum of a thin slab is not a loss measure: for N = 2 and 4 it barely moves, while
+  the absorption rises.
+
 ## Lip-height tuning (single-cell eigenmode, order 2)
 
 | s (mm) | f, PMC x-walls (≈ µ pole f_m) (MHz) | f, PEC x-walls (µ_eff = 0, f_mp) (MHz) | f_mp/f_m | F = 1 − (f_m/f_mp)² |
@@ -95,3 +142,6 @@ Everything ran on LANTA's free `compute-limited` partition (CPU billing weight 0
 | single-cell eigenmode, order 3 | 64 | 15–21 min |
 
 Almost all of the driven time is the PROM online phase at 7001 output frequencies. Each run needed only 6–9 full solves.
+
+Corrected runs (`_cu2`): also free (0.000 SHr). Wall times: eigenmode PMC / PEC 14 / 19 min
+(64 ranks), N1 55 min (64), N2 97 min (64), N4 99 min (128 ranks, 2 nodes).

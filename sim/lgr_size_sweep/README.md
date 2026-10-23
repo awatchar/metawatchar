@@ -28,6 +28,10 @@ machine) is also run for the 0.5 L cases.
 - **Conductors** (shield, loop, lips) are not meshed. They are surface-impedance boundaries with
   Rs = sqrt(pi f mu0 / sigma) = 3.147 mOhm/sq for copper (sigma = 5.8e7 S/m) at 145.5 MHz, plus the
   matching surface inductance Ls = Rs / omega.
+  **Correction:** Palace combines an `Impedance` boundary's Rs and Ls in parallel, so this input
+  (Rs, Ls = Rs/omega) is Z = Rs (1 + j)/2, half the copper loss, and the sweep's Q values are too
+  high. The correct input is Rs_p = 2 Rs, Ls_p = 2 Rs/omega (`lgr_geometry.py --zs exact`, now the
+  default; `--zs s2` reproduces the sweep). A corrected subset (`*_cu2`) is in `results.md`.
 - **Dielectric loss** comes from the alumina loss tangent. Q_d = 1/(p_d tan_delta), where p_d is the
   share of electric energy in the alumina (Palace `domain-E.csv`). The conductor-only Q follows from
   the eigenvalue's total Q: Q_c = (1/Q - 1/Q_d)^-1.

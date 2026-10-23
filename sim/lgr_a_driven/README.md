@@ -4,7 +4,7 @@ Driven 2-port and eigenmode Palace models of the LGR-A meta-atom prototype
 ([`../../hardware/lgr_a`](../../hardware/lgr_a)) with its two SMA coupling loops, the brass M4
 tuning screw and the R0.4 mm lip-tip fillets. The cell is the one chosen in the size sweep
 ([`../lgr_size_sweep`](../lgr_size_sweep)): V = 0.5 L, a = r/R = 0.5, 1.0 mm alumina gap, lip
-height s = 10.42 mm (eigenmode there: f0 = 145.33 MHz, Q = 3,927 with sharp edges, no spacers).
+height s = 10.42 mm (eigenmode there: f0 = 145.33 MHz, Q = 3,927 with sharp edges, no spacers; first-run copper input, corrected value 2,149, see below).
 
 Goals:
 
@@ -13,15 +13,24 @@ Goals:
 3. Tuning range of the M4 screw (penetration 0–6 mm).
 4. Effect of the R0.4 mm lip-tip fillets on f0 and Q.
 
-Results: [`results.md`](results.md) and [`results/summary.json`](results/summary.json).
+Results: [`results.md`](results.md), [`results/summary_cu2.json`](results/summary_cu2.json)
+(corrected copper input, current) and [`results/summary.json`](results/summary.json) (first runs).
+
+> **Copper input correction.** Palace's `Impedance` boundary combines Rs and Ls **in parallel**.
+> The first runs used Rs with Ls = Rs/ω, i.e. half the copper loss, so their Q values are too high
+> (Q_c 2×). The `_cu2` runs use Rs_p = 2 Rs, Ls_p = 2 Rs/ω (Z = Rs(1 + j) at the case's f0) and
+> supersede them: as built, Q_u ≈ 2,150 (not 3,930), and the loops for −30 dB are 4.7 × 4.7 mm
+> (not 4 × 4 mm). See [`results.md`](results.md#corrected-copper-input-_cu2-runs).
 
 ## Model
 
 | Item | Model |
 |---|---|
-| Can, loop, lips | Copper impedance boundary, σ = 5.8e7 S/m (Rs = 3.145 mΩ/sq at 145.33 MHz, Ls = Rs/ω) |
+| Can, loop, lips | Copper impedance boundary, σ = 5.8e7 S/m. Palace input (parallel Rs ‖ Ls): `_cu2` runs Rs_p = 2 Rs, Ls_p = 2 Rs/ω with Rs = √(πfµ0/σ) at the case's f0 (≈ 6.29 mΩ/sq entered for Rs = 3.144 mΩ/sq at 145.2 MHz); first runs Rs = 3.145 mΩ/sq, Ls = Rs/ω (half the loss) |
 | Gap | Alumina, εr 9.8, tan δ 4e-5, fills the 1.0 mm slit and the space between the lips |
 | PTFE spacers | **Included**: rings r…r+t, height c, between each loop end and the can end; εr 2.1, tan δ 2e-4 |
+| PEEK slab clips (`_clip` case) | Two U-clips as in `hardware/lgr_a` (`slab_clip`): outer 6 mm of both lips, 4 mm along z at each loop end, 2 mm walls; εr 3.2, tan δ 3e-3 (assumed); interference not modelled |
+| Lip height | s = 10.42 mm (first runs); `_cu2` runs also s = 10.55 mm (default build) and 10.70 mm |
 | SMA ports (120°, 240°, mid-height) | 50 Ω coaxial **lumped port** (annulus, `"Direction": "+R"`) at the end of a 1 mm deep, 50 Ω air-coax recess in the can wall (inner Ø 1.0 mm = the loop wire, outer Ø 2.3 mm). The reference plane is therefore 1 mm behind the inner wall; the SMA connector adds only a phase shift. |
 | Coupling loops | 1.0 mm diameter copper wire (impedance boundary). From the port the wire runs radially into the can by the depth *w*, turns and runs tangentially by the width *h* (towards 180°, i.e. away from the gap), and returns radially to the wall, where it is grounded. The loop lies in the mid-height plane, so its normal is the can axis and it links the axial return flux between the LGR and the can. Dimensions are wire-centreline values. The two loops are mirror images about the x–z plane. |
 | Loop orientation check | One 5 × 5 mm loop in the radial–axial plane (normal azimuthal), `e_rz5x5_o2` |
@@ -56,15 +65,19 @@ convergence).
 | `analyze.py` | Loop-size fit (`results/sizing.json`) and the study summary (`results/summary.json`) |
 | `configs/*.json` | Palace configurations |
 | `results/sparams_<case>.csv` | S-parameters: `f_Hz, S11_re, S11_im, S21_re, S21_im, S22_re, S22_im, S12_re, S12_im` |
-| `results/<round>.json` | Per-case summaries; `results/summary.json` collects the final numbers |
+| `results/<round>.json` | Per-case summaries; `results/summary.json` collects the first runs' numbers, `results/summary_cu2.json` the corrected ones (`python analyze.py cu2`) |
 
-Case names: `e_` eigenmode, `d_` driven; `xy<w>x<h>` loop of depth *w* × width *h* (mm);
-`_o2`/`_o3` FE order.
+Case names: `e_` eigenmode, `d_` driven; `xy<w>x<h>` loop of depth *w* × width *h* (mm, `p` =
+decimal point); `fil` R0.4 fillets; `s1055` lip height 10.55 mm; `clip` PEEK clips; `_cu2`
+corrected copper input; `_o2`/`_o3`/`_o4` FE order.
+Groups in `build_cases.py`: `sizing`, `tune`, `driven`, `axial`, `asbuilt` (first runs, copper
+input reproduced exactly with `zs="s2"`), `cu2_eig`, `cu2_loops`, `cu2_o4` (corrected).
 
 ## Running
 
 ```bash
-python build_cases.py sizing --mesh      # then: tune, driven (after `analyze.py sizing`), axial, asbuilt
+python build_cases.py cu2_eig --mesh     # corrected copper input; also cu2_loops, cu2_o4
+# first runs: sizing, tune, driven (after `analyze.py sizing`), axial, asbuilt
 # copy the folder to the cluster, then from the case directory:
 sbatch -A <ACCOUNT> --export=ALL,PALACE_ENV=<PALACE_INSTALL>/env.sh run_cases.sbatch lists/<round>.txt
 ```

@@ -1,0 +1,20 @@
+{
+  "run": "eig_z_s0620_pec_cu2_o3",
+  "mesh": "eig_z_s0620_v2",
+  "type": "eigen",
+  "order": 3,
+  "xwall": "pec",
+  "offset_mm": null,
+  "both_ports": false,
+  "copper_input": "exact",
+  "f_Rs": 179500000.0,
+  "impedance": [
+    {
+      "Attributes": [
+        6
+      ],
+      "Rs": 0.0069908195760371725,
+      "Ls": 6.198459564289159e-12
+    }
+  ]
+}

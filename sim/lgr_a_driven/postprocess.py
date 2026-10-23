@@ -23,7 +23,26 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-TAND = {"alumina": 4.0e-5, "ptfe": 2.0e-4}
+TAND = {"alumina": 4.0e-5, "ptfe": 2.0e-4, "peek": 3.0e-3}
+ENERGY_INDEX = ((1, "alumina"), (2, "ptfe"), (3, "peek"))
+
+
+def empty_can(case):
+    """Empty-can check: lowest mode (TM010) against the analytic copper Q, R H / (delta (R + H))."""
+    pp = HERE / "postpro" / case
+    meta = json.loads((HERE / "cases" / f"{case}.json").read_text())
+    g = meta["geometry"]
+    head, data = read_csv(pp / "eig.csv")
+    i_f, i_q = col(head, r"Re\{f\}"), col(head, r"^Q$")
+    modes = sorted([dict(f=r[i_f] * 1e9, Q=r[i_q]) for r in data if r[i_q] > 10], key=lambda x: x["f"])
+    c0, p01, mu0 = 299792458.0, 2.404825557695773, 4e-7 * math.pi
+    R, H = g["R"] * 1e-3, g["H"] * 1e-3
+    f_a = c0 * p01 / (2 * math.pi * R)
+    delta = 1.0 / math.sqrt(math.pi * f_a * mu0 * meta["sigma_cu"])
+    q_a = R * H / (delta * (R + H))
+    md = min(modes, key=lambda x: abs(x["f"] - f_a))
+    return dict(case=case, f0_Hz=md["f"], Q=md["Q"], f_TM010_analytic_Hz=f_a, Q_c_analytic=q_a,
+                Q_ratio=md["Q"] / q_a, copper_input=meta.get("copper_input"), f_Rs=meta.get("f_Rs"))
 
 
 def read_csv(path):
@@ -51,6 +70,10 @@ def eigen(case):
         return dict(case=case, error="no LGR mode", modes=modes)
     md = good[0]
     rec = dict(case=case, f0_Hz=md["f"], Q=md["Q"], mode=md["m"])
+    cj = HERE / "cases" / f"{case}.json"
+    if cj.exists():
+        meta = json.loads(cj.read_text())
+        rec["copper_input"], rec["f_Rs"] = meta.get("copper_input", "s2"), meta.get("f_Rs")
     # port coupling Q
     pq = pp / "port-Q.csv"
     qext = {}
@@ -68,7 +91,7 @@ def eigen(case):
         h3, d3 = read_csv(de)
         row = [r for r in d3 if int(r[0]) == md["m"]][0]
         e_tot = row[col(h3, r"^E_elec \(J\)")]
-        for idx, mat in ((1, "alumina"), (2, "ptfe")):
+        for idx, mat in ENERGY_INDEX:
             j = col(h3, rf"^E_elec\[{idx}\]")
             if j is not None:
                 rec[f"p_{mat}"] = row[j] / e_tot
@@ -188,7 +211,10 @@ def main():
     recs = []
     for n in names:
         try:
-            recs.append(eigen(n) if n.startswith("e_") else driven(n))
+            if "emptycan" in n:
+                recs.append(empty_can(n))
+            else:
+                recs.append(eigen(n) if n.startswith("e_") else driven(n))
         except Exception as exc:            # keep going; report the failure
             recs.append(dict(case=n, error=repr(exc)))
     (HERE / "results").mkdir(exist_ok=True)

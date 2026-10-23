@@ -10,6 +10,12 @@ The outputs are:
 
 Results: [`results.md`](results.md). Deliverable files are listed under [Files](#files).
 
+> **Copper input correction.** Palace combines the `Impedance` boundary's Rs and Ls in parallel.
+> The first runs used Rs with Ls = Rs/ω (half the copper loss); the `_cu2` runs use
+> Rs_p = 2 Rs, Ls_p = 2 Rs/ω (`s2_geometry.py config --zs exact`, now the default; `--zs s2`
+> reproduces the first runs). Corrected single-cell Q = 2,843 (PMC) instead of 5,083; corrected
+> slab S-parameters `results/S_N<n>_cu2.csv`. See [`results.md`](results.md).
+
 ## Model
 
 | Item | Definition |
@@ -23,7 +29,7 @@ Results: [`results.md`](results.md). Deliverable files are listed under [Files](
 | Capacitor | One axial slit of width d = 1.0 mm through the wall. Two copper lips, 3 mm thick and full loop length, extend radially outward by s = 6.2 mm. Alumina (εr 9.8, tan δ 4e-5) fills the slit and the space between the lips. This is the LGR-A loop of `../lgr_size_sweep` (0.5 L, a = 0.5, d = 1.0 mm) without its can |
 | Orientation (production, `z`) | Slit and lips point to **+z**, towards the top plate. The lip plates are y–z planes, **parallel to E**, and the gap field is along x, perpendicular to E. The cell is mirror-symmetric in x, so the uniform incident E_z does not drive the LC mode, there is no first-order electric (magneto-electric) coupling, and S22 = S11. Lip tips end 4.3 mm from the plate |
 | Orientation (comparison, `x`) | The same cell rotated by +90° about y: slit and lips point to +x (downstream), and the gap field is along z, parallel to E. E drives the capacitor directly (bianisotropic response, S11 ≠ S22). Run for N = 1 only |
-| Copper | Not meshed. Copper surfaces are impedance boundaries with Rs = √(π f µ0/σ) = 3.196 mΩ/sq (σ = 5.8e7 S/m) evaluated at 150 MHz, plus Ls = Rs/ω. Rs is held constant over the sweep (it varies as √f, ±8 % over 130–200 MHz) |
+| Copper | Not meshed. Copper surfaces are impedance boundaries with Rs = √(π f µ0/σ) = 3.196 mΩ/sq (σ = 5.8e7 S/m) evaluated at 150 MHz. Palace input (parallel Rs ‖ Ls): `_cu2` runs Rs_p = 2 Rs, Ls_p = 2 Rs/ω; first runs Rs, Ls = Rs/ω (half the loss). Rs is held constant over the sweep (it varies as √f, ±8 % over 130–200 MHz) |
 | Plates and walls | Ideal PEC/PMC (lossless) |
 
 Tuning: s was set from two order-2 eigenmode runs (s = 4.0 and 7.5 mm) with a linear fit of 1/f² against s. The fit is 1/f² ∝ (s + 3.33 mm). The target put the PMC-x-wall eigenmode, which approximates the µ pole, at 150 MHz, giving s = 6.2 mm.
@@ -64,7 +70,9 @@ That gives about 0.19 M tetrahedra per cell. Recipe `v3` refines every one of th
 | `run_s2.sbatch` | Slurm job: runs Palace for each run in a list file, then `postprocess_s2.py` |
 | `postprocess_s2.py` | Inside the job: converts `port-S.csv` (dB/deg) to re/im, summarizes the S21 dip and absorption, and summarizes the eigenmodes (Q, Q_c, Q_d, p_d). Standard library only |
 | `collect_s2.py` | Gathers the deliverables below from the per-run outputs |
-| **`results/S_N1.csv`, `S_N2.csv`, `S_N4.csv`** | **Production S-parameters**: `f_Hz, S11_re, S11_im, S21_re, S21_im`, de-embedded to the slab faces |
+| **`results/S_N1_cu2.csv`, `S_N2_cu2.csv`, `S_N4_cu2.csv`** | **Production S-parameters, corrected copper input** (order 3): `f_Hz, S11_re, S11_im, S21_re, S21_im`, de-embedded to the slab faces; `S_N<n>_cu2.mu_eff.csv` the retrieved µ, ε, n, z |
+| `retrieve_cu2.py` | Writes the `_cu2` slab files, runs the µ_eff retrieval (Smith/Chen with a Kramers–Kronig branch choice; the retrieval module path is passed with `--retrieval`) and compares with the first runs (`results/mu_eff_cu2_compare.json`) |
+| `results/S_N1.csv`, `S_N2.csv`, `S_N4.csv` | First runs (half the copper loss): same format. Frequencies and Re µ_eff are valid; loss is too low |
 | **`results/s2_slab.json`** | Lattice, cell dimensions, slab length L per N, reference-plane and port positions, materials, conventions, eigenmodes, run list |
 | `results/S_N1_orient_x.csv` | N = 1 with the opposite capacitor orientation (also `S12`, `S22`) |
 | `results/S_N1_o2.csv`, `S_N2_o2.csv`, `S_N4_o2.csv` | The same slabs at order 2 (a consistent lower level). N = 1 convergence levels: `N1_z_o2_S.csv`, `N1_z_o3_S.csv`, `N1_z_v3_o2_S.csv` |
@@ -73,7 +81,7 @@ That gives about 0.19 M tetrahedra per cell. Recipe `v3` refines every one of th
 | `postpro/<run>/` | Palace's own small outputs (`port-S.csv`, `eig.csv`, `palace.json`) |
 | `cases/`, `configs/`, `runs/`, `lists/` | Mesh/geometry metadata, Palace configs, run metadata, job lists |
 
-Run names: `N<N>_<orient>_o<order>` (driven, v2 mesh), `N1_z_v3_o<order>` (refined mesh), `eig_z_s<s·100>_<pmc|pec>_o<order>` (eigenmode), `empty_off<offset>_o2` (empty line).
+Run names (suffix `_cu2` before the order = corrected copper input): `N<N>_<orient>_o<order>` (driven, v2 mesh), `N1_z_v3_o<order>` (refined mesh), `eig_z_s<s·100>_<pmc|pec>_o<order>` (eigenmode), `empty_off<offset>_o2` (empty line).
 
 ## How to run
 

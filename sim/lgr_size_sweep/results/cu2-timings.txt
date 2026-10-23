@@ -1,0 +1,4 @@
+ntasks=64 palace=0.18.1 list=lists/cu2.txt
+v050_a05_d1000_s1042_o3_v2_cu2 rc=0 wall_s=1602.4
+v025_a05_d0635_s1092_o3_v2_cu2 rc=0 wall_s=912.8
+v050_a05_d0635_s0551_o3_v2_cu2 rc=0 wall_s=1068.2
