@@ -1,29 +1,22 @@
+[38;2;255;255;000m--> Warning![0m
 Assembling system matrices, number of global unknowns:
  Level 0 (p = 1): 438443 unknowns
-It 1/8: Current Index = 1 (elapsed time = 8.00e-05 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.699e-01)
-[38;2;255;255;000m--> Warning![0m
-It 2/8: Current Index = 2 (elapsed time = 2.16e+00 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.713e-01)
-[38;2;255;255;000m--> Warning![0m
-It 3/8: Current Index = 3 (elapsed time = 4.15e+00 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.723e-01)
-[38;2;255;255;000m--> Warning![0m
-It 4/8: Current Index = 4 (elapsed time = 6.14e+00 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.734e-01)
-[38;2;255;255;000m--> Warning![0m
-It 5/8: Current Index = 5 (elapsed time = 8.12e+00 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.718e-01)
-[38;2;255;255;000m--> Warning![0m
-It 6/8: Current Index = 6 (elapsed time = 1.01e+01 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.733e-01)
-[38;2;255;255;000m--> Warning![0m
-It 7/8: Current Index = 7 (elapsed time = 1.21e+01 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.699e-01)
-[38;2;255;255;000m--> Warning![0m
-It 8/8: Current Index = 8 (elapsed time = 1.41e+01 s)
-PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.711e-01)
-[38;2;255;255;000m--> Warning![0m
+It 1/8: Current Index = 1 (elapsed time = 2.79e-04 s)
+PCG solver converged in 541 iterations (avg. reduction factor: 9.664e-01)
+It 2/8: Current Index = 2 (elapsed time = 1.92e+00 s)
+PCG solver converged in 546 iterations (avg. reduction factor: 9.666e-01)
+It 3/8: Current Index = 3 (elapsed time = 3.73e+00 s)
+PCG solver converged in 546 iterations (avg. reduction factor: 9.667e-01)
+It 4/8: Current Index = 4 (elapsed time = 5.50e+00 s)
+PCG solver converged in 546 iterations (avg. reduction factor: 9.665e-01)
+It 5/8: Current Index = 5 (elapsed time = 7.27e+00 s)
+PCG solver converged in 548 iterations (avg. reduction factor: 9.668e-01)
+It 6/8: Current Index = 6 (elapsed time = 9.39e+00 s)
+PCG solver converged in 552 iterations (avg. reduction factor: 9.670e-01)
+It 7/8: Current Index = 7 (elapsed time = 1.12e+01 s)
+PCG solver converged in 552 iterations (avg. reduction factor: 9.670e-01)
+It 8/8: Current Index = 8 (elapsed time = 1.30e+01 s)
+PCG solver converged in 550 iterations (avg. reduction factor: 9.670e-01)
 Completed 0 iterations of adaptive mesh refinement (AMR):
  Indicator norm = 8.449e-01, global unknowns = 438443
  Max. iterations = 0, tol. = 1.000e-02

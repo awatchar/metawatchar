@@ -1,0 +1,10 @@
+ntasks=32 list=lists/pairk12_C.txt
+pair_C_copl11.5_k12_mu200 rc=0 ntasks=32 wall_s=9.4
+pair_C_copl14_k12_mu200 rc=0 ntasks=32 wall_s=8.9
+pair_C_copl18_k12_mu200 rc=0 ntasks=32 wall_s=9.3
+pair_C_copl25_k12_mu200 rc=0 ntasks=32 wall_s=9.1
+pair_C_copl35_k12_mu200 rc=0 ntasks=32 wall_s=8.9
+pair_C_copl50_k12_mu200 rc=0 ntasks=32 wall_s=9.0
+pair_C_coax1_k12_mu200 rc=0 ntasks=32 wall_s=9.0
+pair_C_coax5_k12_mu200 rc=0 ntasks=32 wall_s=9.1
+pair_C_coax15_k12_mu200 rc=0 ntasks=32 wall_s=9.0

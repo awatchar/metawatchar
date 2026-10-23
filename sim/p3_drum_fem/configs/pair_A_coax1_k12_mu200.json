@@ -88,7 +88,7 @@
    "Type": "AMS",
    "KSPType": "CG",
    "Tol": 1e-08,
-   "MaxIts": 300
+   "MaxIts": 2000
   }
  }
 }

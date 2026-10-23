@@ -8,3 +8,13 @@ pair_C_copl50_mu200 rc=0 ntasks=32 wall_s=100.7
 pair_C_coax1_mu200 rc=0 ntasks=32 wall_s=98.2
 pair_C_coax5_mu200 rc=0 ntasks=32 wall_s=98.1
 pair_C_coax15_mu200 rc=0 ntasks=32 wall_s=101.1
+ntasks=64 list=lists/pair_C.txt
+pair_C_copl11.5_mu200 rc=0 ntasks=64 wall_s=88.1
+pair_C_copl14_mu200 rc=0 ntasks=64 wall_s=85.8
+pair_C_copl18_mu200 rc=0 ntasks=64 wall_s=85.8
+pair_C_copl25_mu200 rc=0 ntasks=64 wall_s=84.1
+pair_C_copl35_mu200 rc=0 ntasks=64 wall_s=82.6
+pair_C_copl50_mu200 rc=0 ntasks=64 wall_s=83.5
+pair_C_coax1_mu200 rc=0 ntasks=64 wall_s=92.4
+pair_C_coax5_mu200 rc=0 ntasks=64 wall_s=84.9
+pair_C_coax15_mu200 rc=0 ntasks=64 wall_s=74.7

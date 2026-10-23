@@ -191,7 +191,7 @@ class Model:
         return path, len(self.rings), ntet
 
 
-def config(run, mesh, nports, mu, order=ORDER, maxits=300):
+def config(run, mesh, nports, mu, order=ORDER, maxits=2000):
     cfg = {
         "Problem": {"Type": "Magnetostatic", "Verbose": 2, "Output": f"postpro/{run}"},
         "Model": {"Mesh": f"mesh/{mesh}.msh", "L0": 1.0e-3},

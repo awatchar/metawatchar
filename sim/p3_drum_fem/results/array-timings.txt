@@ -2,3 +2,7 @@ ntasks=64 list=lists/array.txt
 array_A_4x4_p15_mu200 rc=0 ntasks=64 wall_s=183.4
 array_B_4x4_p12.5_mu200 rc=0 ntasks=64 wall_s=100.4
 array_C_4x4_p12.5_mu200 rc=0 ntasks=64 wall_s=103.8
+ntasks=64 list=lists/array.txt
+array_A_4x4_p15_mu200 rc=0 ntasks=64 wall_s=195.0
+array_B_4x4_p12.5_mu200 rc=0 ntasks=64 wall_s=111.2
+array_C_4x4_p12.5_mu200 rc=0 ntasks=64 wall_s=114.6
