@@ -1,0 +1,2 @@
+*.sbatch text eol=lf
+lists/*.txt text eol=lf
