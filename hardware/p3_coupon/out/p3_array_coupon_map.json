@@ -1,0 +1,516 @@
+[
+ {
+  "id": "MA11",
+  "type": "A",
+  "x_mm": 20.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L1",
+  "c1": "C1"
+ },
+ {
+  "id": "MA21",
+  "type": "A",
+  "x_mm": 20.0,
+  "y_mm": 40.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L2",
+  "c1": "C2"
+ },
+ {
+  "id": "MA31",
+  "type": "A",
+  "x_mm": 20.0,
+  "y_mm": 55.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L3",
+  "c1": "C3"
+ },
+ {
+  "id": "MA41",
+  "type": "A",
+  "x_mm": 20.0,
+  "y_mm": 70.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L4",
+  "c1": "C4"
+ },
+ {
+  "id": "MA12",
+  "type": "A",
+  "x_mm": 35.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L5",
+  "c1": "C5"
+ },
+ {
+  "id": "MA22",
+  "type": "A",
+  "x_mm": 35.0,
+  "y_mm": 40.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L6",
+  "c1": "C6"
+ },
+ {
+  "id": "MA32",
+  "type": "A",
+  "x_mm": 35.0,
+  "y_mm": 55.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L7",
+  "c1": "C7"
+ },
+ {
+  "id": "MA42",
+  "type": "A",
+  "x_mm": 35.0,
+  "y_mm": 70.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L8",
+  "c1": "C8"
+ },
+ {
+  "id": "MA13",
+  "type": "A",
+  "x_mm": 50.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L9",
+  "c1": "C9"
+ },
+ {
+  "id": "MA23",
+  "type": "A",
+  "x_mm": 50.0,
+  "y_mm": 40.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L10",
+  "c1": "C10"
+ },
+ {
+  "id": "MA33",
+  "type": "A",
+  "x_mm": 50.0,
+  "y_mm": 55.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L11",
+  "c1": "C11"
+ },
+ {
+  "id": "MA43",
+  "type": "A",
+  "x_mm": 50.0,
+  "y_mm": 70.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L12",
+  "c1": "C12"
+ },
+ {
+  "id": "MA14",
+  "type": "A",
+  "x_mm": 65.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L13",
+  "c1": "C13"
+ },
+ {
+  "id": "MA24",
+  "type": "A",
+  "x_mm": 65.0,
+  "y_mm": 40.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L14",
+  "c1": "C14"
+ },
+ {
+  "id": "MA34",
+  "type": "A",
+  "x_mm": 65.0,
+  "y_mm": 55.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L15",
+  "c1": "C15"
+ },
+ {
+  "id": "MA44",
+  "type": "A",
+  "x_mm": 65.0,
+  "y_mm": 70.0,
+  "has_c": true,
+  "group": "arrayA",
+  "inductor": "L16",
+  "c1": "C16"
+ },
+ {
+  "id": "MB11",
+  "type": "B",
+  "x_mm": 115.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L17",
+  "c1": "C17"
+ },
+ {
+  "id": "MB21",
+  "type": "B",
+  "x_mm": 115.0,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L18",
+  "c1": "C18"
+ },
+ {
+  "id": "MB31",
+  "type": "B",
+  "x_mm": 115.0,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L19",
+  "c1": "C19"
+ },
+ {
+  "id": "MB41",
+  "type": "B",
+  "x_mm": 115.0,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L20",
+  "c1": "C20"
+ },
+ {
+  "id": "MB12",
+  "type": "B",
+  "x_mm": 127.5,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L21",
+  "c1": "C21"
+ },
+ {
+  "id": "MB22",
+  "type": "B",
+  "x_mm": 127.5,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L22",
+  "c1": "C22"
+ },
+ {
+  "id": "MB32",
+  "type": "B",
+  "x_mm": 127.5,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L23",
+  "c1": "C23"
+ },
+ {
+  "id": "MB42",
+  "type": "B",
+  "x_mm": 127.5,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L24",
+  "c1": "C24"
+ },
+ {
+  "id": "MB13",
+  "type": "B",
+  "x_mm": 140.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L25",
+  "c1": "C25"
+ },
+ {
+  "id": "MB23",
+  "type": "B",
+  "x_mm": 140.0,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L26",
+  "c1": "C26"
+ },
+ {
+  "id": "MB33",
+  "type": "B",
+  "x_mm": 140.0,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L27",
+  "c1": "C27"
+ },
+ {
+  "id": "MB43",
+  "type": "B",
+  "x_mm": 140.0,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L28",
+  "c1": "C28"
+ },
+ {
+  "id": "MB14",
+  "type": "B",
+  "x_mm": 152.5,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L29",
+  "c1": "C29"
+ },
+ {
+  "id": "MB24",
+  "type": "B",
+  "x_mm": 152.5,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L30",
+  "c1": "C30"
+ },
+ {
+  "id": "MB34",
+  "type": "B",
+  "x_mm": 152.5,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L31",
+  "c1": "C31"
+ },
+ {
+  "id": "MB44",
+  "type": "B",
+  "x_mm": 152.5,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayB",
+  "inductor": "L32",
+  "c1": "C32"
+ },
+ {
+  "id": "MC11",
+  "type": "C",
+  "x_mm": 200.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L33",
+  "c1": "C33"
+ },
+ {
+  "id": "MC21",
+  "type": "C",
+  "x_mm": 200.0,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L34",
+  "c1": "C34"
+ },
+ {
+  "id": "MC31",
+  "type": "C",
+  "x_mm": 200.0,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L35",
+  "c1": "C35"
+ },
+ {
+  "id": "MC41",
+  "type": "C",
+  "x_mm": 200.0,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L36",
+  "c1": "C36"
+ },
+ {
+  "id": "MC12",
+  "type": "C",
+  "x_mm": 212.5,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L37",
+  "c1": "C37"
+ },
+ {
+  "id": "MC22",
+  "type": "C",
+  "x_mm": 212.5,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L38",
+  "c1": "C38"
+ },
+ {
+  "id": "MC32",
+  "type": "C",
+  "x_mm": 212.5,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L39",
+  "c1": "C39"
+ },
+ {
+  "id": "MC42",
+  "type": "C",
+  "x_mm": 212.5,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L40",
+  "c1": "C40"
+ },
+ {
+  "id": "MC13",
+  "type": "C",
+  "x_mm": 225.0,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L41",
+  "c1": "C41"
+ },
+ {
+  "id": "MC23",
+  "type": "C",
+  "x_mm": 225.0,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L42",
+  "c1": "C42"
+ },
+ {
+  "id": "MC33",
+  "type": "C",
+  "x_mm": 225.0,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L43",
+  "c1": "C43"
+ },
+ {
+  "id": "MC43",
+  "type": "C",
+  "x_mm": 225.0,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L44",
+  "c1": "C44"
+ },
+ {
+  "id": "MC14",
+  "type": "C",
+  "x_mm": 237.5,
+  "y_mm": 25.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L45",
+  "c1": "C45"
+ },
+ {
+  "id": "MC24",
+  "type": "C",
+  "x_mm": 237.5,
+  "y_mm": 37.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L46",
+  "c1": "C46"
+ },
+ {
+  "id": "MC34",
+  "type": "C",
+  "x_mm": 237.5,
+  "y_mm": 50.0,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L47",
+  "c1": "C47"
+ },
+ {
+  "id": "MC44",
+  "type": "C",
+  "x_mm": 237.5,
+  "y_mm": 62.5,
+  "has_c": true,
+  "group": "arrayC",
+  "inductor": "L48",
+  "c1": "C48"
+ },
+ {
+  "id": "S1",
+  "type": "printed",
+  "x_mm": 62.0,
+  "y_mm": 128.0,
+  "has_c": true,
+  "group": "printed",
+  "c": [
+   "C49",
+   "C50",
+   "C51"
+  ]
+ },
+ {
+  "id": "S2",
+  "type": "printed",
+  "x_mm": 152.0,
+  "y_mm": 128.0,
+  "has_c": true,
+  "group": "printed",
+  "c": [
+   "C52",
+   "C53",
+   "C54"
+  ]
+ },
+ {
+  "id": "SZ",
+  "type": "printed-Z",
+  "x_mm": 240.0,
+  "y_mm": 135.0,
+  "has_c": false,
+  "group": "printed"
+ }
+]
