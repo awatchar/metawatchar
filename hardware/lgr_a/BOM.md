@@ -33,6 +33,10 @@ The build has no tuner, so f₀ is set by the choice of lip height. The loop is 
 
 Each slab's radial length equals t + s (loop wall 3 mm plus the lip height), so the slab and loop variants must be paired: 6a with 3a, 6b with 3b, 6c with 3c.
 
+## Possible addition: cells for the slab fixture (later paper)
+
+To get every meta-atom from one machining batch, the unshielded array cells (lip height s = 6.2 mm, 8 cells for a 4 × 2 slab) could go into the same order. They are on hold until the full-wave fixture simulation has fixed the cell count and fixture type.
+
 ## Notes for the order
 
 - Order all three loop variants at once. With no tuner, a second order would cost weeks.
