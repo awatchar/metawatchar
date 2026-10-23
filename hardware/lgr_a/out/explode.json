@@ -20,7 +20,9 @@
   "bolt_clear": 3.4,
   "bolt_tap": "M3",
   "sma_hole": 6.5,
-  "loop_gnd_deg": 5.3,
+  "loop_w": 4.7,
+  "loop_h": 4.7,
+  "loop_gnd_deg": 6.273238932138455,
   "loop_gnd_hole": 1.2
  },
  "explode_mm": {

@@ -71,15 +71,16 @@ def sma_jack(p, ang):
     parts["nut"] = nut
     parts["pin"] = cq.Workplane().add(pin)
     parts["insul"] = cq.Workplane().add(insul)
-    # coupling loop (notes/21): 1 mm Cu wire, 4.1 x 4.1 mm (centreline) in the MID-HEIGHT plane
-    # leg 1 radially inward from the pin, leg 2 tangential towards 180 deg, leg 3 back to the wall
+    # coupling loop: 1 mm Cu wire in the MID-HEIGHT plane, loop_w (radial depth from the inner
+    # wall) x loop_h (tangential), wire centreline, as the Palace model (sim/lgr_a_driven):
+    # leg 1 radially inward from the pin, leg 2 tangential towards 180 deg, leg 3 parallel to
+    # leg 1 back out to the wall (ground hole at asin(loop_h/R))
     sgn = 1 if ang < 180 else -1                      # mirror the two loops about 180 deg
     t = cq.Vector(-uy, ux, 0) * sgn                    # tangential unit vector towards 180 deg
     p0 = base + d * (p["R"] - 0.5)
-    p1 = p0 - d * 4.1
-    p2 = p1 + t * 4.1
-    g = math.radians(ang + sgn * p["loop_gnd_deg"])
-    p3 = cq.Vector(p["R"] * math.cos(g), p["R"] * math.sin(g), zc)
+    p1 = base + d * (p["R"] - p["loop_w"])
+    p2 = p1 + t * p["loop_h"]
+    p3 = base + t * p["loop_h"] + d * math.sqrt(p["R"] ** 2 - p["loop_h"] ** 2)
     loop_pts = [p0, p1, p2, p3]
     segs = []
     for a_, b_ in zip(loop_pts[:-1], loop_pts[1:]):
@@ -110,7 +111,7 @@ CLIP = dict(wall=2.0, depth=6.0, length=4.0, interference=0.05)  # mm, PEEK
 
 def slab_clip(p, at_top):
     """PEEK U-clip straddling both lips at one axial end of the loop, squeezing the lips onto the
-    alumina slab so no air film forms (notes/21: an air film adds ~0.7 MHz/um and drifts with T).
+    alumina slab so no air film forms (sim/lgr_a_driven: an air film adds ~0.7 MHz/um and drifts with T).
     Inner opening = 2*t_lip + d_slab - interference; it covers the outer `depth` mm of the lips."""
     t_lip, d, s_ = p["t_lip"], p["d_slab"], p["s"]
     opening = 2 * t_lip + d - CLIP["interference"]

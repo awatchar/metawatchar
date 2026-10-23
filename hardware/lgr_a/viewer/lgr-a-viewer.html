@@ -113,7 +113,7 @@
       <p class="sub">Shielded loop-gap resonator, the MNG unit cell for the narrow-split VHF duplexer. Machined in copper T2, with the gap capacitor formed by a 1.0 mm 99.6% alumina slab between two lips.</p>
     </div>
     <div class="metrics" aria-label="Simulated performance">
-      <span>f₀ <b>≈ 145.2 MHz</b></span><span>Qᵤ <b>≈ 3,930</b></span><span>|S21(f₀)| <b>≈ −30 dB</b></span><span>V <b>0.5 L</b></span><span>Palace FEM</span>
+      <span>f₀ <b>≈ 145.1 MHz</b></span><span>Qᵤ <b>≈ 2,120</b></span><span>|S21(f₀)| <b>≈ −30 dB</b></span><span>V <b>0.5 L</b></span><span>Palace FEM</span>
     </div>
   </header>
 
@@ -165,7 +165,7 @@
             <tr><td>Lip height s × thickness</td><td>10.55 × 3.0 (variants 10.42 / 10.70)</td></tr>
             <tr><td>Slit width</td><td>1.02</td></tr>
             <tr><td>Alumina slab</td><td>1.0 × 13.4 × 64.5</td></tr>
-            <tr><td>Lip tip to can wall</td><td>8.0</td></tr><tr><td>Coupling loops (wire centreline)</td><td>4.1 × 4.1, Ø1.0 wire</td></tr>
+            <tr><td>Lip tip to can wall</td><td>8.0</td></tr><tr><td>Coupling loops (wire centreline)</td><td>4.7 × 4.7, Ø1.0 wire</td></tr>
             <tr><td>PTFE spacer height</td><td>10.75</td></tr>
             <tr><td>Lip tip fillet</td><td>R 0.4</td></tr>
           </tbody>
@@ -206,19 +206,19 @@ for (const t of ["A", "B"]) {
 // Part catalogue: what the list and the detail card show. "nodes" are GLB node names.
 const PARTS = [
   { id: "can", label: "Copper can", group: "Machined (JLCCNC)", sw: "#b8642d", nodes: ["Copper can (T2)"], clip: true,
-    info: { Material: "Copper T2", Process: "CNC turning + milling", Role: "Shield and return path for the loop's flux", Notes: "Inner bore Ra ≤ 0.8 µm, no anodize. Flange: 8 × M3 tapped. Ø6.5 SMA holes at 120°/240° plus Ø1.2 loop-ground holes 5.3° towards 180°. No tuning screw (it could tune < 5 kHz)." } },
+    info: { Material: "Copper T2", Process: "CNC turning + milling", Role: "Shield and return path for the loop's flux", Notes: "Inner bore Ra ≤ 0.8 µm, no anodize. Flange: 8 × M3 tapped. Ø6.5 SMA holes at 120°/240° plus Ø1.2 loop-ground holes 6.27° towards 180°. No tuning screw (it could tune < 5 kHz)." } },
   { id: "lid", label: "Copper lid", group: "Machined (JLCCNC)", sw: "#a85c29", nodes: ["Copper lid (T2)"], clip: true,
     info: { Material: "Copper T2", Process: "CNC", Role: "Closes the shield", Notes: "Contact face flat to ≤ 0.02 mm. 8 × Ø3.4 clearance holes." } },
   { id: "loop", label: "Loop with lips", group: "Machined (JLCCNC)", sw: "#c9733a", nodes: ["Copper loop with lips (T2)"],
-    info: { Material: "Copper T2", Process: "CNC; slit by fine slot cutter or wire EDM", Role: "The meta-atom's inductance (loop) and capacitor plates (lips)", Notes: "Lip height s = 10.55 mm (≈145.2 MHz with fillets); also order s = 10.42 and 10.70 variants, since there is no tuner and each 0.1 mm moves f₀ ≈ 0.5 MHz. Slit 1.02 mm for the 1.0 mm slab; lip tips R0.4; no burrs." } },
+    info: { Material: "Copper T2", Process: "CNC; slit by fine slot cutter or wire EDM", Role: "The meta-atom's inductance (loop) and capacitor plates (lips)", Notes: "Lip height s = 10.55 mm (≈ 145.2 MHz with fillets, ≈ 145.1 MHz with the PEEK clips fitted); also order s = 10.42 and 10.70 variants, since there is no tuner and each 0.1 mm moves f₀ ≈ 0.5 MHz. Slit 1.02 mm for the 1.0 mm slab; lip tips R0.4; no burrs." } },
   { id: "slab", label: "Alumina slab", group: "Supplied ceramic", sw: "#f1efe4", nodes: ["Alumina slab 99.6% (1.0 mm)"],
     info: { Material: "99.6% alumina substrate, 1.0 mm", Process: "Bought, laser-cut to 13.4 × 64.5 mm", Role: "Gap dielectric: sets the cell's capacitance, holds ~97% of the electric energy", Notes: "Use ≥ 99.5% purity. Clamp it firmly against one lip: an air film adds ≈ 0.7 MHz per µm to f₀ and changes with temperature, which would spoil the drift measurement." } },
   { id: "clips", label: "PEEK slab clips (2)", group: "Machined (JLCCNC)", sw: "#d1b285", nodes: ["PEEK slab clip (bottom)", "PEEK slab clip (top)"],
-    info: { Material: "PEEK", Process: "CNC (small U-clip, 4 mm long)", Role: "Squeezes both lips onto the alumina slab at each end of the loop, so no air film forms", Notes: "Opening = 2 × 3 mm lips + 1.0 mm slab − 0.05 mm interference; covers the outer 6 mm of the lips. An air film adds ≈ 0.7 MHz per µm and drifts with temperature (≈ +50 ppm/K if the slab is loose), which would corrupt the drift data. Measure once clamped and once loose as a control." } },
+    info: { Material: "PEEK", Process: "CNC (small U-clip, 4 mm long)", Role: "Squeezes both lips onto the alumina slab at each end of the loop, so no air film forms", Notes: "Opening = 2 × 3 mm lips + 1.0 mm slab − 0.05 mm interference; covers the outer 6 mm of the lips. An air film adds ≈ 0.7 MHz per µm and drifts with temperature (≈ +50 ppm/K if the slab is loose), which would corrupt the drift data. Measure once clamped and once loose as a control. Simulated effect of the clips: f₀ −0.12 MHz, Qᵤ −1.3 % (2,152 → 2,124)." } },
   { id: "spacers", label: "PTFE spacers (2)", group: "Machined (JLCCNC)", sw: "#e8e9ee", nodes: ["PTFE spacer (bottom)", "PTFE spacer (top)"], clip: true,
     info: { Material: "PTFE (or Rexolite)", Process: "CNC turning", Role: "Holds the loop on axis, top and bottom", Notes: "Avoid POM and nylon (lossy). Height 10.75 mm each." } },
   { id: "smaA", label: "SMA port A (120°)", group: "Bought parts", sw: "#e0b43a", nodes: ["SMA bulkhead jack A", "SMA panel nut A", "SMA PTFE insulator A", "SMA centre pin A", "Coupling loop A (Cu wire)"],
-    info: { Material: "SMA female single-hole bulkhead + 1 mm Cu wire loop", Process: "Bought; solder the loop to the centre pin and to the can wall at the Ø1.2 hole", Role: "Weak magnetic coupling for S21 / Q measurement", Notes: "Loop 4.1 × 4.1 mm LYING FLAT in the mid-height plane: in 4.1 mm radially, 4.1 mm towards 180°, back to the wall. A loop in the vertical plane couples > 100 dB weaker. Gives |S21(f₀)| ≈ −30 dB." } },
+    info: { Material: "SMA female single-hole bulkhead + 1 mm Cu wire loop", Process: "Bought; solder the loop to the centre pin and to the can wall at the Ø1.2 hole", Role: "Weak magnetic coupling for S21 / Q measurement", Notes: "Loop 4.7 × 4.7 mm (wire centreline) LYING FLAT in the mid-height plane: 4.7 mm radially in from the inner wall, 4.7 mm towards 180°, then parallel to the first leg back out to the wall (ground hole 6.27° from the SMA hole). A loop in the vertical plane couples > 100 dB weaker. Simulated |S21(f₀)| = −29.9 dB, Q_L ≈ 2,080." } },
   { id: "smaB", label: "SMA port B (240°)", group: "Bought parts", sw: "#e0b43a", nodes: ["SMA bulkhead jack B", "SMA panel nut B", "SMA PTFE insulator B", "SMA centre pin B", "Coupling loop B (Cu wire)"],
     info: { Material: "SMA female single-hole bulkhead + Cu wire loop", Process: "Bought", Role: "Second coupling port (transmission measurement)", Notes: "Mirror of port A." } },
   { id: "bolts", label: "M3 bolts (8)", group: "Bought parts", sw: "#9ea3aa", nodes: ["M3 bolts x8"], clip: true,
