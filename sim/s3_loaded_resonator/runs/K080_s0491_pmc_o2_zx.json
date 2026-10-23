@@ -1,0 +1,12 @@
+{
+  "run": "K080_s0491_pmc_o2_zx",
+  "mesh": "L1_g00_k080_s0491_d050_v2",
+  "order": 2,
+  "xwall": "pmc",
+  "walls": "cu",
+  "target_GHz": 0.13,
+  "n_modes": 2,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 150000000.0,
+  "zs": "exact"
+}

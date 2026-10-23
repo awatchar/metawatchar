@@ -1,0 +1,29 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 449848 unknowns
+ Level 1 (p = 2): 2249372 unknowns
+ Level 0 (auxiliary) (p = 1): 83446 unknowns
+ Level 1 (auxiliary) (p = 2): 533294 unknowns
+  1 EPS nconv=4 first unconverged value (error) 0.000738869+0.00574051i (1.63303377e-02)
+  2 EPS nconv=4 first unconverged value (error) 0.000107892+0.00434552i (1.75897080e-02)
+  3 EPS nconv=4 first unconverged value (error) 0.00015333+0.00483234i (1.17025671e-02)
+  4 EPS nconv=4 first unconverged value (error) -0.000632333+0.00473256i (8.03998384e-03)
+  5 EPS nconv=4 first unconverged value (error) -0.000195318+0.00483364i (7.87700366e-03)
+  6 EPS nconv=4 first unconverged value (error) -3.56909e-05+0.00488017i (2.39646731e-03)
+  7 EPS nconv=4 first unconverged value (error) 1.65352e-06+0.00490401i (5.05081381e-04)
+  8 EPS nconv=4 first unconverged value (error) 5.13455e-06+0.00492328i (1.66166866e-04)
+  9 EPS nconv=4 first unconverged value (error) 7.41302e-07+0.00493148i (4.09539509e-05)
+ 10 EPS nconv=4 first unconverged value (error) -1.43242e-07+0.00493399i (8.38559678e-06)
+ 11 EPS nconv=4 first unconverged value (error) -2.09661e-07+0.00493441i (2.35505933e-06)
+ 12 EPS nconv=4 first unconverged value (error) -2.24318e-07+0.00493458i (3.71030975e-07)
+ 13 EPS nconv=4 first unconverged value (error) -2.2214e-07+0.00493461i (9.01757687e-08)
+ 14 EPS nconv=4 first unconverged value (error) -2.22342e-07+0.00493461i (2.57877777e-08)
+ 15 EPS nconv=5 first unconverged value (error) -2.99041e-07+0.00538238i (3.37787927e-06)
+ 16 EPS nconv=5 first unconverged value (error) -3.03974e-07+0.00538256i (5.42800196e-07)
+ 17 EPS nconv=5 first unconverged value (error) -2.45041e-07+0.00538257i (1.35325238e-07)
+ 18 EPS nconv=5 first unconverged value (error) -2.40142e-07+0.00538256i (3.01469310e-08)
+ 19 EPS nconv=6 first unconverged value (error) -2.1733e-07+0.0055824i (3.37841135e-07)
+ Found 6 converged eigenvalues (first = -1.218e-04+4.049e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 3.086e-02, global unknowns = 2249372
+Elapsed Time Report (s)           Min.        Max.        Avg.

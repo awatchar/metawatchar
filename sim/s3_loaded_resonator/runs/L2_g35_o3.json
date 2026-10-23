@@ -1,0 +1,12 @@
+{
+  "run": "L2_g35_o3",
+  "mesh": "L2_g35_s0620_v2",
+  "order": 3,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 0.12,
+  "n_modes": 5,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 150000000.0,
+  "zs": "s2"
+}

@@ -1,0 +1,12 @@
+{
+  "run": "L1_g00_pec_o3_zx",
+  "mesh": "L1_g00_s0620_v2",
+  "order": 3,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 0.15,
+  "n_modes": 2,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 150000000.0,
+  "zs": "exact"
+}

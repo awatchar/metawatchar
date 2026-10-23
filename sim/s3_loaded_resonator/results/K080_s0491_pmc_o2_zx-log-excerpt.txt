@@ -1,0 +1,27 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 113033 unknowns
+ Level 1 (p = 2): 565054 unknowns
+ Level 0 (auxiliary) (p = 1): 20984 unknowns
+ Level 1 (auxiliary) (p = 2): 134017 unknowns
+  1 EPS nconv=1 first unconverged value (error) 0.00174316+0.00568872i (3.42477442e-02)
+  2 EPS nconv=1 first unconverged value (error) 0.000798097+0.00574013i (8.34579707e-03)
+  3 EPS nconv=1 first unconverged value (error) 0.000309556+0.006179i (6.09161667e-03)
+  4 EPS nconv=1 first unconverged value (error) 6.52478e-05+0.00650689i (3.45665365e-03)
+  5 EPS nconv=1 first unconverged value (error) 0.0215162+0.00366061i (4.26394398e-02)
+  6 EPS nconv=1 first unconverged value (error) -8.86824e-05+0.00659116i (1.02443266e-03)
+  7 EPS nconv=1 first unconverged value (error) 1.53309e-06+0.00666652i (2.71141369e-04)
+  8 EPS nconv=1 first unconverged value (error) 2.89919e-07+0.00663104i (3.15243782e-05)
+  9 EPS nconv=1 first unconverged value (error) -3.33374e-06+0.00663046i (1.44134672e-05)
+ 10 EPS nconv=1 first unconverged value (error) -3.74144e-06+0.00663101i (2.30563121e-06)
+ 11 EPS nconv=1 first unconverged value (error) -3.6732e-06+0.006631i (1.03554293e-06)
+ 12 EPS nconv=1 first unconverged value (error) 0.00171073+0.00313629i (3.90427623e-03)
+ 13 EPS nconv=1 first unconverged value (error) 0.00182364+0.00311319i (2.58293462e-04)
+ 14 EPS nconv=1 first unconverged value (error) 0.00182112+0.00311075i (1.17966954e-05)
+ 15 EPS nconv=1 first unconverged value (error) 0.00182113+0.00311072i (7.44482640e-07)
+ 16 EPS nconv=1 first unconverged value (error) 0.00182113+0.00311072i (4.87544510e-08)
+ 17 EPS nconv=3 first unconverged value (error) -1.05221e-07+0.00750425i (4.70911965e-06)
+ Found 3 converged eigenvalues (first = -3.857e-05+1.760e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 4.875e-01, global unknowns = 565054
+Elapsed Time Report (s)           Min.        Max.        Avg.

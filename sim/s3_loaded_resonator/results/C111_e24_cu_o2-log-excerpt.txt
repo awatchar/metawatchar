@@ -1,0 +1,18 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 158515 unknowns
+ Level 1 (p = 2): 794968 unknowns
+ Level 0 (auxiliary) (p = 1): 29192 unknowns
+ Level 1 (auxiliary) (p = 2): 187707 unknowns
+  1 EPS nconv=1 first unconverged value (error) 0.000273289+0.0028706i (8.97183262e-02)
+  2 EPS nconv=1 first unconverged value (error) 0.000105457+0.0030773i (4.99685240e-03)
+  3 EPS nconv=1 first unconverged value (error) 0.000155262+0.00306048i (5.21668794e-03)
+  4 EPS nconv=1 first unconverged value (error) -5.09058e-05+0.0029947i (8.27852222e-04)
+  5 EPS nconv=1 first unconverged value (error) 6.37711e-08+0.00296007i (5.96998766e-05)
+  6 EPS nconv=1 first unconverged value (error) 2.48593e-07+0.00296264i (2.99385859e-06)
+  7 EPS nconv=1 first unconverged value (error) -3.12448e-08+0.00296259i (1.15383400e-07)
+  8 EPS nconv=3 first unconverged value (error) 4.44211e-06+0.00443342i (1.34689858e-03)
+ Found 3 converged eigenvalues (first = -4.468e-05+4.137e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 2.046e-02, global unknowns = 794968
+Elapsed Time Report (s)           Min.        Max.        Avg.

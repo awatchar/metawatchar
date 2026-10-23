@@ -1,0 +1,27 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 597692 unknowns
+ Level 1 (p = 2): 2992736 unknowns
+ Level 0 (auxiliary) (p = 1): 110616 unknowns
+ Level 1 (auxiliary) (p = 2): 708308 unknowns
+  1 EPS nconv=4 first unconverged value (error) -0.000793708+0.00431606i (1.15972675e-02)
+  2 EPS nconv=4 first unconverged value (error) -0.00379709+0.0028681i (1.47964135e-02)
+  3 EPS nconv=4 first unconverged value (error) -0.000294711+0.00401864i (1.80199041e-02)
+  4 EPS nconv=4 first unconverged value (error) -6.94233e-05+0.00401966i (8.59087375e-03)
+  5 EPS nconv=4 first unconverged value (error) -1.41969e-05+0.00398616i (3.20317480e-03)
+  6 EPS nconv=4 first unconverged value (error) 4.19142e-05+0.00401042i (3.03945369e-03)
+  7 EPS nconv=4 first unconverged value (error) -1.70575e-06+0.00402419i (3.72217380e-04)
+  8 EPS nconv=4 first unconverged value (error) -1.78247e-06+0.00401317i (6.24853303e-05)
+  9 EPS nconv=4 first unconverged value (error) -7.00783e-07+0.00401185i (1.28948216e-05)
+ 10 EPS nconv=4 first unconverged value (error) -1.54963e-07+0.00401214i (1.58893961e-06)
+ 11 EPS nconv=4 first unconverged value (error) -1.67187e-07+0.00401221i (3.00396024e-07)
+ 12 EPS nconv=4 first unconverged value (error) -1.89845e-07+0.0040122i (5.32270249e-08)
+ 13 EPS nconv=5 first unconverged value (error) -4.51988e-07+0.00439798i (7.61180369e-06)
+ 14 EPS nconv=5 first unconverged value (error) -2.37225e-07+0.00439802i (9.78029695e-07)
+ 15 EPS nconv=5 first unconverged value (error) -2.06636e-07+0.00439798i (1.31857400e-07)
+ 16 EPS nconv=5 first unconverged value (error) -2.06783e-07+0.00439798i (2.66241672e-08)
+ 17 EPS nconv=6 first unconverged value (error) -1.82637e-07+0.00453475i (1.61367867e-08)
+ Found 6 converged eigenvalues (first = -1.228e-04+5.061e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 2.690e-02, global unknowns = 2992736
+Elapsed Time Report (s)           Min.        Max.        Avg.

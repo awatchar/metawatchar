@@ -1,0 +1,12 @@
+{
+  "run": "C112_e00_pec_o2",
+  "mesh": "C112_e00_s0620_v2",
+  "order": 2,
+  "xwall": "pec",
+  "walls": "pec",
+  "target_GHz": 0.13,
+  "n_modes": 4,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 150000000.0,
+  "zs": "s2"
+}

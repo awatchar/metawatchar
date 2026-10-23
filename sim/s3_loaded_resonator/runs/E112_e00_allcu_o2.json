@@ -1,0 +1,13 @@
+{
+  "run": "E112_e00_allcu_o2",
+  "mesh": "E112_e00",
+  "order": 2,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 2.0,
+  "n_modes": 6,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 2400000000.0,
+  "note": "y = 0 plane is a copper wall too (box 70 x 35 x 140 mm): impedance-boundary check",
+  "zs": "s2"
+}

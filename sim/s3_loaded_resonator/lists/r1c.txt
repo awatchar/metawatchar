@@ -1,0 +1,7 @@
+E112_e00_cu_o2
+C111_e00_cu_o2
+C112_e00_cu_o2
+C112_e00_pec_o2
+C212_e00_cu_o2
+C111_e24_cu_o2
+C112_e24_cu_o2

@@ -1,0 +1,12 @@
+{
+  "run": "E112_e00_cu_o2",
+  "mesh": "E112_e00",
+  "order": 2,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 2.0,
+  "n_modes": 6,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 2400000000.0,
+  "zs": "s2"
+}

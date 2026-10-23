@@ -1,0 +1,12 @@
+{
+  "run": "C212_e00_cu_o2_zx",
+  "mesh": "C212_e00_s0620_v2",
+  "order": 2,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 0.13,
+  "n_modes": 6,
+  "rs_f_Hz": 150000000.0,
+  "rs_wall_f_Hz": 150000000.0,
+  "zs": "exact"
+}

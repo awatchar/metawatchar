@@ -1,0 +1,8 @@
+ntasks=64 palace=0.18.1 list=lists/r3a.txt
+E112_e00_cu_o2_zx rc=0 ntasks=64 wall_s=4.3
+L1_g00_pmc_o2_zx rc=0 ntasks=64 wall_s=180.5
+L1_g00_pec_o2_zx rc=0 ntasks=64 wall_s=84.5
+L1_g35_o2_zx rc=0 ntasks=64 wall_s=251.0
+L2_g35_o2_zx rc=0 ntasks=64 wall_s=469.2
+L3_g35_o2_zx rc=0 ntasks=64 wall_s=484.4
+L4_g35_o2_zx rc=0 ntasks=64 wall_s=551.8

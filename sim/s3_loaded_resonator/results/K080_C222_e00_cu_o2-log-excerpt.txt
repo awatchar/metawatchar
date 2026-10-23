@@ -1,0 +1,30 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 880554 unknowns
+ Level 1 (p = 2): 4412316 unknowns
+ Level 0 (auxiliary) (p = 1): 162303 unknowns
+ Level 1 (auxiliary) (p = 2): 1042857 unknowns
+  1 EPS nconv=4 first unconverged value (error) 0.000140992+0.00185869i (2.85183620e-03)
+  2 EPS nconv=4 first unconverged value (error) -0.000290976+0.00189926i (3.01058374e-03)
+  3 EPS nconv=4 first unconverged value (error) -7.40072e-05+0.00210926i (2.20335480e-03)
+  4 EPS nconv=4 first unconverged value (error) 1.41139e-05+0.00208582i (9.78845991e-04)
+  5 EPS nconv=4 first unconverged value (error) 3.0897e-05+0.00212119i (1.06553905e-03)
+  6 EPS nconv=4 first unconverged value (error) -7.20496e-05+0.00212514i (8.46542029e-04)
+  7 EPS nconv=4 first unconverged value (error) -3.44287e-05+0.00214818i (8.49649756e-04)
+  8 EPS nconv=4 first unconverged value (error) -1.06449e-05+0.00210676i (6.13626180e-04)
+  9 EPS nconv=4 first unconverged value (error) -6.87191e-07+0.00215148i (9.24744213e-04)
+ 10 EPS nconv=4 first unconverged value (error) 2.85404e-06+0.00215887i (3.12555948e-04)
+ 11 EPS nconv=4 first unconverged value (error) 7.11298e-06+0.00215961i (3.37035204e-04)
+ 12 EPS nconv=4 first unconverged value (error) -6.5627e-06+0.00216991i (2.76899362e-04)
+ 13 EPS nconv=4 first unconverged value (error) -1.04394e-06+0.00216446i (5.04713222e-05)
+ 14 EPS nconv=4 first unconverged value (error) -1.45835e-07+0.0021641i (5.95159572e-06)
+ 15 EPS nconv=4 first unconverged value (error) -5.26378e-08+0.00216423i (1.37590739e-06)
+ 16 EPS nconv=4 first unconverged value (error) -8.42583e-08+0.00216425i (2.62673754e-07)
+ 17 EPS nconv=4 first unconverged value (error) -8.89683e-08+0.00216425i (6.00481575e-08)
+ 18 EPS nconv=4 first unconverged value (error) -8.75676e-08+0.00216424i (1.19836249e-08)
+ 19 EPS nconv=5 first unconverged value (error) -1.05978e-06+0.00219596i (3.64931729e-08)
+ 20 EPS nconv=7 first unconverged value (error) -1.14714e-06+0.00222845i (1.42501899e-07)
+ Found 7 converged eigenvalues (first = -5.579e-05+3.820e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 3.351e-02, global unknowns = 4412316
+Elapsed Time Report (s)           Min.        Max.        Avg.

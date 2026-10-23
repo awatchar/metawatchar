@@ -1,0 +1,59 @@
+{
+  "Problem": {
+    "Type": "Eigenmode",
+    "Verbose": 2,
+    "Output": "postpro/E112_e00_allcu_o2",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/E112_e00.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      }
+    ]
+  },
+  "Boundaries": {
+    "Impedance": [
+      {
+        "Attributes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        "Rs": 0.012781195929854964,
+        "Ls": 8.47579379526013e-13
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 400
+    },
+    "Eigenmode": {
+      "N": 6,
+      "Tol": 1e-08,
+      "Target": 2.0,
+      "Save": 0
+    }
+  }
+}

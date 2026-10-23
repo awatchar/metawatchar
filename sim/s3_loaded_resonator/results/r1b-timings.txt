@@ -1,0 +1,4 @@
+ntasks=64 palace=0.18.1 list=lists/r1b.txt
+L4_g35_o2 rc=0 ntasks=64 wall_s=634.3
+L2_g00_o2 rc=0 ntasks=64 wall_s=339.0
+L4_g00_o2 rc=0 ntasks=64 wall_s=549.8

@@ -1,0 +1,5 @@
+ntasks=64 palace=0.18.1 list=lists/r1d.txt
+K080_s0400_pmc_o2 rc=0 ntasks=64 wall_s=134.1
+K080_s0550_pmc_o2 rc=0 ntasks=64 wall_s=121.0
+L2_g35_o3 rc=0 ntasks=64 wall_s=1878.0
+C112_e00_cu_o3 rc=0 ntasks=64 wall_s=1672.5

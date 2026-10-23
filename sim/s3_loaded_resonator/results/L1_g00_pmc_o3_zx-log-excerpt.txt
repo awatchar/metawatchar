@@ -1,0 +1,32 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 150333 unknowns
+ Level 1 (p = 2): 752480 unknowns
+ Level 2 (p = 3): 2116725 unknowns
+ Level 0 (auxiliary) (p = 1): 27855 unknowns
+ Level 1 (auxiliary) (p = 2): 178188 unknowns
+ Level 2 (auxiliary) (p = 3): 554428 unknowns
+  1 EPS nconv=1 first unconverged value (error) 0.00702694+0.00138457i (3.04890435e-01)
+  2 EPS nconv=1 first unconverged value (error) 0.000433417+0.00363149i (1.22428693e-02)
+  3 EPS nconv=1 first unconverged value (error) 0.000214192+0.00366176i (4.89692154e-03)
+  4 EPS nconv=1 first unconverged value (error) 8.61515e-05+0.00374923i (7.69203198e-03)
+  5 EPS nconv=1 first unconverged value (error) 1.85622e-05+0.00379616i (4.48600828e-03)
+  6 EPS nconv=1 first unconverged value (error) 0.0129722+0.00269206i (1.91425315e-02)
+  7 EPS nconv=1 first unconverged value (error) -9.46726e-05+0.00388407i (7.34173967e-04)
+  8 EPS nconv=1 first unconverged value (error) -3.00718e-05+0.00396309i (6.36085620e-04)
+  9 EPS nconv=1 first unconverged value (error) -3.19644e-06+0.00394786i (5.59956154e-05)
+ 10 EPS nconv=1 first unconverged value (error) -0.000918226+0.0014166i (1.22906505e-02)
+ 11 EPS nconv=1 first unconverged value (error) -0.00121884+0.00219415i (2.84001648e-03)
+ 12 EPS nconv=1 first unconverged value (error) -0.00122619+0.00214546i (4.25692568e-04)
+ 13 EPS nconv=1 first unconverged value (error) -0.00122138+0.00215695i (1.58413640e-04)
+ 14 EPS nconv=1 first unconverged value (error) -0.00238004+0.000738362i (1.84464841e-02)
+ 15 EPS nconv=1 first unconverged value (error) -0.00121658+0.00215621i (3.09889530e-06)
+ 16 EPS nconv=1 first unconverged value (error) -0.00275216+0.000231551i (2.28532259e-02)
+ 17 EPS nconv=1 first unconverged value (error) -0.00121652+0.00215628i (5.40439591e-08)
+ 18 EPS nconv=1 first unconverged value (error) 0.00699147+0.000640263i (2.57523144e-02)
+ 19 EPS nconv=1 first unconverged value (error) 0.00846501+0.00183291i (9.39117308e-02)
+ 20 EPS nconv=3 first unconverged value (error) -4.93813e-08+0.00435829i (5.07441374e-08)
+ Found 3 converged eigenvalues (first = -3.863e-05+2.199e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 5.511e-01, global unknowns = 2116725
+Elapsed Time Report (s)           Min.        Max.        Avg.

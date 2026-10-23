@@ -1,0 +1,5 @@
+ntasks=64 palace=0.18.1 list=lists/r3d.txt
+L1_g00_pmc_o3_zx rc=0 ntasks=64 wall_s=1156.6
+L1_g00_pec_o3_zx rc=0 ntasks=64 wall_s=416.5
+L2_g35_o3_zx rc=0 ntasks=64 wall_s=2026.7
+C112_e00_cu_o3_zx rc=0 ntasks=64 wall_s=1854.6

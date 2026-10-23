@@ -1,0 +1,5 @@
+ntasks=64 palace=0.18.1 list=lists/r2a.txt
+K080_s0491_pmc_o2 rc=0 ntasks=64 wall_s=148.4
+K080_s0491_pec_o2 rc=0 ntasks=64 wall_s=102.6
+K080_C212_e00_cu_o2 rc=0 ntasks=64 wall_s=1043.2
+K080_C222_e00_cu_o2 rc=0 ntasks=64 wall_s=2423.5

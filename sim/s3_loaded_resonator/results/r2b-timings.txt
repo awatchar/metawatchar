@@ -1,0 +1,2 @@
+ntasks=8 palace=0.18.1 list=lists/r2b.txt
+E112_e00_allcu_o2 rc=0 ntasks=8 wall_s=17.9

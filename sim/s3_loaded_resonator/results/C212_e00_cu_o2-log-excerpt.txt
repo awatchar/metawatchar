@@ -1,0 +1,27 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 597692 unknowns
+ Level 1 (p = 2): 2992736 unknowns
+ Level 0 (auxiliary) (p = 1): 110616 unknowns
+ Level 1 (auxiliary) (p = 2): 708308 unknowns
+  1 EPS nconv=4 first unconverged value (error) -3.86495e-05+0.00267432i (4.58503147e-03)
+  2 EPS nconv=4 first unconverged value (error) -0.00011475+0.00299588i (5.90795545e-03)
+  3 EPS nconv=4 first unconverged value (error) -4.73708e-05+0.00286214i (8.16305367e-03)
+  4 EPS nconv=4 first unconverged value (error) -1.05e-06+0.00290213i (4.43959188e-03)
+  5 EPS nconv=4 first unconverged value (error) 8.23027e-06+0.00290626i (3.97393241e-03)
+  6 EPS nconv=4 first unconverged value (error) 1.30727e-06+0.00290805i (8.09945155e-04)
+  7 EPS nconv=4 first unconverged value (error) 7.58259e-09+0.00290743i (1.43947789e-04)
+  8 EPS nconv=4 first unconverged value (error) -2.02522e-07+0.00290693i (3.56788355e-05)
+  9 EPS nconv=4 first unconverged value (error) -5.52557e-08+0.00290688i (3.67469152e-06)
+ 10 EPS nconv=4 first unconverged value (error) -5.94231e-08+0.00290692i (2.12563705e-07)
+ 11 EPS nconv=4 first unconverged value (error) -6.51042e-08+0.00290693i (3.43271719e-08)
+ 12 EPS nconv=5 first unconverged value (error) -4.49125e-07+0.00318625i (8.47155661e-06)
+ 13 EPS nconv=5 first unconverged value (error) -1.15729e-07+0.00318638i (1.95601199e-06)
+ 14 EPS nconv=5 first unconverged value (error) -8.45315e-08+0.00318642i (4.44455657e-07)
+ 15 EPS nconv=5 first unconverged value (error) -7.65663e-08+0.00318643i (8.94755791e-08)
+ 16 EPS nconv=5 first unconverged value (error) -7.42891e-08+0.00318643i (1.97080050e-08)
+ 17 EPS nconv=6 first unconverged value (error) -7.03511e-08+0.00328553i (1.50519497e-08)
+ Found 6 converged eigenvalues (first = -6.700e-05+5.062e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 2.745e-02, global unknowns = 2992736
+Elapsed Time Report (s)           Min.        Max.        Avg.

@@ -1,0 +1,2 @@
+ntasks=64 palace=0.18.1 list=lists/r3e.txt
+K080_C222_e00_cu_o2_zx rc=0 ntasks=64 wall_s=2195.2
