@@ -1,0 +1,402 @@
+{
+ "Problem": {
+  "Type": "Magnetostatic",
+  "Verbose": 2,
+  "Output": "postpro/array_B_4x4_p12.5_mu200"
+ },
+ "Model": {
+  "Mesh": "mesh/array_B_4x4_p12.5.msh",
+  "L0": 0.001
+ },
+ "Domains": {
+  "Materials": [
+   {
+    "Attributes": [
+     1
+    ],
+    "Permeability": 1.0
+   },
+   {
+    "Attributes": [
+     2
+    ],
+    "Permeability": 200
+   }
+  ]
+ },
+ "Boundaries": {
+  "PEC": {
+   "Attributes": [
+    3,
+    4
+   ]
+  },
+  "SurfaceCurrent": [
+   {
+    "Index": 1,
+    "Attributes": [
+     10
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 2,
+    "Attributes": [
+     11
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 3,
+    "Attributes": [
+     12
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 4,
+    "Attributes": [
+     13
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 5,
+    "Attributes": [
+     14
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 6,
+    "Attributes": [
+     15
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 7,
+    "Attributes": [
+     16
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 8,
+    "Attributes": [
+     17
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 9,
+    "Attributes": [
+     18
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 10,
+    "Attributes": [
+     19
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 11,
+    "Attributes": [
+     20
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 12,
+    "Attributes": [
+     21
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 13,
+    "Attributes": [
+     22
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 14,
+    "Attributes": [
+     23
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 15,
+    "Attributes": [
+     24
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 16,
+    "Attributes": [
+     25
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 17,
+    "Attributes": [
+     26
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 18,
+    "Attributes": [
+     27
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 19,
+    "Attributes": [
+     28
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 20,
+    "Attributes": [
+     29
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 21,
+    "Attributes": [
+     30
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 22,
+    "Attributes": [
+     31
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 23,
+    "Attributes": [
+     32
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 24,
+    "Attributes": [
+     33
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 25,
+    "Attributes": [
+     34
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 26,
+    "Attributes": [
+     35
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 27,
+    "Attributes": [
+     36
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 28,
+    "Attributes": [
+     37
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 29,
+    "Attributes": [
+     38
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 30,
+    "Attributes": [
+     39
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 31,
+    "Attributes": [
+     40
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 32,
+    "Attributes": [
+     41
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  ]
+ },
+ "Solver": {
+  "Order": 2,
+  "Device": "CPU",
+  "Magnetostatic": {
+   "Save": 0
+  },
+  "Linear": {
+   "Type": "AMS",
+   "KSPType": "CG",
+   "Tol": 1e-08,
+   "MaxIts": 300
+  }
+ }
+}
