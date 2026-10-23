@@ -33,6 +33,7 @@ The prototype measures:
 | `lgr_a_cad.py` | Parametric CadQuery model. Regenerate with `python lgr_a_cad.py --volume-l 0.25 --a 0.5 --s <mm> --d <mm>` |
 | `out/*.step` | One STEP file per part, plus `LGR-A_assembly.step` |
 | `out/params.json` | Dimensions used for the STEP files |
+| `BOM.md` | Order list for the first build: quantities, variants, tolerances |
 
 ## Parts
 

@@ -24,6 +24,7 @@ FILLET = 0.4  # mm, lip tip edges
 # with the R0.4 lip fillets. Loop variants for frequency trim are exported separately (S_VARIANTS).
 P = params(volume_l=0.5, a=0.5, s=10.55, d_slab=1.0)
 S_VARIANTS = (10.42, 10.55, 10.70)
+CLIP_OPENINGS = (6.95, 7.00, 7.05)  # mm, PEEK clip inner opening
 
 COLORS = {
     "copper": cq.Color(0.78, 0.45, 0.22),
@@ -109,12 +110,12 @@ def tuning_screw(p, ang=0.0, penetration=4.0):
 CLIP = dict(wall=2.0, depth=6.0, length=4.0, interference=0.05)  # mm, PEEK
 
 
-def slab_clip(p, at_top):
+def slab_clip(p, at_top, interference=None):
     """PEEK U-clip straddling both lips at one axial end of the loop, squeezing the lips onto the
     alumina slab so no air film forms (sim/lgr_a_driven: an air film adds ~0.7 MHz/um and drifts with T).
     Inner opening = 2*t_lip + d_slab - interference; it covers the outer `depth` mm of the lips."""
     t_lip, d, s_ = p["t_lip"], p["d_slab"], p["s"]
-    opening = 2 * t_lip + d - CLIP["interference"]
+    opening = 2 * t_lip + d - (CLIP["interference"] if interference is None else interference)
     outer = opening + 2 * CLIP["wall"]
     x_tip = p["r"] + p["t"] + s_
     x0 = x_tip - CLIP["depth"]
@@ -170,6 +171,9 @@ def main():
         cq.exporters.export(loop_filleted(params(volume_l=0.5, a=0.5, s=sv, d_slab=1.0)),
                             str(OUT / f"loop_Cu-T2_s{str(sv).replace('.', 'p')}.step"))
     asm.export(str(OUT / "LGR-A_full.step"))
+    for op in CLIP_OPENINGS:  # clip variants: 6.95 (0.05 mm interference), 7.00, 7.05 mm openings
+        clip = slab_clip(P, at_top=False, interference=2 * P["t_lip"] + P["d_slab"] - op)
+        cq.exporters.export(clip, str(OUT / f"clip_PEEK_open{str(op).replace('.', 'p')}.step"))
 
     # explode vectors (mm) for the viewer: lid/top parts up, ports and screw radially out
     zc = zb + P["H"] / 2
