@@ -1,0 +1,98 @@
+{
+ "case": "e_fil_s1055_cu2_o2_fields",
+ "order": 2,
+ "f0_MHz": 145.2125986887,
+ "Q": 2121.399788975,
+ "order3_reference": {
+  "case": "e_fil_s1055_cu2_o3",
+  "f0_MHz": 145.2048,
+  "Q": 2151.76,
+  "df0_ppm": 53.7082017950663,
+  "dQ_percent": -1.4109478299159872
+ },
+ "field_arrays": {
+  "E": [
+   "E_real",
+   "E_imag"
+  ],
+  "B": [
+   "B_real",
+   "B_imag"
+  ]
+ },
+ "material_attribute_in_file": true,
+ "energy_check": {
+  "W_e_over_W_m": 1.0026392315919355,
+  "p_alumina": 0.9629071783156643,
+  "p_ptfe": 0.002951328216647269,
+  "meshed_volume_m3": 0.00046576172462664545,
+  "palace_domain_E": {
+   "E_elec": 1.434749258816e-10,
+   "E_mag": 1.434129055659e-10,
+   "p_alumina": 0.9632337303015,
+   "p_ptfe": 0.002951654820171
+  }
+ },
+ "scaling": {
+  "P_loss_W": 1.0,
+  "W_stored_J": 2.3250824359480885e-06,
+  "convention": "peak phasor amplitudes; W = 1/2 int eps|E|^2 = 1/2 int |B|^2/mu0 = Q P / omega"
+ },
+ "at_P_loss": {
+  "E_max_alumina_kV_per_m": 382.9653553367214,
+  "E_alumina_mid_lip_kV_per_m": 245.30408221367597,
+  "E_max_air_zoom_kV_per_m": 1570.2037476656174,
+  "E_max_air_zoom_at_xy_mm": [
+   34.768850345701566,
+   0.5125000000000925
+  ],
+  "E_max_alumina_at_xy_mm": [
+   34.66885034570157,
+   -0.48749999999992166
+  ],
+  "V_gap_mid_lip_V": 245.304056360386,
+  "x_mid_lip_mm": 29.043850345701895,
+  "H_bore_centre_A_per_m": 146.18839135705028,
+  "H_z_bore_mean_A_per_m": 146.91960173845897,
+  "H_z_annulus_mean_A_per_m": -55.3797996472425,
+  "flux_bore_Wb": 2.6828172286791794e-07,
+  "flux_outside_loop_Wb": -2.6872149054153717e-07,
+  "flux_return_ratio": 1.0016392010194288,
+  "sampled_area_bore_mm2": 1453.1200000000415,
+  "sampled_area_outside_loop_mm2": 3861.67000000011,
+  "geometric_area_bore_mm2": 1453.0591893870335,
+  "geometric_area_outside_loop_mm2": 3862.2180807692685
+ },
+ "sampling_mm": {
+  "full": 0.1,
+  "zoom": 0.025
+ },
+ "sampling_fill": {
+  "z0_full": {
+   "points_in_field_region": 531779,
+   "filled_from_neighbour": 0,
+   "probe_hits_in_analytic_metal": 6161
+  },
+  "z0_gap_zoom": {
+   "points_in_field_region": 239086,
+   "filled_from_neighbour": 0,
+   "probe_hits_in_analytic_metal": 2412
+  },
+  "y0_vertical": {
+   "points_in_field_region": 720250,
+   "filled_from_neighbour": 0,
+   "probe_hits_in_analytic_metal": 250
+  }
+ },
+ "figures": [
+  "fig2_fields.pdf",
+  "fig2_fields.png",
+  "fig2a_E_midplane.pdf",
+  "fig2a_E_midplane.png",
+  "fig2b_Hz_midplane.pdf",
+  "fig2b_Hz_midplane.png",
+  "fig2c_H_vertical.pdf",
+  "fig2c_H_vertical.png"
+ ],
+ "wall_s": 15.6
+}

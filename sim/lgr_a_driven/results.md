@@ -104,6 +104,58 @@ Q_L = 2,082, β = 0.01647, |S21(f0)| = −29.93 dB and Q_u = 2,150. The loops co
 Q_u. With the PEEK clips fitted, expect f0 ≈ 145.09 MHz and Q_u ≈ 2,124 (and |S21| about
 0.1 dB weaker).
 
+### Mode fields of the default build (field maps, paper P1 Fig. 2)
+
+Case `e_fil_s1055_cu2_o2_fields` (group `cu2_fields`): the default build (s = 10.55 mm, R0.4
+lip fillets, PTFE spacers, corrected copper input), no coupling loops (they cost < 0.1 % of Q_u
+and do not change the field picture), FE order 2, fields of the fundamental mode saved. Field
+maps and numbers: `fields_fig2.py`, run on the cluster after the solve; only the figures and
+[`results/fields_e_fil_s1055_cu2_o2_fields.json`](results/fields_e_fil_s1055_cu2_o2_fields.json)
+are kept (the ParaView dump, about 360 MB, is not).
+
+| Run | f0 (MHz) | Q_u | Q_c | Q_d |
+|---|---|---|---|---|
+| This run, order 2 | 145.2126 | 2,121 | 2,313 | 25,563 |
+| `e_fil_s1055_cu2_o3` (order 3) | 145.2048 | 2,152 | 2,350 | 25,561 |
+| Difference | +54 ppm | −1.4 % | −1.6 % | |
+
+The order-2 values match the order-2 loop runs (Q_u 2,120, f0 145.2128 MHz with 4.7 × 4.7 mm
+loops); the order-3 values remain the reference for Q_u.
+
+Figures in [`figures/`](figures) (PNG at 600 dpi and PDF):
+
+| File | Content |
+|---|---|
+| `fig2a_E_midplane` | \|E\| in the mid-height plane z = 0: whole section (log scale) and the gap (linear scale) |
+| `fig2b_Hz_midplane` | H_z in z = 0 (diverging scale): axial bore flux and the opposite return flux in the annulus; H_z along the radius at φ = 180° |
+| `fig2c_H_vertical` | \|H\| and the in-plane field direction in the vertical plane y = 0, through the gap |
+| `fig2_fields` | All five panels in one figure (double-column width) |
+
+Fields are peak phasor amplitudes, scaled to 1 W dissipated in the resonator (stored energy
+W = Q P/ω = 2.33 µJ). They scale as √P: multiply by 1.414 for 2 W. Copper is drawn from the
+analytic geometry, since conductors are boundaries and are not meshed. Colormaps: magma (\|E\|),
+viridis (\|H\|) and cmocean balance (H_z), all perceptually uniform.
+
+| Quantity at 1 W dissipated | Value |
+|---|---|
+| \|E\| in the alumina, mid-lip (x = 29.0 mm) | 245 kV/m, uniform across the 1.0 mm slab |
+| Gap voltage at mid-lip | 245 V (347 V at 2 W) |
+| Largest \|E\| in the air, at the lip-tip fillet next to the slab (x = 34.77 mm, y = 0.51 mm) | 1.57 MV/m (indicative: this is the air wedge that the fillet opens at the alumina face; the value depends on the mesh there) |
+| Largest \|E\| in the alumina (same corner) | 383 kV/m |
+| H_z in the bore (mean) / centre | 146.9 / 146.2 A/m |
+| H_z in the annulus outside the loop (mean) | −55.4 A/m |
+| Return flux / bore flux through z = 0 | 1.002 |
+
+Checks: the electric and magnetic energies integrated from the field dump agree to 0.26 %, and
+the alumina participation from the field dump (0.9629) matches Palace's own value (0.9632).
+The electric energy is 96 % in the alumina, so the field picture is that of a lumped LC: the
+capacitance is the alumina-filled slit, and the inductance is the bore (uniform axial H), whose
+flux returns through the annulus at about 0.38 of the bore field, over 2.66 × the bore area.
+
+Cost: one 32-core job on a paid queue (the free queue was estimated at about 22 h), 7.6 min
+including the figure step: 0.032 SHr. Three later figure-only re-runs (4 cores, < 30 s each) cost
+< 0.001 SHr each.
+
 ## Summary
 
 - **Coupling-loop orientation matters by more than 100 dB.** The return flux between the LGR and

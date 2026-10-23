@@ -24,6 +24,8 @@ in "_cu2"):
   cu2_loops  s = 10.55 mm as built: eigenmode with 50 ohm ports for loops of 4.1 / 4.5 / 4.7 /
              4.9 mm (order 2, Q_ext), the chosen loop at order 3 (eigenmode and driven)
   cu2_o4     s = 10.55 mm as built, no loops, order 4 (convergence of Q_c)
+  cu2_fields s = 10.55 mm as built, no loops, order 2, fields of the fundamental mode saved
+             (ParaView output; field maps made by fields_fig2.py)
 Writes mesh/<mesh>.msh, configs/<case>.json, cases/<case>.json and lists/<group>.txt.
 """
 import argparse
@@ -140,6 +142,11 @@ def cases(group):
     elif group == "cu2_o4":
         out.append(("e_fil_s1055_cu2_o4", "fil_s1055", dict(fillet=0.4, s=10.55),
                     dict(order=4, loops=False, f_rs=F_EST[("fil", 10.55)])))
+    elif group == "cu2_fields":
+        # field maps for the paper (P1 Fig. 2): the default build without loops, order 2, with the
+        # fundamental mode's fields written for ParaView (figures: fields_fig2.py)
+        out.append(("e_fil_s1055_cu2_o2_fields", "fil_s1055", dict(fillet=0.4, s=10.55),
+                    dict(order=2, loops=False, f_rs=F_EST[("fil", 10.55)], save=1)))
     else:
         raise SystemExit(f"unknown group {group}")
     if not group.startswith("cu2"):

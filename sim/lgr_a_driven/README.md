@@ -63,6 +63,8 @@ convergence).
 | `run_cases.sbatch` | Slurm job: runs the cases of a list, several at a time on one node, then `postprocess.py` |
 | `postprocess.py` | Eigenmode and driven summaries (standard library only), S-parameter CSVs |
 | `analyze.py` | Loop-size fit (`results/sizing.json`) and the study summary (`results/summary.json`) |
+| `fields_fig2.py` | Field maps of the fundamental mode from a run with saved fields (paper P1 Fig. 2): `figures/fig2*.png/pdf`, `results/fields_<case>.json`; runs on the cluster after the solve (numpy, matplotlib, pyvista/vtk, cmocean) |
+| `figures/` | Field-map figures (PNG 600 dpi and PDF) |
 | `configs/*.json` | Palace configurations |
 | `results/sparams_<case>.csv` | S-parameters: `f_Hz, S11_re, S11_im, S21_re, S21_im, S22_re, S22_im, S12_re, S12_im` |
 | `results/<round>.json` | Per-case summaries; `results/summary.json` collects the first runs' numbers, `results/summary_cu2.json` the corrected ones (`python analyze.py cu2`) |
@@ -71,7 +73,8 @@ Case names: `e_` eigenmode, `d_` driven; `xy<w>x<h>` loop of depth *w* × width 
 decimal point); `fil` R0.4 fillets; `s1055` lip height 10.55 mm; `clip` PEEK clips; `_cu2`
 corrected copper input; `_o2`/`_o3`/`_o4` FE order.
 Groups in `build_cases.py`: `sizing`, `tune`, `driven`, `axial`, `asbuilt` (first runs, copper
-input reproduced exactly with `zs="s2"`), `cu2_eig`, `cu2_loops`, `cu2_o4` (corrected).
+input reproduced exactly with `zs="s2"`), `cu2_eig`, `cu2_loops`, `cu2_o4` (corrected), `cu2_fields`
+(default build, order 2, fields saved for the field maps).
 
 ## Running
 

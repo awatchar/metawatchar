@@ -1,0 +1,3 @@
+ntasks=32 ranks=32 npar=1 palace=0.18.1 list=lists/cu2_fields.txt
+e_fil_s1055_cu2_o2_fields rc=0 wall_s=431.1
+{"case": "e_fil_s1055_cu2_o2_fields", "f0_Hz": 145212598.6887, "Q": 2121.399789, "mode": 1, "copper_input": "exact", "f_Rs": 145218417.819229, "p_alumina": 0.963234, "p_ptfe": 0.002952, "Q_u": 2121.399789, "Q_d": 25562.581174, "Q_c": 2313.384015}

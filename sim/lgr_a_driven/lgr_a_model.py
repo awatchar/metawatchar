@@ -408,13 +408,14 @@ def build_mesh(g, path, loops=None, spacers=True, screw=0.0, fillet=0.0, h=1.0, 
 
 def make_config(name, mesh_name, order, problem="Eigenmode", loops=True, spacers=True, screw=False,
                 f_lo=None, f_hi=None, f_step=1e-6, adaptive_tol=1e-4, target=0.12, n_modes=2,
-                linear=None, points=None, zs="exact", f_rs=F0, clips=False, empty=False):
+                linear=None, points=None, zs="exact", f_rs=F0, clips=False, empty=False, save=0):
     """zs: copper impedance input, "exact" (correct, default) or "s2" (the first runs, half the
     copper loss; see the module docstring). f_rs: frequency (Hz) at which Rs is evaluated, i.e. the
-    expected f0 of the case. clips: PEEK slab clips present (volume attribute 4). empty: empty can."""
+    expected f0 of the case. clips: PEEK slab clips present (volume attribute 4). empty: empty can.
+    save: number of eigenmodes whose fields are written (ParaView output); 0 = none."""
     cfg = {
         "Problem": {"Type": problem, "Verbose": 2, "Output": f"postpro/{name}",
-                    "OutputFormats": {"Paraview": False, "GridFunction": False}},
+                    "OutputFormats": {"Paraview": save > 0, "GridFunction": False}},
         "Model": {"Mesh": f"mesh/{mesh_name}.msh", "L0": 1.0e-3},
         "Domains": {
             "Materials": [
@@ -443,7 +444,7 @@ def make_config(name, mesh_name, order, problem="Eigenmode", loops=True, spacers
         cfg["Boundaries"]["LumpedPort"] = [
             {"Index": k, "Attributes": [10 + k], "Direction": "+R", "R": Z_PORT} for k in (1, 2)]
     if problem == "Eigenmode":
-        cfg["Solver"]["Eigenmode"] = {"N": n_modes, "Tol": 1.0e-8, "Target": target, "Save": 0}
+        cfg["Solver"]["Eigenmode"] = {"N": n_modes, "Tol": 1.0e-8, "Target": target, "Save": save}
         cfg["Solver"]["Linear"]["MaxIts"] = 200
     else:
         for k, p in enumerate(cfg["Boundaries"]["LumpedPort"]):
