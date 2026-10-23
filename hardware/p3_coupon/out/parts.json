@@ -1,0 +1,569 @@
+[
+ {
+  "ref": "L1",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C1",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L2",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C3",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L3",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C5",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L4",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C7",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L5",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C9",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L6",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C11",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L7",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C13",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L8",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C15",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L9",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C17",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L10",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C19",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L11",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C21",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L12",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C23",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L13",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C25",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L14",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C27",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L15",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C29",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L16",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C31",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L17",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C33",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L18",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C35",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L19",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C37",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L20",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C39",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L21",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C41",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L22",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C43",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L23",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C45",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L24",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C47",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L25",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C49",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L26",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C51",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L27",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "C53",
+  "val": "68nF C0G",
+  "fp": "C_1206_3216Metric",
+  "mpn": "GRM3195C1H683JA05D",
+  "lcsc": "C3847777"
+ },
+ {
+  "ref": "L28",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C55",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L29",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C57",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L30",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C59",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L31",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C61",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L32",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C63",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L33",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "C65",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L34",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C67",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L35",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C69",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L36",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C71",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L37",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C73",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L38",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C75",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L39",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ },
+ {
+  "ref": "C77",
+  "val": "33nF C0G",
+  "fp": "C_0805_2012Metric",
+  "mpn": "C2012C0G1H333JT000N",
+  "lcsc": "C76628"
+ },
+ {
+  "ref": "L40",
+  "val": "47uH",
+  "fp": "L_Sumida_CD105T125",
+  "mpn": "CD105T125NP-470KC",
+  "lcsc": "C171573"
+ },
+ {
+  "ref": "L41",
+  "val": "100uH",
+  "fp": "L_SXN_SM7850",
+  "mpn": "SM7850-101MT",
+  "lcsc": "C10155"
+ },
+ {
+  "ref": "L42",
+  "val": "100uH",
+  "fp": "L_Bourns_SDR0805",
+  "mpn": "SDR0805-101KL",
+  "lcsc": "C139487"
+ }
+]
