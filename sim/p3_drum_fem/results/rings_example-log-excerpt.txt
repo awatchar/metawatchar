@@ -1,0 +1,12 @@
+Added 3339 elements in 2 iterations of local bisection for under-resolved interior boundaries
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 91916 unknowns
+ Level 1 (p = 2): 491852 unknowns
+It 1/2: Current Index = 1 (elapsed time = 2.06e-05 s)
+PCG solver converged in 47 iterations (avg. reduction factor: 6.671e-01)
+It 2/2: Current Index = 2 (elapsed time = 1.37e+00 s)
+PCG solver converged in 48 iterations (avg. reduction factor: 6.759e-01)
+Completed 0 iterations of adaptive mesh refinement (AMR):
+ Indicator norm = 2.605e-01, global unknowns = 491852
+ Max. iterations = 0, tol. = 1.000e-02
+Elapsed Time Report (s)           Min.        Max.        Avg.

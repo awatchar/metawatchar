@@ -1,0 +1,226 @@
+{
+ "Problem": {
+  "Type": "Magnetostatic",
+  "Verbose": 2,
+  "Output": "postpro/pair_A_copl25_mu200_its2000"
+ },
+ "Model": {
+  "Mesh": "mesh/pair_A_copl25.msh",
+  "L0": 0.001
+ },
+ "Domains": {
+  "Materials": [
+   {
+    "Attributes": [
+     1
+    ],
+    "Permeability": 1.0
+   },
+   {
+    "Attributes": [
+     2
+    ],
+    "Permeability": 200
+   }
+  ]
+ },
+ "Boundaries": {
+  "PEC": {
+   "Attributes": [
+    3,
+    4
+   ]
+  },
+  "SurfaceCurrent": [
+   {
+    "Index": 1,
+    "Attributes": [
+     10
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 2,
+    "Attributes": [
+     11
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 3,
+    "Attributes": [
+     12
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 4,
+    "Attributes": [
+     13
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 5,
+    "Attributes": [
+     14
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 6,
+    "Attributes": [
+     15
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 7,
+    "Attributes": [
+     16
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 8,
+    "Attributes": [
+     17
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 9,
+    "Attributes": [
+     18
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 10,
+    "Attributes": [
+     19
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 11,
+    "Attributes": [
+     20
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 12,
+    "Attributes": [
+     21
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 13,
+    "Attributes": [
+     22
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 14,
+    "Attributes": [
+     23
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 15,
+    "Attributes": [
+     24
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 16,
+    "Attributes": [
+     25
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  ]
+ },
+ "Solver": {
+  "Order": 1,
+  "Device": "CPU",
+  "Magnetostatic": {
+   "Save": 0
+  },
+  "Linear": {
+   "Type": "AMS",
+   "KSPType": "CG",
+   "Tol": 1e-08,
+   "MaxIts": 2000
+  }
+ }
+}

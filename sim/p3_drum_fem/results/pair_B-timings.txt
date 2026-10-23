@@ -1,0 +1,10 @@
+ntasks=32 list=lists/pair_B.txt
+pair_B_copl11.5_mu200 rc=0 ntasks=32 wall_s=92.5
+pair_B_copl14_mu200 rc=0 ntasks=32 wall_s=93.6
+pair_B_copl18_mu200 rc=0 ntasks=32 wall_s=93.1
+pair_B_copl25_mu200 rc=0 ntasks=32 wall_s=93.4
+pair_B_copl35_mu200 rc=0 ntasks=32 wall_s=91.2
+pair_B_copl50_mu200 rc=0 ntasks=32 wall_s=91.4
+pair_B_coax1_mu200 rc=0 ntasks=32 wall_s=87.9
+pair_B_coax5_mu200 rc=0 ntasks=32 wall_s=89.6
+pair_B_coax15_mu200 rc=0 ntasks=32 wall_s=91.6

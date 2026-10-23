@@ -68,8 +68,16 @@ def main():
             continue
         mn = neumann(m["r"], (-m["dx"] / 2, 0, -m["dz"] / 2), m["r"], (m["dx"] / 2, 0, m["dz"] / 2))
         err = M[0, 1] / mn - 1
-        print(f"{run}: M_fem = {M[0, 1] * 1e9:.4f} nH, M_neumann = {mn * 1e9:.4f} nH, error {err * 100:+.2f} %")
-        out.append(dict(run=run, quantity="M_val", fem=M[0, 1], ref=mn, rel_err=err))
+        # effective radius of the PEC strip that reproduces the FEM mutual exactly
+        from scipy.optimize import brentq
+        f = lambda r: neumann(r, (-m["dx"] / 2, 0, -m["dz"] / 2), r, (m["dx"] / 2, 0, m["dz"] / 2), n=1200) - M[0, 1]
+        try:
+            r_eff = brentq(f, m["r"] - m["w"] / 2, m["r"] + m["w"] / 2, xtol=1e-4)
+        except ValueError:
+            r_eff = float("nan")
+        print(f"{run}: M_fem = {M[0, 1] * 1e9:.4f} nH, M_neumann(centre-line) = {mn * 1e9:.4f} nH, "
+              f"diff {err * 100:+.2f} %, effective radius {r_eff:.3f} mm, L11 = {M[0, 0] * 1e9:.3f} nH")
+        out.append(dict(run=run, quantity="M_val", fem=M[0, 1], ref=mn, rel_err=err, r_eff=r_eff))
 
     print("\n== single cells ==")
     l_air = {}
@@ -119,6 +127,42 @@ def main():
             far = max(rows, key=lambda r: r["s"])["m2_over_L"]
             print(f"type {typ}: m^2/L(d) / m^2/L(far) = " +
                   ", ".join(f"{r['s']:g} mm: {r['m2_over_L'] / far:.3f}" for r in sorted(rows, key=lambda r: r["s"])))
+    # 4 x 4 arrays: cell-level coupling matrix -> collective (bright) mode vs point-dipole lattice
+    print("\n== 4 x 4 arrays: collective mode (f / f0 of the isolated cell) ==")
+    for run, m in meta.items():
+        if m["kind"] != "array":
+            continue
+        M = read_M(run)
+        if M is None:
+            print(run, "no result")
+            continue
+        K = m["kr"] * m["kz"]
+        nc = M.shape[0] // K
+        Lc = np.array([[M[i * K:(i + 1) * K, j * K:(j + 1) * K].sum() for j in range(nc)] for i in range(nc)])
+        Kn = Lc / np.sqrt(np.outer(np.diag(Lc), np.diag(Lc)))          # normalised: 1 on the diagonal
+        lam, vec = np.linalg.eigh(Kn)
+        bright = (vec.sum(axis=0) ** 2) / nc
+        ib = int(np.argmax(bright))
+        f_ratio = 1 / math.sqrt(lam[ib])                                  # f_mode / f0 for identical cells
+        p = m["pitch"] * 1e-3
+        k_nn = Kn[0, 1] if abs(Kn[0, 1]) > 0 else float("nan")
+        # point-dipole lattice with m^2/L taken from the far (50 mm) coplanar pair of the same type
+        far = [r for r in out if r.get("quantity") == "k" and r.get("type") == m["type"]
+               and r.get("geom") == "copl" and r.get("s") == 50.0]
+        xs = [(i - 1.5) * p for i in range(4)]
+        pos = np.array([(x, y) for x in xs for y in xs])   # same ordering as drum_geometry (i outer, j inner)
+        line = (f"{run}: bright mode f/f0 = {f_ratio:.4f} (weight {bright[ib]:.2f}), "
+                f"nearest-neighbour k = {k_nn:+.4f}")
+        if far:
+            m2L = far[0]["m2_over_L"]
+            d = np.linalg.norm(pos[:, None] - pos[None], axis=2)
+            np.fill_diagonal(d, np.inf)
+            Kd = np.eye(nc) - MU0 * m2L / (4 * np.pi * d ** 3)
+            lam_d, vec_d = np.linalg.eigh(Kd)
+            ib_d = int(np.argmax((vec_d.sum(axis=0) ** 2) / nc))
+            line += f"; point-dipole model f/f0 = {1 / math.sqrt(lam_d[ib_d]):.4f}"
+        print(line)
+        out.append(dict(run=run, quantity="array_bright_f_ratio", fem=f_ratio, type=m["type"], s=m["pitch"]))
     keys = sorted({k for r in out for k in r})
     with open(os.path.join(HERE, "results", "summary.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=keys)

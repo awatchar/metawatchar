@@ -1,0 +1,30 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 916179 unknowns
+It 1/16: Current Index = 1 (elapsed time = 8.04e-05 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.752e-01)
+[38;2;255;255;000m--> Warning![0m
+It 2/16: Current Index = 2 (elapsed time = 5.68e+00 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.752e-01)
+[38;2;255;255;000m--> Warning![0m
+It 3/16: Current Index = 3 (elapsed time = 1.10e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.745e-01)
+[38;2;255;255;000m--> Warning![0m
+It 4/16: Current Index = 4 (elapsed time = 1.63e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.764e-01)
+[38;2;255;255;000m--> Warning![0m
+It 5/16: Current Index = 5 (elapsed time = 2.16e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.759e-01)
+[38;2;255;255;000m--> Warning![0m
+It 6/16: Current Index = 6 (elapsed time = 2.69e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.752e-01)
+[38;2;255;255;000m--> Warning![0m
+It 7/16: Current Index = 7 (elapsed time = 3.22e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.748e-01)
+[38;2;255;255;000m--> Warning![0m
+It 8/16: Current Index = 8 (elapsed time = 3.74e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.758e-01)
+[38;2;255;255;000m--> Warning![0m
+It 9/16: Current Index = 9 (elapsed time = 4.27e+01 s)
+PCG solver did NOT converge in 300 iterations (avg. reduction factor: 9.731e-01)
+[38;2;255;255;000m--> Warning![0m
+It 10/16: Current Index = 10 (elapsed time = 4.79e+01 s)

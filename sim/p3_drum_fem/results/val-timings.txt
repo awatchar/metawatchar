@@ -1,0 +1,5 @@
+ntasks=32 list=lists/val.txt
+val_coax5 rc=0 ntasks=32 wall_s=6.5
+val_copl12 rc=0 ntasks=32 wall_s=6.1
+val_coax5_h2 rc=0 ntasks=32 wall_s=32.8
+val_copl12_h2 rc=0 ntasks=32 wall_s=31.8

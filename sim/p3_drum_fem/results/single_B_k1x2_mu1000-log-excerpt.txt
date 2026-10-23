@@ -1,0 +1,10 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 219782 unknowns
+It 1/2: Current Index = 1 (elapsed time = 4.81e-05 s)
+PCG solver converged in 71 iterations (avg. reduction factor: 7.681e-01)
+It 2/2: Current Index = 2 (elapsed time = 3.35e-01 s)
+PCG solver converged in 71 iterations (avg. reduction factor: 7.686e-01)
+Completed 0 iterations of adaptive mesh refinement (AMR):
+ Indicator norm = 9.067e-01, global unknowns = 219782
+ Max. iterations = 0, tol. = 1.000e-02
+Elapsed Time Report (s)           Min.        Max.        Avg.

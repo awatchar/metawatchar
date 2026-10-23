@@ -1,0 +1,9 @@
+pair_C_copl11.5_k12_mu200
+pair_C_copl14_k12_mu200
+pair_C_copl18_k12_mu200
+pair_C_copl25_k12_mu200
+pair_C_copl35_k12_mu200
+pair_C_copl50_k12_mu200
+pair_C_coax1_k12_mu200
+pair_C_coax5_k12_mu200
+pair_C_coax15_k12_mu200

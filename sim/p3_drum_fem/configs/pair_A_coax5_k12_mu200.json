@@ -1,0 +1,94 @@
+{
+ "Problem": {
+  "Type": "Magnetostatic",
+  "Verbose": 2,
+  "Output": "postpro/pair_A_coax5_k12_mu200"
+ },
+ "Model": {
+  "Mesh": "mesh/pair_A_coax5_k12.msh",
+  "L0": 0.001
+ },
+ "Domains": {
+  "Materials": [
+   {
+    "Attributes": [
+     1
+    ],
+    "Permeability": 1.0
+   },
+   {
+    "Attributes": [
+     2
+    ],
+    "Permeability": 200
+   }
+  ]
+ },
+ "Boundaries": {
+  "PEC": {
+   "Attributes": [
+    3,
+    4
+   ]
+  },
+  "SurfaceCurrent": [
+   {
+    "Index": 1,
+    "Attributes": [
+     10
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 2,
+    "Attributes": [
+     11
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 3,
+    "Attributes": [
+     12
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 4,
+    "Attributes": [
+     13
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  ]
+ },
+ "Solver": {
+  "Order": 1,
+  "Device": "CPU",
+  "Magnetostatic": {
+   "Save": 0
+  },
+  "Linear": {
+   "Type": "AMS",
+   "KSPType": "CG",
+   "Tol": 1e-08,
+   "MaxIts": 300
+  }
+ }
+}

@@ -81,16 +81,26 @@ class Model:
         self.ferrite += [tag for dim, tag in v]
 
     def ring(self, xc, yc, z, r):
-        """Annulus of radius r (width W_ANN) in the plane z, split into a PEC part and a
-        small port piece at angle 0 (the +x side). Current direction at the port: +y (CCW from +z)."""
+        """Annulus of radius r (width W_ANN) in the plane z with a RECTANGULAR port at angle 0
+        (the +x side), built as in Palace's rings example: the port's free edges are straight
+        and parallel to the current direction (+y, CCW from +z) and its corners lie on the two
+        circles, so the source current is divergence-free. (A port cut from the annulus has arc
+        edges that leak current and the magnetostatic solve fails to converge.)"""
         o = self.occ
-        outer = o.addDisk(xc, yc, z, r + W_ANN / 2, r + W_ANN / 2)
-        inner = o.addDisk(xc, yc, z, r - W_ANN / 2, r - W_ANN / 2)
-        ann, _ = o.cut([(2, outer)], [(2, inner)])
-        cutter = o.addRectangle(xc + r - W_ANN, yc - GAP / 2, z, 2 * W_ANN, GAP)
-        port, _ = o.intersect(ann, [(2, cutter)], removeObject=False, removeTool=True)
-        pec, _ = o.cut(ann, port, removeObject=True, removeTool=False)
-        self.rings.append(dict(pec=[t for _, t in pec], port=[t for _, t in port], dir=[0.0, 1.0, 0.0]))
+        h = GAP / 2
+        r1, r2 = r - W_ANN / 2, r + W_ANN / 2
+        x1, x2 = math.sqrt(r1 ** 2 - h ** 2), math.sqrt(r2 ** 2 - h ** 2)
+        P = lambda x, y: o.addPoint(xc + x, yc + y, z)
+        c = P(0, 0)
+        p1, p2, p3, p4 = P(x1, -h), P(x1, h), P(x2, h), P(x2, -h)
+        p5, p6 = P(-r1, 0), P(-r2, 0)
+        l1, l2, l3, l4 = o.addLine(p1, p2), o.addLine(p2, p3), o.addLine(p3, p4), o.addLine(p4, p1)
+        port = o.addPlaneSurface([o.addCurveLoop([l1, l2, l3, l4])])
+        a1, a2 = o.addCircleArc(p2, c, p5), o.addCircleArc(p5, c, p1)
+        a3, a4 = o.addCircleArc(p3, c, p6), o.addCircleArc(p6, c, p4)
+        ring = o.addPlaneSurface([o.addCurveLoop([a1, a2, -l4, -a4, -a3, -l2])])
+        o.remove([(0, c)])
+        self.rings.append(dict(pec=[ring], port=[port], dir=[0.0, 1.0, 0.0]))
 
     def cell(self, t, xc, yc, zb, kr, kz, with_core=True):
         if with_core:
@@ -181,7 +191,7 @@ class Model:
         return path, len(self.rings), ntet
 
 
-def config(run, mesh, nports, mu, order=ORDER):
+def config(run, mesh, nports, mu, order=ORDER, maxits=300):
     cfg = {
         "Problem": {"Type": "Magnetostatic", "Verbose": 2, "Output": f"postpro/{run}"},
         "Model": {"Mesh": f"mesh/{mesh}.msh", "L0": 1.0e-3},
@@ -194,7 +204,7 @@ def config(run, mesh, nports, mu, order=ORDER):
         },
         "Solver": {"Order": order, "Device": "CPU",
                    "Magnetostatic": {"Save": 0},
-                   "Linear": {"Type": "AMS", "KSPType": "CG", "Tol": 1.0e-8, "MaxIts": 300}},
+                   "Linear": {"Type": "AMS", "KSPType": "CG", "Tol": 1.0e-8, "MaxIts": maxits}},
     }
     os.makedirs(os.path.join(HERE, "configs"), exist_ok=True)
     with open(os.path.join(HERE, "configs", run + ".json"), "w") as f:
@@ -211,6 +221,15 @@ def write_list(name, runs):
 def main(rounds=("val", "single", "pair")):
     meta = {}
     runs_by_round = {r: [] for r in rounds}
+    if "check" in rounds:
+        # solver-accuracy check: type A pairs at 25/35/50 mm (K = 2 x 4) with MaxIts 2000
+        for sd in (25, 35, 50):
+            mesh = f"pair_A_copl{sd}"
+            run = f"{mesh}_mu200_its2000"
+            config(run, mesh, 16, 200, maxits=2000)
+            meta[run] = dict(kind="pair", geom="copl", s=float(sd), type="A", kr=2, kz=4, mu=200, ports=16,
+                             maxits=2000, **TYPES["A"])
+            runs_by_round["check"].append(run)
     if "val" in rounds:
         # two thin rings (r = 5 mm) in air: coaxial gap 5 mm, coplanar centre distance 12 mm
         for kind, dx, dz, h in (("coax5", 0.0, 5.0, H_FINE), ("copl12", 12.0, 0.0, H_FINE),
@@ -241,13 +260,14 @@ def main(rounds=("val", "single", "pair")):
             config(run, mesh, 8, 1.0)
             meta[run] = dict(kind="single", type=typ, kr=2, kz=4, mu=1, ports=8, **t)
             runs_by_round["single"].append(run)
-    if "pair" in rounds:
-        kr, kz = 2, 4
+    for pr, (kr, kz) in (("pair", (2, 4)), ("pairk12", (1, 2))):   # K = 2 x 4 and a 1 x 2 cross-check
+        if pr not in rounds:
+            continue
         for typ, t in TYPES.items():
             geoms = [("copl", d) for d in (11.5, 14.0, 18.0, 25.0, 35.0, 50.0)] + \
                     [("coax", g) for g in (1.0, 5.0, 15.0)]
             for kind, s in geoms:
-                mesh = f"pair_{typ}_{kind}{s:g}"
+                mesh = f"pair_{typ}_{kind}{s:g}" + ("" if pr == "pair" else "_k12")
                 m = Model(mesh)
                 if kind == "copl":
                     m.cell(t, -s / 2, 0, -t["H"] / 2, kr, kz)
@@ -261,7 +281,7 @@ def main(rounds=("val", "single", "pair")):
                     config(run, mesh, n, mu)
                     meta[run] = dict(kind="pair", geom=kind, s=s, type=typ, kr=kr, kz=kz, mu=mu,
                                      ports=n, tets=ntet, **t)
-                    runs_by_round["pair"].append(run)
+                    runs_by_round[pr].append(run)
     if "array" in rounds:
         # the 4 x 4 mini-arrays of board 2 (A at 15 mm, B/C at 12.5 mm), K = 1 x 2 turns per cell
         # (32 terminals); the full 32 x 32 matrix feeds the coupled-circuit model of the array
