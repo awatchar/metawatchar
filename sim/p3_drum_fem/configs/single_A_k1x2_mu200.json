@@ -57,7 +57,7 @@
   ]
  },
  "Solver": {
-  "Order": 2,
+  "Order": 1,
   "Device": "CPU",
   "Magnetostatic": {
    "Save": 0

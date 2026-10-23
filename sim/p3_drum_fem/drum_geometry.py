@@ -35,6 +35,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 W_ANN = 0.4      # annulus (representative turn) radial width, mm
 GAP = 0.3        # port gap length along the circumference, mm
 R_AIR = 200.0    # far-boundary sphere radius, mm
+# Element order. Order 2 with the default p-multigrid AMS preconditioner diverged on these
+# meshes (PCG reduction factor > 1, job 6465821); order 1 converges (66 its). Accuracy is
+# controlled by mesh refinement instead (val_*_h2 halves the ring mesh size).
+ORDER = 1
+H_FINE = 0.10
+H_CORE = 0.35
 
 # Estimated core geometry (mm). DP (post) is a guess; datasheet outlines give D and H only.
 TYPES = {
@@ -92,7 +98,7 @@ class Model:
         for r, z in turns_layout(t, kr, kz):
             self.ring(xc, yc, zb + z, r)
 
-    def build(self, h_fine=0.15, h_core=0.5, h_far=20.0):
+    def build(self, h_fine=H_FINE, h_core=H_CORE, h_far=20.0):
         o = self.occ
         air = o.addSphere(0, 0, 0, R_AIR)
         objs = [(3, air)] + [(3, v) for v in self.ferrite]
@@ -175,7 +181,7 @@ class Model:
         return path, len(self.rings), ntet
 
 
-def config(run, mesh, nports, mu):
+def config(run, mesh, nports, mu, order=ORDER):
     cfg = {
         "Problem": {"Type": "Magnetostatic", "Verbose": 2, "Output": f"postpro/{run}"},
         "Model": {"Mesh": f"mesh/{mesh}.msh", "L0": 1.0e-3},
@@ -186,7 +192,7 @@ def config(run, mesh, nports, mu):
             "SurfaceCurrent": [{"Index": i + 1, "Attributes": [10 + i], "Direction": [0.0, 1.0, 0.0]}
                                for i in range(nports)],
         },
-        "Solver": {"Order": 2, "Device": "CPU",
+        "Solver": {"Order": order, "Device": "CPU",
                    "Magnetostatic": {"Save": 0},
                    "Linear": {"Type": "AMS", "KSPType": "CG", "Tol": 1.0e-8, "MaxIts": 300}},
     }
@@ -207,12 +213,13 @@ def main(rounds=("val", "single", "pair")):
     runs_by_round = {r: [] for r in rounds}
     if "val" in rounds:
         # two thin rings (r = 5 mm) in air: coaxial gap 5 mm, coplanar centre distance 12 mm
-        for kind, dx, dz in (("coax5", 0.0, 5.0), ("copl12", 12.0, 0.0)):
+        for kind, dx, dz, h in (("coax5", 0.0, 5.0, H_FINE), ("copl12", 12.0, 0.0, H_FINE),
+                                ("coax5_h2", 0.0, 5.0, H_FINE / 2), ("copl12_h2", 12.0, 0.0, H_FINE / 2)):
             name = f"val_{kind}"
             m = Model(name)
             m.ring(-dx / 2, 0, -dz / 2, 5.0)
             m.ring(dx / 2, 0, dz / 2, 5.0)
-            path, n, ntet = m.build()
+            path, n, ntet = m.build(h_fine=h)
             config(name, name, n, None)
             meta[name] = dict(kind="val", r=5.0, w=W_ANN, dx=dx, dz=dz, ports=n, tets=ntet)
             runs_by_round["val"].append(name)
@@ -266,7 +273,7 @@ def main(rounds=("val", "single", "pair")):
             for i in range(4):
                 for j in range(4):
                     m.cell(t, (i - 1.5) * p, (j - 1.5) * p, -t["H"] / 2, kr, kz)
-            path, n, ntet = m.build(h_fine=0.2, h_core=0.6)
+            path, n, ntet = m.build(h_fine=0.15, h_core=0.5)
             run = f"{mesh}_mu200"
             config(run, mesh, n, 200)
             meta[run] = dict(kind="array", type=typ, pitch=p, kr=kr, kz=kz, mu=200, ports=n, tets=ntet, **t)

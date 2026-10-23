@@ -1,0 +1,65 @@
+{
+ "Problem": {
+  "Type": "Magnetostatic",
+  "Verbose": 2,
+  "Output": "postpro/dbg_default"
+ },
+ "Model": {
+  "Mesh": "mesh/val_coax5.msh",
+  "L0": 0.001
+ },
+ "Domains": {
+  "Materials": [
+   {
+    "Attributes": [
+     1
+    ],
+    "Permeability": 1.0
+   }
+  ]
+ },
+ "Boundaries": {
+  "PEC": {
+   "Attributes": [
+    3,
+    4
+   ]
+  },
+  "SurfaceCurrent": [
+   {
+    "Index": 1,
+    "Attributes": [
+     10
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "Index": 2,
+    "Attributes": [
+     11
+    ],
+    "Direction": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  ]
+ },
+ "Solver": {
+  "Order": 2,
+  "Device": "CPU",
+  "Magnetostatic": {
+   "Save": 0
+  },
+  "Linear": {
+   "Type": "Default",
+   "Tol": 1e-08,
+   "MaxIts": 2000
+  }
+ }
+}
