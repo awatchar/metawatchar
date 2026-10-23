@@ -1,0 +1,55 @@
+{
+  "run": "B212_TAAT_o2_dTm25",
+  "mesh": "B212_TAAT",
+  "order": 2,
+  "xwall": "pec",
+  "walls": "cu",
+  "target_GHz": 0.16,
+  "n_modes": 5,
+  "rs_f_Hz": 172500000.0,
+  "zs": "exact",
+  "dT": -25.0,
+  "dT_mats": [
+    "al",
+    "ti"
+  ],
+  "eps_used": {
+    "al": 9.77403,
+    "ti": 102.28999999999999
+  },
+  "mat": {
+    "al": {
+      "eps": 9.8,
+      "tand": 4e-05,
+      "tau_eps": 0.000106,
+      "alpha": 7e-06
+    },
+    "ti": {
+      "eps": 100.0,
+      "tand": 0.0001,
+      "tau_eps": -0.000916,
+      "alpha": 8e-06
+    }
+  },
+  "alpha_cu": 1.7e-05,
+  "energy_index": {
+    "1": "air",
+    "2": "bore",
+    "3": "c0_ti",
+    "4": "c1_al",
+    "5": "c2_al",
+    "6": "c3_ti"
+  },
+  "tand": {
+    "c0_ti": 0.0001,
+    "c1_al": 4e-05,
+    "c2_al": 4e-05,
+    "c3_ti": 0.0001
+  },
+  "cells": [
+    "W3.29",
+    "A",
+    "A",
+    "W3.29"
+  ]
+}

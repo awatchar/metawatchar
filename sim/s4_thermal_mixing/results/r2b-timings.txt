@@ -1,0 +1,7 @@
+ntasks=64 palace=0.18.1 list=lists/r2b.txt
+L4_ATAA_o2 rc=0 ntasks=64 wall_s=656.6
+L4_ATAA_o2_dTp25 rc=0 ntasks=64 wall_s=653.2
+L4_ATAA_o2_dTm25 rc=0 ntasks=64 wall_s=654.1
+B212_TTAA_o2 rc=0 ntasks=64 wall_s=622.2
+B212_ATTT_o2 rc=0 ntasks=64 wall_s=595.9
+B212_TATT_o2 rc=0 ntasks=64 wall_s=595.9

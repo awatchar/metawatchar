@@ -1,0 +1,17 @@
+{
+  "GitTag": "v0.18.1",
+  "LinearSolver": {
+    "TotalIts": 968,
+    "TotalSolves": 68
+  },
+  "Problem": {
+    "DegreesOfFreedom": 8202087,
+    "MPISize": 128,
+    "MeshElements": 402470,
+    "MultigridDegreesOfFreedom": [
+      579943,
+      2911502,
+      8202087
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+ntasks=64 palace=0.18.1 list=lists/r2g.txt
+B212_ATAT_o2 rc=0 ntasks=64 wall_s=647.4
+B212_TAAA_d100_o2 rc=0 ntasks=64 wall_s=550.2
+B212_TAAA_d100_o2_dTp25 rc=0 ntasks=64 wall_s=608.8
+B212_TAAA_d100_o2_dTm25 rc=0 ntasks=64 wall_s=555.4

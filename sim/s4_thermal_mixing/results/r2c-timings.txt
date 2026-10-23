@@ -1,0 +1,7 @@
+ntasks=64 palace=0.18.1 list=lists/r2c.txt
+B212_TAAA_o2 rc=0 ntasks=64 wall_s=548.3
+B212_TAAA_o2_dTp25 rc=0 ntasks=64 wall_s=548.6
+B212_TAAA_o2_dTm25 rc=0 ntasks=64 wall_s=549.1
+B212_ATAA_o2 rc=0 ntasks=64 wall_s=566.4
+B212_ATAA_o2_dTp25 rc=0 ntasks=64 wall_s=567.1
+B212_ATAA_o2_dTm25 rc=0 ntasks=64 wall_s=570.6

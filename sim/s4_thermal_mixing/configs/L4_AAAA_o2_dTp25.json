@@ -1,0 +1,127 @@
+{
+  "Problem": {
+    "Type": "Eigenmode",
+    "Verbose": 2,
+    "Output": "postpro/L4_AAAA_o2_dTp25",
+    "OutputFormats": {
+      "Paraview": false,
+      "GridFunction": false
+    }
+  },
+  "Model": {
+    "Mesh": "mesh/L4_AAAA.msh",
+    "L0": 0.001
+  },
+  "Domains": {
+    "Materials": [
+      {
+        "Attributes": [
+          1,
+          3,
+          4
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 1.0,
+        "LossTan": 0.0
+      },
+      {
+        "Attributes": [
+          101,
+          111,
+          121,
+          131
+        ],
+        "Permeability": 1.0,
+        "Permittivity": 9.825970000000002,
+        "LossTan": 4e-05
+      }
+    ],
+    "Postprocessing": {
+      "Energy": [
+        {
+          "Index": 1,
+          "Attributes": [
+            1
+          ]
+        },
+        {
+          "Index": 2,
+          "Attributes": [
+            3
+          ]
+        },
+        {
+          "Index": 3,
+          "Attributes": [
+            4
+          ]
+        },
+        {
+          "Index": 4,
+          "Attributes": [
+            101
+          ]
+        },
+        {
+          "Index": 5,
+          "Attributes": [
+            111
+          ]
+        },
+        {
+          "Index": 6,
+          "Attributes": [
+            121
+          ]
+        },
+        {
+          "Index": 7,
+          "Attributes": [
+            131
+          ]
+        }
+      ]
+    }
+  },
+  "Boundaries": {
+    "PMC": {
+      "Attributes": [
+        7,
+        3
+      ]
+    },
+    "PEC": {
+      "Attributes": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "Impedance": [
+      {
+        "Attributes": [
+          6
+        ],
+        "Rs": 0.006833259745739217,
+        "Ls": 6.341382308835361e-12
+      }
+    ]
+  },
+  "Solver": {
+    "Order": 2,
+    "Device": "CPU",
+    "Linear": {
+      "Type": "Default",
+      "KSPType": "GMRES",
+      "Tol": 1e-08,
+      "MaxIts": 400
+    },
+    "Eigenmode": {
+      "N": 7,
+      "Tol": 1e-08,
+      "Target": 0.12,
+      "Save": 0
+    }
+  }
+}

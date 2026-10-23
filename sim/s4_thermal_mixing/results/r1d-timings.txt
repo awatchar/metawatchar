@@ -1,0 +1,7 @@
+ntasks=64 palace=0.18.1 list=lists/r1d.txt
+P1_W3p0_o2_pmc rc=0 ntasks=64 wall_s=126.4
+P1_W3p6_o2_pmc rc=0 ntasks=64 wall_s=143.6
+P1_C0p75_o2_pmc rc=0 ntasks=64 wall_s=210.8
+P1_C0p75_o2_pmc_dTp25 rc=0 ntasks=64 wall_s=224.3
+P1_C0p75_o2_pmc_dTm25 rc=0 ntasks=64 wall_s=221.8
+P1_C1p0_o2_pmc_t rc=0 ntasks=64 wall_s=267.9

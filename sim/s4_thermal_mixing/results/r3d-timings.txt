@@ -1,0 +1,4 @@
+ntasks=128 palace=0.18.1 list=lists/r3d.txt
+B212_TAAA_W3p41_o3_dTp5 rc=0 ntasks=128 wall_s=1146.8
+B212_TAAA_W3p41_o3_dTm5 rc=0 ntasks=128 wall_s=1160.4
+P1_W3p29_o3_pmc rc=0 ntasks=128 wall_s=324.9

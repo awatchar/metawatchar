@@ -1,0 +1,28 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 154416 unknowns
+ Level 1 (p = 2): 773440 unknowns
+ Level 0 (auxiliary) (p = 1): 28553 unknowns
+ Level 1 (auxiliary) (p = 2): 182969 unknowns
+  1 EPS nconv=1 first unconverged value (error) 0.00477873+0.0170177i (9.66880220e-02)
+  2 EPS nconv=1 first unconverged value (error) 0.00210126+0.0170715i (1.75487145e-02)
+  3 EPS nconv=1 first unconverged value (error) 0.00107052+0.0180401i (3.09252671e-02)
+  4 EPS nconv=1 first unconverged value (error) 0.000687488+0.0173549i (1.00381507e-02)
+  5 EPS nconv=1 first unconverged value (error) 0.000291201+0.0176768i (7.84953012e-03)
+  6 EPS nconv=1 first unconverged value (error) 3.13821e-05+0.0177505i (3.42614704e-03)
+  7 EPS nconv=1 first unconverged value (error) -0.000162511+0.0178577i (4.53649820e-03)
+  8 EPS nconv=1 first unconverged value (error) -0.000292952+0.0178384i (2.76828342e-03)
+  9 EPS nconv=1 first unconverged value (error) 9.59499e-06+0.0181833i (7.51447267e-04)
+ 10 EPS nconv=1 first unconverged value (error) 2.16467e-05+0.018123i (1.66280099e-04)
+ 11 EPS nconv=1 first unconverged value (error) -5.81278e-06+0.0181185i (6.93592625e-05)
+ 12 EPS nconv=1 first unconverged value (error) -8.92756e-06+0.0181272i (1.45909053e-05)
+ 13 EPS nconv=1 first unconverged value (error) -6.32381e-06+0.0181273i (5.02025424e-06)
+ 14 EPS nconv=1 first unconverged value (error) -6.22806e-06+0.0181265i (1.45875004e-06)
+ 15 EPS nconv=1 first unconverged value (error) -6.5083e-06+0.0181265i (5.45827528e-07)
+ 16 EPS nconv=1 first unconverged value (error) -6.48724e-06+0.0181266i (8.90027726e-08)
+ 17 EPS nconv=1 first unconverged value (error) -6.47736e-06+0.0181266i (2.86362015e-08)
+ 18 EPS nconv=2 first unconverged value (error) -8.65247e-07+0.0190054i (1.89360208e-07)
+ Found 2 converged eigenvalues (first = -4.879e-05+2.143e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 3.078e-02, global unknowns = 773440
+Elapsed Time Report (s)           Min.        Max.        Avg.

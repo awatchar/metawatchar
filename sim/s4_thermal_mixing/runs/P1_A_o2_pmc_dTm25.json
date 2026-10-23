@@ -1,0 +1,45 @@
+{
+  "run": "P1_A_o2_pmc_dTm25",
+  "mesh": "P1_A",
+  "order": 2,
+  "xwall": "pmc",
+  "walls": "cu",
+  "target_GHz": 0.14,
+  "n_modes": 2,
+  "rs_f_Hz": 149920000.0,
+  "zs": "exact",
+  "dT": -25.0,
+  "dT_mats": [
+    "al",
+    "ti"
+  ],
+  "eps_used": {
+    "al": 9.77403
+  },
+  "mat": {
+    "al": {
+      "eps": 9.8,
+      "tand": 4e-05,
+      "tau_eps": 0.000106,
+      "alpha": 7e-06
+    },
+    "ti": {
+      "eps": 100.0,
+      "tand": 0.0001,
+      "tau_eps": -0.000916,
+      "alpha": 8e-06
+    }
+  },
+  "alpha_cu": 1.7e-05,
+  "energy_index": {
+    "1": "air",
+    "2": "bore",
+    "3": "c0_al"
+  },
+  "tand": {
+    "c0_al": 4e-05
+  },
+  "cells": [
+    "A"
+  ]
+}

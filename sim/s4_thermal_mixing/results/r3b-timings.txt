@@ -1,0 +1,6 @@
+ntasks=64 palace=0.18.1 list=lists/r3b.txt
+B212_TAAA_W3p43_o2 rc=0 ntasks=64 wall_s=589.9
+B212_TAAA_W3p43_o2_dTp5 rc=0 ntasks=64 wall_s=589.5
+B212_TAAA_W3p43_o2_dTm5 rc=0 ntasks=64 wall_s=590.8
+B212_TAAA_W3p43_o2_dTp25 rc=0 ntasks=64 wall_s=588.1
+B212_TAAA_W3p43_o2_dTm25 rc=0 ntasks=64 wall_s=583.2

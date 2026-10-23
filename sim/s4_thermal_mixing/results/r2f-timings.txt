@@ -1,0 +1,7 @@
+ntasks=64 palace=0.18.1 list=lists/r2f.txt
+B212_TAAA_d030_o2 rc=0 ntasks=64 wall_s=607.5
+B212_TAAA_d030_o2_dTp25 rc=0 ntasks=64 wall_s=609.6
+B212_TAAA_d030_o2_dTm25 rc=0 ntasks=64 wall_s=554.4
+B212_TAAA_d060_o2 rc=0 ntasks=64 wall_s=552.3
+B212_TAAA_d060_o2_dTp25 rc=0 ntasks=64 wall_s=552.7
+B212_TAAA_d060_o2_dTm25 rc=0 ntasks=64 wall_s=550.7

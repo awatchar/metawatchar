@@ -1,0 +1,28 @@
+Assembling system matrices, number of global unknowns:
+ Level 0 (p = 1): 150333 unknowns
+ Level 1 (p = 2): 752480 unknowns
+ Level 2 (p = 3): 2116725 unknowns
+ Level 0 (auxiliary) (p = 1): 27855 unknowns
+ Level 1 (auxiliary) (p = 2): 178188 unknowns
+ Level 2 (auxiliary) (p = 3): 554428 unknowns
+  1 EPS nconv=1 first unconverged value (error) 0.0110261+0.00296707i (1.96554041e-01)
+  2 EPS nconv=1 first unconverged value (error) 0.000406832+0.00398778i (1.05377074e-02)
+  3 EPS nconv=1 first unconverged value (error) -0.000168828+0.00342782i (7.42262051e-03)
+  4 EPS nconv=1 first unconverged value (error) -1.29514e-06+0.00366162i (2.03829119e-03)
+  5 EPS nconv=1 first unconverged value (error) -1.89113e-05+0.00382914i (9.02339321e-04)
+  6 EPS nconv=1 first unconverged value (error) -1.9929e-05+0.00391523i (2.74483156e-04)
+  7 EPS nconv=1 first unconverged value (error) -6.28463e-06+0.00394317i (5.54622694e-05)
+  8 EPS nconv=1 first unconverged value (error) -2.51712e-06+0.00394748i (9.40755509e-06)
+  9 EPS nconv=1 first unconverged value (error) -1.57761e-06+0.00394791i (1.67932304e-06)
+ 10 EPS nconv=1 first unconverged value (error) -1.34764e-06+0.00394786i (2.38348966e-07)
+ 11 EPS nconv=1 first unconverged value (error) -1.33693e-06+0.00394784i (3.48612055e-08)
+ 12 EPS nconv=2 first unconverged value (error) -2.47389e-08+0.00435795i (1.58296299e-06)
+ 13 EPS nconv=2 first unconverged value (error) -4.50531e-08+0.00435794i (2.68311602e-07)
+ 14 EPS nconv=2 first unconverged value (error) -4.57217e-08+0.00435795i (8.38836898e-08)
+ 15 EPS nconv=2 first unconverged value (error) -4.43936e-08+0.00435794i (2.60439941e-08)
+ 16 EPS nconv=3 first unconverged value (error) -1.186e-07+0.00456807i (8.12380720e-08)
+ Found 3 converged eigenvalues (first = -3.864e-05+2.199e-01i)
+Computing solution error estimates and performing postprocessing
+     m,        Re{f} (GHz),        Im{f} (GHz),                  Q,      Error (Bkwd.),       Error (Abs.)
+ Indicator norm = 8.763e-02, global unknowns = 2116725
+Elapsed Time Report (s)           Min.        Max.        Avg.
